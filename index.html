@@ -4,17 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Yury Cavalcante · Ciência de Dados</title>
-<meta name="description" content="Portfólio de Yury Cavalcante: projetos ponta a ponta de machine learning, deep learning e RAG com dados públicos brasileiros.">
+<meta name="description" content="Portfólio de Yury Cavalcante: projetos ponta a ponta de machine learning, séries temporais e análise de dados com bases públicas brasileiras.">
 <meta property="og:title" content="Yury Cavalcante · Ciência de Dados">
-<meta property="og:description" content="Projetos ponta a ponta de machine learning, deep learning e RAG com dados públicos brasileiros.">
+<meta property="og:description" content="Projetos ponta a ponta com dados públicos brasileiros: atrasos de voos, comércio exterior até 2030 e exportações aéreas.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://yucavalcante.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316181b'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='17' fill='white'%3EY%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=IBM+Plex+Mono:wght@400&display=swap">
 <style>
-  /* Layout: coluna de leitura estreita para o texto; o projeto em destaque abre para a largura toda.
-     Tom: caderno de laboratório — serifada para a voz, sans para a interface, mono para os números. */
+  /* Layout: apresentação curta numa coluna de leitura; vitrine de projetos em grade de cards iguais
+     (gráfico do projeto no topo, texto, números, ações). Tom: caderno de laboratório. */
   :root {
     color-scheme: light;
     --bg: #f6f6f3;
@@ -24,7 +25,9 @@
     --muted: #7d7f84;
     --line: #e3e2dc;
     --accent: #2a78d6;
+    --accent-2: #8a8c91;
     --accent-soft: #e6effb;
+    --chart-bg: #f9f9f7;
     --serif: "Newsreader", Georgia, "Times New Roman", serif;
     --sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
     --mono: "IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
@@ -33,13 +36,13 @@
     :root:not([data-theme="light"]) {
       color-scheme: dark;
       --bg: #121314; --panel: #1b1c1e; --ink: #eeede8; --ink-2: #b9b8b1; --muted: #8c8b85; --line: #2c2d2f;
-      --accent: #5598e7; --accent-soft: #1b2a3d;
+      --accent: #5598e7; --accent-2: #6b6c70; --accent-soft: #1b2a3d; --chart-bg: #17181a;
     }
   }
   :root[data-theme="dark"] {
     color-scheme: dark;
     --bg: #121314; --panel: #1b1c1e; --ink: #eeede8; --ink-2: #b9b8b1; --muted: #8c8b85; --line: #2c2d2f;
-    --accent: #5598e7; --accent-soft: #1b2a3d;
+    --accent: #5598e7; --accent-2: #6b6c70; --accent-soft: #1b2a3d; --chart-bg: #17181a;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; }
@@ -51,56 +54,58 @@
   a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
   a:hover { color: var(--accent); }
   a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
-  .wrap { max-width: 1040px; margin: 0 auto; display: flex; flex-direction: column; gap: 72px; }
-  .read { max-width: 640px; }
+  .wrap { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 72px; }
+  .read { max-width: 660px; }
 
   .top { display: flex; justify-content: space-between; align-items: center; padding-block: 22px; font-size: .875rem; color: var(--muted); gap: 16px; flex-wrap: wrap; }
-  .top nav { display: flex; gap: 20px; }
+  .top nav { display: flex; gap: 20px; flex-wrap: wrap; }
   .top a { text-decoration: none; }
 
-  .intro { display: flex; flex-direction: column; gap: 18px; padding-top: 32px; }
+  .intro { display: flex; flex-direction: column; gap: 18px; padding-top: 24px; }
   .kicker { font-family: var(--mono); font-size: .8125rem; color: var(--muted); letter-spacing: .02em; }
-  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.02; margin: 0; letter-spacing: -.01em; text-wrap: balance; }
+  h1 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.4rem, 5.6vw, 3.8rem); line-height: 1.04; margin: 0; letter-spacing: -.01em; text-wrap: balance; }
   h1 em { font-style: italic; color: var(--ink-2); }
   .intro p { margin: 0; font-size: 1.125rem; color: var(--ink-2); text-wrap: pretty; }
 
-  h2 { font-family: var(--serif); font-weight: 400; font-size: 1.75rem; margin: 0; line-height: 1.2; text-wrap: balance; }
-  .label { font-family: var(--mono); font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin: 0 0 14px; }
+  .label { font-family: var(--mono); font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; margin: 0 0 16px; }
+  .sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .sec-head h2 { font-family: var(--serif); font-weight: 400; font-size: 1.9rem; margin: 0 0 20px; line-height: 1.15; }
+  .sec-head span { font-size: .875rem; color: var(--muted); }
 
-  .feature { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); overflow: hidden; }
-  .feature-text { padding: 32px; display: flex; flex-direction: column; gap: 18px; min-width: 0; }
-  .feature-text p { margin: 0; color: var(--ink-2); }
+  /* Vitrine */
+  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; display: flex; flex-direction: column; overflow: hidden; min-width: 0; transition: border-color .2s, transform .2s; }
+  .card:hover { border-color: var(--ink-2); }
+  .viz { background: var(--chart-bg); border-bottom: 1px solid var(--line); padding: 18px 18px 12px; display: flex; flex-direction: column; gap: 6px; }
+  .viz-title { font-size: .75rem; color: var(--muted); line-height: 1.35; min-height: 2.7em; }
+  .viz svg { display: block; width: 100%; max-width: 440px; height: auto; overflow: visible; }
+  .viz svg text { font-family: var(--mono); font-size: 10px; fill: var(--muted); }
+  .viz svg .forte { fill: var(--ink-2); }
+  .body { padding: 22px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+  .area { font-family: var(--mono); font-size: .72rem; color: var(--accent); letter-spacing: .02em; }
+  .card h3 { font-family: var(--serif); font-weight: 400; font-size: 1.45rem; line-height: 1.15; margin: 0; text-wrap: balance; }
+  .card p { margin: 0; color: var(--ink-2); font-size: .95rem; text-wrap: pretty; }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: auto; }
+  .stat { display: flex; flex-direction: column; gap: 2px; border-top: 1px solid var(--line); padding-top: 8px; min-width: 0; }
+  .stat b { font-family: var(--serif); font-weight: 400; font-size: 1.35rem; line-height: 1.1; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .stat span { font-size: .72rem; color: var(--muted); line-height: 1.3; min-height: 5.2em; }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; list-style: none; }
-  .tags li { font-family: var(--mono); font-size: .72rem; padding: 3px 8px; border-radius: 4px; background: var(--accent-soft); color: var(--ink-2); }
-  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 4px 0; }
-  .stat { display: flex; flex-direction: column; gap: 2px; border-top: 1px solid var(--line); padding-top: 10px; }
-  .stat b { font-family: var(--serif); font-weight: 400; font-size: 1.75rem; line-height: 1.1; font-variant-numeric: tabular-nums; }
-  .stat span { font-size: .78rem; color: var(--muted); line-height: 1.35; }
-  .actions { display: flex; flex-wrap: wrap; gap: 10px; }
-  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 8px; font-size: .9rem; font-weight: 500; text-decoration: none; border: 1px solid var(--line); }
+  .tags li { font-family: var(--mono); font-size: .68rem; padding: 2px 7px; border-radius: 4px; background: var(--accent-soft); color: var(--ink-2); }
+  .actions { display: flex; flex-wrap: wrap; gap: 8px; }
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 13px; border-radius: 8px; font-size: .875rem; font-weight: 500; text-decoration: none; border: 1px solid var(--line); }
   .btn.primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
   .btn.primary:hover { color: var(--bg); opacity: .88; }
   .btn:hover { border-color: var(--ink-2); }
 
-  .feature-chart { background: var(--bg); border-left: 1px solid var(--line); padding: 28px 28px 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-  .feature-chart h3 { margin: 0; font-size: .9rem; font-weight: 500; }
-  .feature-chart p { margin: 0; font-size: .8rem; color: var(--muted); }
-  .bars { height: 210px; margin-top: auto; display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); grid-template-rows: 100%; align-items: end; gap: 6px; padding-top: 20px; position: relative; }
-  .bar { position: relative; background: var(--accent); border-radius: 3px 3px 0 0; min-height: 2px; }
-  .bar span { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); padding-bottom: 4px; font-family: var(--mono); font-size: .66rem; color: var(--ink-2); white-space: nowrap; }
-  .bar.dim { opacity: .45; }
-  .axis { display: grid; grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 6px; font-family: var(--mono); font-size: .66rem; color: var(--muted); text-align: center; border-top: 1px solid var(--line); padding-top: 6px; }
-  .axis-note { display: flex; justify-content: space-between; font-size: .72rem; color: var(--muted); }
-
-  .list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-  .item { display: flex; flex-direction: column; gap: 8px; padding: 20px; border: 1px dashed var(--line); border-radius: 10px; min-width: 0; }
+  .soon { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .item { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; border: 1px dashed var(--line); border-radius: 10px; min-width: 0; }
   .item h3 { margin: 0; font-size: 1rem; font-weight: 600; }
   .item p { margin: 0; font-size: .9rem; color: var(--ink-2); }
   .status { font-family: var(--mono); font-size: .7rem; color: var(--muted); display: inline-flex; align-items: center; gap: 6px; }
   .status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; border: 1.5px solid var(--muted); }
 
   .studies { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
-  .studies li { display: grid; grid-template-columns: minmax(0, 14rem) minmax(0, 1fr); gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
+  .studies li { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
   .studies li:last-child { border-bottom: 1px solid var(--line); }
   .studies a { font-weight: 500; }
   .studies span { color: var(--ink-2); font-size: .92rem; }
@@ -109,20 +114,17 @@
   .contact p { margin: 0; color: var(--ink-2); }
   footer { font-size: .8rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 18px; }
 
-  @media (max-width: 820px) {
-    .feature { grid-template-columns: 1fr; }
-    .feature-chart { border-left: 0; border-top: 1px solid var(--line); }
-    .list { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 520px) {
-    .feature-text { padding: 22px; }
-    .stats { grid-template-columns: 1fr; }
+  @media (max-width: 980px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 680px) {
+    .grid, .soon { grid-template-columns: 1fr; }
     .studies li { grid-template-columns: 1fr; gap: 4px; }
     .wrap { gap: 56px; }
   }
   @media (prefers-reduced-motion: no-preference) {
-    .bar { transform-origin: bottom; animation: sobe .7s cubic-bezier(.2,.7,.2,1) both; }
+    .viz svg .anim { transform-box: fill-box; transform-origin: bottom; animation: sobe .7s cubic-bezier(.2,.7,.2,1) both; }
+    .viz svg .anim-x { transform-box: fill-box; transform-origin: left; animation: abre .7s cubic-bezier(.2,.7,.2,1) both; }
     @keyframes sobe { from { transform: scaleY(.04); } to { transform: scaleY(1); } }
+    @keyframes abre { from { transform: scaleX(.04); } to { transform: scaleX(1); } }
   }
 </style>
 </head>
@@ -131,49 +133,103 @@
   <header class="top">
     <span>Yury Cavalcante</span>
     <nav>
+      <a href="#projetos">Projetos</a>
+      <a href="#estudos">Estudos e artigos</a>
       <a href="https://github.com/YUCAVALCANTE">GitHub</a>
       <a href="https://www.linkedin.com/in/yucavalcante/">LinkedIn</a>
     </nav>
   </header>
 
   <section class="intro read">
-    <span class="kicker">ciência de dados · machine learning · deep learning · RAG</span>
+    <span class="kicker">ciência de dados · machine learning · séries temporais · RAG</span>
     <h1>Modelos que respondem perguntas <em>reais</em>, com dados públicos brasileiros.</h1>
-    <p>Sou mestre em Gestão de Projetos e especialista em Data Science e Business Intelligence. Trabalho na interseção entre gestão e dados: pego bases públicas brasileiras, construo o modelo ponta a ponta e mostro com honestidade o quanto ele acerta, onde erra e por quê.</p>
+    <p>Sou mestre em Gestão de Projetos e especialista em Data Science e Business Intelligence. Trabalho na interseção entre gestão e dados: pego bases públicas, construo o projeto ponta a ponta e mostro com honestidade o quanto o modelo acerta, onde erra e por quê. Cada projeto abaixo tem um painel interativo e o código aberto.</p>
   </section>
 
-  <section aria-labelledby="destaque">
-    <p class="label" id="destaque">Projeto em destaque</p>
-    <article class="feature">
-      <div class="feature-text">
-        <h2>Previsão de atrasos de voos no Brasil</h2>
-        <p>Com os microdados de voos regulares da ANAC, construí um modelo que estima, antes da partida, a chance de cada voo chegar com mais de 15 minutos de atraso. O projeto cobre coleta automatizada, atributos sem vazamento temporal, comparação com linhas de base, explicabilidade e uma API em Docker.</p>
-        <div class="stats">
-          <div class="stat"><b>2,5 mi</b><span>voos analisados, jan/2024 a set/2026</span></div>
-          <div class="stat"><b>0,73</b><span>ROC-AUC no teste, prevendo 2h antes da partida</span></div>
-          <div class="stat"><b>9×</b><span>mais atraso na faixa de maior risco que na de menor</span></div>
+  <section id="projetos" aria-labelledby="projetos-titulo">
+    <div class="sec-head">
+      <h2 id="projetos-titulo">Projetos</h2>
+      <span>Clique para abrir o painel interativo</span>
+    </div>
+    <div class="grid">
+
+      <!--
+        Para adicionar um projeto: copie um <article class="card"> inteiro, troque os textos,
+        os links e o data-viz (ou apague a <figure> se não houver gráfico).
+      -->
+
+      <article class="card">
+        <figure class="viz" style="margin:0">
+          <span class="viz-title">Voos do período de teste em 10 faixas de risco previsto: quantos de fato atrasaram</span>
+          <svg data-viz="voos" viewBox="0 0 300 130" role="img" aria-label="Taxa real de atraso por faixa de risco, de 5% a 42%"></svg>
+        </figure>
+        <div class="body">
+          <span class="area">machine learning</span>
+          <h3>Atrasos de voos no Brasil</h3>
+          <p>Qual a chance de um voo chegar com mais de 15 minutos de atraso? Modelo treinado com os microdados da ANAC e testado em meses que nunca viu.</p>
+          <ul class="tags"><li>LightGBM</li><li>SHAP</li><li>FastAPI</li><li>Docker</li></ul>
+          <div class="stats">
+            <div class="stat"><b>2,5 mi</b><span>voos analisados</span></div>
+            <div class="stat"><b>0,73</b><span>ROC-AUC prevendo 2h antes</span></div>
+            <div class="stat"><b>9×</b><span>mais atraso no maior risco</span></div>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="/voos/">Abrir painel →</a>
+            <a class="btn" href="https://github.com/YUCAVALCANTE/atrasos-voos-brasil">Código</a>
+          </div>
         </div>
-        <ul class="tags">
-          <li>LightGBM</li><li>validação temporal</li><li>SHAP</li><li>MLflow</li><li>FastAPI</li><li>Docker</li><li>CI</li><li>d3</li>
-        </ul>
-        <div class="actions">
-          <a class="btn primary" href="voos/">Abrir o dashboard →</a>
-          <a class="btn" href="https://github.com/YUCAVALCANTE/atrasos-voos-brasil">Código e relatório</a>
+      </article>
+
+      <article class="card">
+        <figure class="viz" style="margin:0">
+          <span class="viz-title">Exportações brasileiras de bens por ano, em US$ bilhões FOB: histórico e projeção até 2030</span>
+          <svg data-viz="comex" viewBox="0 0 300 130" role="img" aria-label="Exportações anuais de 1997 a 2025 e projeção até 2030"></svg>
+        </figure>
+        <div class="body">
+          <span class="area">séries temporais · TCC</span>
+          <h3>Comércio exterior brasileiro até 2030</h3>
+          <p>Qual modelo projeta melhor exportações e importações? Três métodos comparados em validação temporal desde 1997, com faixas de erro empíricas.</p>
+          <ul class="tags"><li>Holt-Winters</li><li>DuckDB</li><li>dbt</li><li>Streamlit</li></ul>
+          <div class="stats">
+            <div class="stat"><b>30 anos</b><span>de série mensal oficial</span></div>
+            <div class="stat"><b>381 bi</b><span>US$ em exportações projetadas em 2030</span></div>
+            <div class="stat"><b>27%</b><span>erro no teste de 4 anos à frente</span></div>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="/comercio-exterior-brasileiro/">Abrir painel →</a>
+            <a class="btn" href="https://github.com/YUCAVALCANTE/comercio-exterior-brasileiro">Código</a>
+          </div>
         </div>
-      </div>
-      <figure class="feature-chart" aria-labelledby="grafico-titulo">
-        <h3 id="grafico-titulo">O risco previsto separa bem os voos</h3>
-        <p>Voos do período de teste em 10 faixas de risco previsto: quantos de fato atrasaram (modelo da véspera).</p>
-        <div class="bars" id="barras" role="img" aria-label="Taxa real de atraso por faixa de risco"></div>
-        <div class="axis" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span></div>
-        <div class="axis-note"><span>menor risco</span><span>maior risco</span></div>
-      </figure>
-    </article>
+      </article>
+
+      <article class="card">
+        <figure class="viz" style="margin:0">
+          <span class="viz-title">Aeroportos que mais exportam, em US$ bilhões FOB (jan/2023 a out/2026)</span>
+          <svg data-viz="aeroportos" viewBox="0 0 300 130" role="img" aria-label="Cinco aeroportos com maior valor exportado"></svg>
+        </figure>
+        <div class="body">
+          <span class="area">análise de dados</span>
+          <h3>Exportações aéreas por aeroporto</h3>
+          <p>O que o Brasil exporta de avião, por onde sai e para onde vai. Busque um produto, escolha o aeroporto e veja a curva mensal e a projeção.</p>
+          <ul class="tags"><li>Comex Stat</li><li>JavaScript</li><li>WAPE</li></ul>
+          <div class="stats">
+            <div class="stat"><b>7.533</b><span>produtos (códigos NCM)</span></div>
+            <div class="stat"><b>46</b><span>meses de dados</span></div>
+            <div class="stat"><b>21</b><span>unidades de embarque</span></div>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="/comercio-exterior-brasileiro/?visao=aeroportos">Abrir painel →</a>
+            <a class="btn" href="https://github.com/YUCAVALCANTE/comercio-exterior-brasileiro">Código</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
   </section>
 
   <section aria-labelledby="proximos">
     <p class="label" id="proximos">Em construção</p>
-    <div class="list">
+    <div class="soon">
       <article class="item">
         <span class="status">em construção</span>
         <h3>RAG com avaliação quantitativa</h3>
@@ -181,24 +237,19 @@
       </article>
       <article class="item">
         <span class="status">em construção</span>
-        <h3>Previsão com dados externos</h3>
-        <p>Deep learning em PyTorch para séries temporais, comparando LSTM e Transformer com modelos clássicos e intervalos de incerteza.</p>
-      </article>
-      <article class="item">
-        <span class="status">em construção</span>
-        <h3>Comércio exterior brasileiro</h3>
-        <p>Pipeline com DuckDB e dbt sobre o Comex Stat, análise estatística e painel interativo.</p>
+        <h3>Previsão com deep learning</h3>
+        <p>Séries temporais em PyTorch, comparando LSTM e Transformer com modelos clássicos, com dados externos e intervalos de incerteza.</p>
       </article>
     </div>
   </section>
 
-  <section class="read" aria-labelledby="estudos">
-    <p class="label" id="estudos">Estudos e artigos</p>
+  <section class="read" id="estudos" aria-labelledby="estudos-titulo">
+    <p class="label" id="estudos-titulo">Estudos e artigos</p>
     <ul class="studies">
-      <li><a href="https://github.com/YUCAVALCANTE/Case_Study">Case Study</a><span>Receita de bagagem extra com Pandas e ML; comparação entre SHAP e LIME.</span></li>
-      <li><a href="https://github.com/YUCAVALCANTE/ML_Studies">ML Studies</a><span>Fundamentos de machine learning: árvores, SVM, KNN, PCA, clusterização e viés-variância.</span></li>
       <li><a href="https://github.com/YUCAVALCANTE/Tutorials_Linkedin">Tutoriais do LinkedIn</a><span>Código dos artigos, como "Previsão Não É Magia" e árvores de decisão do zero com Polars.</span></li>
       <li><a href="https://github.com/YUCAVALCANTE/DATAVIZ_MATPLOTLIB">Matplotlib em Foco</a><span>Gráficos do artigo sobre visualização de dados com Python.</span></li>
+      <li><a href="https://github.com/YUCAVALCANTE/Case_Study">Case Study</a><span>Receita de bagagem extra com Pandas e ML; comparação entre SHAP e LIME.</span></li>
+      <li><a href="https://github.com/YUCAVALCANTE/ML_Studies">ML Studies</a><span>Fundamentos de machine learning: árvores, SVM, KNN, PCA, clusterização e viés-variância.</span></li>
     </ul>
   </section>
 
@@ -207,34 +258,90 @@
     <p>Para conversar sobre dados, vagas ou projetos, me chame no <a href="https://www.linkedin.com/in/yucavalcante/">LinkedIn</a>. Todo o código está no <a href="https://github.com/YUCAVALCANTE">GitHub</a>.</p>
   </section>
 
-  <footer>Dados públicos da ANAC. Página feita à mão, sem rastreadores.</footer>
+  <footer>Dados públicos da ANAC e do Comex Stat (MDIC). Página feita à mão, sem rastreadores.</footer>
 </div>
 
 <script>
-  // Barras do destaque, a partir dos mesmos dados do dashboard
+  // Mini gráficos dos cards, a partir de dados/vitrine.json (gerado por scripts/atualizar_vitrine.py)
   (function () {
-    const alvo = document.getElementById('barras');
-    fetch('voos/dados/modelo_decis.json')
+    const NS = 'http://www.w3.org/2000/svg';
+    const W = 300, H = 130;
+    const el = (tag, attrs, pai) => {
+      const n = document.createElementNS(NS, tag);
+      for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+      if (pai) pai.appendChild(n);
+      return n;
+    };
+    const txt = (pai, x, y, s, attrs = {}) => { const t = el('text', { x, y, ...attrs }, pai); t.textContent = s; return t; };
+    const num = (v, d = 0) => v.toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d });
+    const cor = () => getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+    const cor2 = () => getComputedStyle(document.documentElement).getPropertyValue('--accent-2').trim();
+    const linha = () => getComputedStyle(document.documentElement).getPropertyValue('--line').trim();
+
+    const desenhos = {
+      voos(svg, d) {
+        const max = Math.max(...d.map((x) => x.taxa));
+        const bw = W / d.length;
+        d.forEach((x, i) => {
+          const h = (x.taxa / max) * (H - 30);
+          const destaque = i === 0 || i === d.length - 1;
+          el('rect', { x: i * bw + 3, y: H - 14 - h, width: bw - 6, height: h, rx: 2, fill: destaque ? cor() : cor2(), class: 'anim', style: `animation-delay:${i * 40}ms` }, svg);
+          if (destaque) txt(svg, i * bw + bw / 2, H - 18 - h, num(x.taxa * 100) + '%', { 'text-anchor': 'middle', class: 'forte' });
+        });
+        txt(svg, 0, H - 1, 'menor risco');
+        txt(svg, W, H - 1, 'maior risco', { 'text-anchor': 'end' });
+      },
+      comex(svg, d) {
+        const anos = d.map((x) => x.ano), vals = d.map((x) => x.exportacao_bi);
+        const x0 = Math.min(...anos), x1 = Math.max(...anos), ymax = Math.max(...vals) * 1.1;
+        const X = (a) => ((a - x0) / (x1 - x0)) * (W - 8) + 2;
+        const Y = (v) => H - 14 - (v / ymax) * (H - 26);
+        el('line', { x1: 0, x2: W, y1: H - 14, y2: H - 14, stroke: linha() }, svg);
+        const obs = d.filter((x) => x.tipo === 'observado');
+        const proj = d.filter((x) => x.tipo !== 'observado');
+        const caminho = (pts) => pts.map((p, i) => (i ? 'L' : 'M') + X(p.ano).toFixed(1) + ',' + Y(p.exportacao_bi).toFixed(1)).join('');
+        el('path', { d: caminho(obs), fill: 'none', stroke: cor(), 'stroke-width': 2, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', 'vector-effect': 'non-scaling-stroke' }, svg);
+        if (proj.length) {
+          el('path', { d: caminho([obs[obs.length - 1], ...proj]), fill: 'none', stroke: cor(), 'stroke-width': 2, 'stroke-dasharray': '4 4', 'vector-effect': 'non-scaling-stroke' }, svg);
+          const ult = proj[proj.length - 1];
+          el('circle', { cx: X(ult.ano), cy: Y(ult.exportacao_bi), r: 3, fill: cor() }, svg);
+          txt(svg, X(ult.ano) - 4, Y(ult.exportacao_bi) - 8, `${ult.ano}: ${num(ult.exportacao_bi)}`, { 'text-anchor': 'end', class: 'forte' });
+        }
+        const prim = obs[0];
+        txt(svg, X(prim.ano) + 2, Y(prim.exportacao_bi) - 8, `${prim.ano}: ${num(prim.exportacao_bi)}`, { class: 'forte' });
+        txt(svg, 0, H - 1, String(x0));
+        txt(svg, W, H - 1, String(x1), { 'text-anchor': 'end' });
+      },
+      aeroportos(svg, d) {
+        const max = Math.max(...d.map((x) => x.fob_bi));
+        const lh = (H - 4) / d.length, rot = 96, valW = 34;
+        d.forEach((x, i) => {
+          const y = i * lh + 2;
+          txt(svg, 0, y + lh / 2 + 3, x.aeroporto, i === 0 ? { class: 'forte' } : {});
+          const w = (x.fob_bi / max) * (W - rot - valW);
+          el('rect', { x: rot, y: y + 4, width: w, height: lh - 8, rx: 2, fill: i === 0 ? cor() : cor2(), class: 'anim-x', style: `animation-delay:${i * 60}ms` }, svg);
+          txt(svg, rot + w + 4, y + lh / 2 + 3, num(x.fob_bi, 1), i === 0 ? { class: 'forte' } : {});
+        });
+      },
+    };
+
+    const desenhar = (dados) => {
+      for (const svg of document.querySelectorAll('svg[data-viz]')) {
+        const fn = desenhos[svg.dataset.viz];
+        const d = dados[svg.dataset.viz];
+        svg.replaceChildren();
+        if (fn && d && d.length) fn(svg, d);
+        else svg.closest('figure').hidden = true;
+      }
+    };
+
+    fetch('/dados/vitrine.json')
       .then((r) => r.json())
-      .then((linhas) => {
-        const d = linhas.filter((x) => x.cenario === 'Planejamento').sort((a, b) => a.decil - b.decil);
-        const max = Math.max(...d.map((x) => x.taxa_real));
-        const pct = (v) => (v * 100).toFixed(0).replace('.', ',') + '%';
-        alvo.replaceChildren(...d.map((x, i) => {
-          const b = document.createElement('div');
-          b.className = 'bar' + (i === 0 || i === d.length - 1 ? '' : ' dim');
-          b.style.height = (x.taxa_real / max) * 100 + '%';
-          b.style.animationDelay = i * 40 + 'ms';
-          b.title = `Faixa ${x.decil}: ${pct(x.taxa_real)} atrasaram`;
-          if (i === 0 || i === d.length - 1) {
-            const s = document.createElement('span');
-            s.textContent = pct(x.taxa_real);
-            b.appendChild(s);
-          }
-          return b;
-        }));
+      .then((dados) => {
+        desenhar(dados);
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => desenhar(dados));
       })
-      .catch(() => { alvo.closest('figure').hidden = true; });
+      .catch(() => document.querySelectorAll('svg[data-viz]').forEach((s) => { s.closest('figure').hidden = true; }));
   })();
 </script>
 </body>

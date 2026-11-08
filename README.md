@@ -6,6 +6,13 @@ Site pessoal de Yury Cavalcante, publicado pelo GitHub Pages.
 |---|---|
 | `/` | Página inicial do portfólio |
 | `/voos/` | Dashboard interativo de atrasos de voos (dados da ANAC) |
+| `/comercio-exterior-brasileiro/` | Vem do repositório [comercio-exterior-brasileiro](https://github.com/YUCAVALCANTE/comercio-exterior-brasileiro), que publica a pasta `docs/` |
+
+## Adicionar um projeto à vitrine
+
+1. Ligue o GitHub Pages no repositório do projeto (**Settings → Pages**). Ele passa a ser servido em `yucavalcante.com/<nome-do-repositório>/`.
+2. Em `index.html`, copie um `<article class="card">` e troque os textos e os links.
+3. Para o mini gráfico, acrescente uma função em `desenhos` (no fim de `index.html`) e os dados em `scripts/atualizar_vitrine.py`, depois rode `python scripts/atualizar_vitrine.py`. Sem gráfico, apague a `<figure>` do card.
 
 ## Atualizar o dashboard de voos
 
