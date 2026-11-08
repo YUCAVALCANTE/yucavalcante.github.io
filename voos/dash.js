@@ -13,8 +13,9 @@
     'modelo_metricas', 'modelo_decis', 'modelo_importancia',
   ];
   const CORES = {
-    claro: ['#2a78d6', '#eb6834', '#1baf7a', '#eda100', '#e87ba4', '#008300', '#6250d6', '#e34948'],
-    escuro: ['#3987e5', '#d95926', '#199e70', '#c98500', '#d55181', '#008300', '#9085e9', '#e66767'],
+    // Paleta de dados do Prisma: índigo, amarelo, vermelho, roxo, teal, cinza
+    claro: ['#4338ca', '#f5b70a', '#e5484d', '#a35be0', '#1f9e89', '#8c89a8', '#7c2bc4', '#c02e36'],
+    escuro: ['#a5aeff', '#ffcc33', '#ff8f8f', '#d3a6ff', '#4fd1b8', '#6f6c8e', '#c084fc', '#ff6b6b'],
   };
 
   const store = {};

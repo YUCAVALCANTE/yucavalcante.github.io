@@ -8,57 +8,61 @@
 <meta property="og:title" content="Atrasos de voos no Brasil">
 <meta property="og:description" content="Explore atrasos por empresa, aeroporto e período, com 2,3 milhões de voos da ANAC.">
 <meta property="og:type" content="website">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232a78d6'/%3E%3Cpath d='M7 19l18-7-3 9-5-2-3 4v-5z' fill='white'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='10' fill='%234338ca'/%3E%3Cpath d='M7 19l18-7-3 9-5-2-3 4v-5z' fill='white'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,400;6..72,500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Figtree:wght@400;500;600;700&display=swap">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
 <script src="dash.js"></script>
 <style>
-  /* Tokens que a página do dashboard usa (mesmos nomes do claude.ai) */
+  /* Tokens que a página do dashboard usa (mesmos nomes do claude.ai), com os valores do design system Prisma */
   :root {
     color-scheme: light;
-    --color-bg: #f6f6f3;
+    --color-bg: #f7f6fb;
     --color-panel: #ffffff;
-    --color-fg: #16181b;
-    --color-fg-muted: #5f6166;
-    --color-border-line: #e3e2dc;
-    --color-ok: #0f7a2e; --color-warn: #9a6400; --color-bad: #c43c3c;
-    --cds-chart-muted: #b9b8b1;
-    --cds-chart-grid: #ecebe6;
-    --cds-chart-axis: #c3c2b7;
-    --cds-chart-reference: #898781;
+    --color-fg: #1e1b3a;
+    --color-fg-muted: #5b5877;
+    --color-border-line: #dcd9ea;
+    --color-ok: #167a4a; --color-warn: #875b00; --color-bad: #c02e36;
+    --prisma-indigo: #4338ca; --prisma-indigo-soft: #e9e8fc; --prisma-line-strong: #8c89a8;
+    --cds-chart-muted: #c9c6dd;
+    --cds-chart-grid: #e8e6f2;
+    --cds-chart-axis: #8c89a8;
+    --cds-chart-reference: #5b5877;
     --cds-surface-popover: #ffffff;
-    --cds-border: #dcdbd4;
-    --cds-shadow-popover: 0 6px 24px rgba(20, 20, 20, .10);
-    --cds-text-secondary: #5f6166;
-    --font-anthropic-sans: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-    --font-anthropic-serif: "Newsreader", Georgia, "Times New Roman", serif;
+    --cds-border: #dcd9ea;
+    --cds-shadow-popover: 0 16px 40px -8px rgba(30, 27, 58, .20), 0 4px 12px rgba(30, 27, 58, .08);
+    --cds-text-secondary: #5b5877;
+    --font-anthropic-sans: "Figtree", "Segoe UI", system-ui, sans-serif;
+    --font-anthropic-serif: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
     --cds-font-size-caption: .8125rem;
     --cds-font-size-body: .9375rem;
     --cds-font-size-heading: 1.0625rem;
-    --cds-font-size-title: 2rem;
-    --cds-font-weight-medium: 500;
+    --cds-font-size-title: 1.875rem;
+    --cds-font-weight-medium: 600;
     --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 16px; --cds-gap-lg: 24px; --cds-gap-xl: 40px;
-    --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-md: 14px; --cds-pad-lg: 20px; --cds-pad-xl: 32px;
-    --cds-radius: 8px;
-    --cds-dur-slow: .3s;
+    --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-md: 16px; --cds-pad-lg: 20px; --cds-pad-xl: 32px;
+    --cds-radius: 16px;
+    --cds-dur-slow: .42s;
+    --cds-ease-out: cubic-bezier(.34, 1.56, .64, 1);
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       color-scheme: dark;
-      --color-bg: #121314; --color-panel: #1b1c1e; --color-fg: #eeede8; --color-fg-muted: #a5a49d;
-      --color-border-line: #2c2d2f; --color-ok: #3fbf68; --color-warn: #e0a53a; --color-bad: #ef6b6b;
-      --cds-chart-muted: #4a4a47; --cds-chart-grid: #26272a; --cds-chart-axis: #3a3b3e; --cds-chart-reference: #8c8b85;
-      --cds-surface-popover: #232427; --cds-border: #34353a; --cds-shadow-popover: 0 6px 24px rgba(0,0,0,.45); --cds-text-secondary: #a5a49d;
+      --color-bg: #13121f; --color-panel: #1c1a2e; --color-fg: #f1effa; --color-fg-muted: #a9a6c4;
+      --color-border-line: #33304d; --color-ok: #5fd89a; --color-warn: #ffd75e; --color-bad: #ff8f8f;
+      --prisma-indigo: #a5aeff; --prisma-indigo-soft: #2b2862; --prisma-line-strong: #6f6c8e;
+      --cds-chart-muted: #47436a; --cds-chart-grid: #2a2742; --cds-chart-axis: #6f6c8e; --cds-chart-reference: #a9a6c4;
+      --cds-surface-popover: #24223a; --cds-border: #33304d; --cds-shadow-popover: 0 18px 44px -8px rgba(0,0,0,.8); --cds-text-secondary: #a9a6c4;
     }
   }
   :root[data-theme="dark"] {
     color-scheme: dark;
-    --color-bg: #121314; --color-panel: #1b1c1e; --color-fg: #eeede8; --color-fg-muted: #a5a49d;
-    --color-border-line: #2c2d2f; --color-ok: #3fbf68; --color-warn: #e0a53a; --color-bad: #ef6b6b;
-    --cds-chart-muted: #4a4a47; --cds-chart-grid: #26272a; --cds-chart-axis: #3a3b3e; --cds-chart-reference: #8c8b85;
-    --cds-surface-popover: #232427; --cds-border: #34353a; --cds-shadow-popover: 0 6px 24px rgba(0,0,0,.45); --cds-text-secondary: #a5a49d;
+    --color-bg: #13121f; --color-panel: #1c1a2e; --color-fg: #f1effa; --color-fg-muted: #a9a6c4;
+    --color-border-line: #33304d; --color-ok: #5fd89a; --color-warn: #ffd75e; --color-bad: #ff8f8f;
+    --prisma-indigo: #a5aeff; --prisma-indigo-soft: #2b2862; --prisma-line-strong: #6f6c8e;
+    --cds-chart-muted: #47436a; --cds-chart-grid: #2a2742; --cds-chart-axis: #6f6c8e; --cds-chart-reference: #a9a6c4;
+    --cds-surface-popover: #24223a; --cds-border: #33304d; --cds-shadow-popover: 0 18px 44px -8px rgba(0,0,0,.8); --cds-text-secondary: #a9a6c4;
   }
   * { box-sizing: border-box; }
   html, body { margin: 0; }
@@ -71,18 +75,26 @@
   a { color: inherit; }
   .site-nav { max-width: 1280px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-block: 18px; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); flex-wrap: wrap; }
   .site-nav a { text-decoration: none; }
-  .site-nav a:hover { color: var(--color-fg); text-decoration: underline; text-underline-offset: 3px; }
+  .site-nav a:hover { color: var(--prisma-indigo); text-decoration: underline; text-underline-offset: 3px; }
+  .site-nav > a:first-child { font-weight: 600; color: var(--color-fg); }
   .site-nav nav { display: flex; gap: 16px; }
   #dash-root { padding-top: 8px; }
   .site-foot { max-width: 1280px; margin: 40px auto 0; padding-top: 16px; border-top: 1px solid var(--color-border-line); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
   .dash-select {
     appearance: none; font: inherit; font-size: var(--cds-font-size-caption); color: var(--color-fg);
-    background-color: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius);
-    padding: 6px 30px 6px 10px; cursor: pointer;
+    background-color: var(--color-panel); border: 1px solid var(--prisma-line-strong); border-radius: 9999px;
+    padding: 7px 32px 7px 14px; cursor: pointer; font-weight: 500;
+    transition: border-color .14s ease, background-color .14s ease;
     background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
     background-position: calc(100% - 15px) 52%, calc(100% - 10px) 52%; background-size: 5px 5px; background-repeat: no-repeat;
   }
-  .dash-select:focus-visible { outline: 2px solid var(--color-fg); outline-offset: 2px; }
+  .dash-select:hover { border-color: var(--prisma-indigo); background-color: var(--prisma-indigo-soft); }
+  .dash-select:focus-visible { outline: 2px solid var(--prisma-indigo); outline-offset: 2px; }
+  /* Botão "Limpar filtros" em pílula, como no Prisma */
+  #dash-root .vx-btn { border-radius: 9999px; padding: 7px 14px; font-weight: 600; color: var(--prisma-indigo); border-color: transparent; transition: background-color .14s ease, transform .14s var(--cds-ease-out); }
+  #dash-root .vx-btn:hover { background: var(--prisma-indigo-soft); color: var(--prisma-indigo); }
+  #dash-root .vx-btn:active { transform: scale(.96); }
+  #dash-root .vx-tab:focus-visible, #dash-root .vx-btn:focus-visible { outline-color: var(--prisma-indigo); }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
 </head>
