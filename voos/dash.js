@@ -13,9 +13,9 @@
     'modelo_metricas', 'modelo_decis', 'modelo_importancia',
   ];
   const CORES = {
-    // Paleta de dados do Prisma: índigo, amarelo, vermelho, roxo, teal, cinza
-    claro: ['#4338ca', '#f5b70a', '#e5484d', '#a35be0', '#1f9e89', '#8c89a8', '#7c2bc4', '#c02e36'],
-    escuro: ['#a5aeff', '#ffcc33', '#ff8f8f', '#d3a6ff', '#4fd1b8', '#6f6c8e', '#c084fc', '#ff6b6b'],
+    // Cores do sistema do HIG Designer. A 3ª (vermelho) marca "pior que a média" na página.
+    claro: ['#007aff', '#ff9500', '#ff3b30', '#af52de', '#00c7be', '#34c759', '#5856d6', '#ff2d55'],
+    escuro: ['#0a84ff', '#ff9f0a', '#ff453a', '#bf5af2', '#63e6e2', '#30d158', '#5e5ce6', '#ff375f'],
   };
 
   const store = {};
