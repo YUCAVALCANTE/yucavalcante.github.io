@@ -14,6 +14,14 @@ Site pessoal de Yury Cavalcante, publicado pelo GitHub Pages.
 2. Em `index.html`, copie um `<article class="card">` e troque os textos e os links.
 3. Para o mini gráfico, acrescente uma função em `desenhos` (no fim de `index.html`) e os dados em `scripts/atualizar_vitrine.py`, depois rode `python scripts/atualizar_vitrine.py`. Sem gráfico, apague a `<figure>` do card.
 
+## Textos do Medium
+
+A seção "Textos" da página inicial é gerada a partir de `dados/artigos.json`. Para incluir um texto novo, acrescente-o na categoria certa (mais recente primeiro; uma série de contos é um item só, com `partes`) e rode:
+
+```bash
+python scripts/atualizar_artigos.py
+```
+
 ## Atualizar o dashboard de voos
 
 O dashboard é gerado a partir do repositório [atrasos-voos-brasil](https://github.com/YUCAVALCANTE/atrasos-voos-brasil):

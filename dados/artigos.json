@@ -1,0 +1,133 @@
+{
+  "perfil": "https://medium.com/@yucavalcante",
+  "atualizado": "2026-11-08",
+  "categorias": [
+    {
+      "id": "ml",
+      "nome": "Machine learning",
+      "descricao": "Algoritmos explicados pela intuição e pela geometria: regressão, árvores, SVM, KNN, clusterização, anomalias e explicabilidade.",
+      "itens": [
+        {"t": "Geometria do Espaço de Dados", "u": "https://medium.com/@yucavalcante/geometria-do-espa%C3%A7o-de-dados-f2a6ce283a5d", "d": "2026-02", "lang": "pt"},
+        {"t": "Quando não existe resposta correta: avaliação estrutural em clusterização", "u": "https://medium.com/@yucavalcante/quando-n%C3%A3o-existe-resposta-correta-avalia%C3%A7%C3%A3o-estrutural-em-clusteriza%C3%A7%C3%A3o-e9ad84c58d8c", "d": "2026-02", "lang": "pt"},
+        {"t": "Redução de dimensionalidade como engenharia do espaço", "u": "https://medium.com/@yucavalcante/redu%C3%A7%C3%A3o-de-dimensionalidade-como-engenharia-do-espa%C3%A7o-2a8d6aefec6d", "d": "2026-02", "lang": "pt"},
+        {"t": "Antes do Modelo, Existe o Espaço: A base da Representação", "u": "https://medium.com/@yucavalcante/antes-do-modelo-existe-o-espa%C3%A7o-a-base-da-representa%C3%A7%C3%A3o-5933b21d2163", "d": "2026-02", "lang": "pt"},
+        {"t": "Anomaly Detection: Quando o Problema Não é Classificar, Mas Detectar o Improvável", "u": "https://medium.com/@yucavalcante/anomaly-detection-quando-o-problema-n%C3%A3o-%C3%A9-classificar-mas-detectar-o-improv%C3%A1vel-35bc06456713", "d": "2026-02", "lang": "pt"},
+        {"t": "Quando Não Existe Resposta Certa: Entendendo Clusterização", "u": "https://medium.com/@yucavalcante/quando-n%C3%A3o-existe-resposta-certa-entendendo-clusteriza%C3%A7%C3%A3o-c74002ba4b10", "d": "2026-02", "lang": "pt"},
+        {"t": "KNN: Quando a Decisão Não Vem de uma Fronteira, mas da Vizinhança", "u": "https://medium.com/@yucavalcante/knn-quando-a-decis%C3%A3o-n%C3%A3o-vem-de-uma-fronteira-mas-da-vizinhan%C3%A7a-4a72e7a4e7dd", "d": "2026-01", "lang": "pt"},
+        {"t": "SVM Não Decide Sozinho: Ele Desenha Limites", "u": "https://medium.com/@yucavalcante/svm-n%C3%A3o-decide-sozinho-ele-desenha-limites-79f4cb21243e", "d": "2026-01", "lang": "pt"},
+        {"t": "Entendendo viés, variância e o trade-off que todo modelo carrega", "u": "https://medium.com/@yucavalcante/entendendo-vi%C3%A9s-vari%C3%A2ncia-e-o-trade-off-que-todo-modelo-carrega-e-lembre-se-seu-modelo-n%C3%A3o-%C3%A9-ruim-a200e46a73f8", "d": "2026-01", "lang": "pt"},
+        {"t": "Árvores de Regressão não preveem valores, mas sim negociam limites", "u": "https://medium.com/@yucavalcante/%C3%A1rvores-de-regress%C3%A3o-n%C3%A3o-preveem-valores-mas-sim-negociam-limites-b2b410200802", "d": "2026-01", "lang": "pt"},
+        {"t": "Árvores que Decidem: Como Modelos Simples Explicam Problemas Complexos", "u": "https://medium.com/@yucavalcante/%C3%A1rvores-que-decidem-como-modelos-simples-explicam-problemas-complexos-e2e4ea30708d", "d": "2026-01", "lang": "pt"},
+        {"t": "Introdução à Classificação em Machine Learning", "u": "https://medium.com/@yucavalcante/introdu%C3%A7%C3%A3o-%C3%A0-classifica%C3%A7%C3%A3o-em-machine-learning-ddaff28cd846", "d": "2026-01", "lang": "pt"},
+        {"t": "Entre probabilidades e decisões: regressão logística na prática", "u": "https://medium.com/@yucavalcante/entre-probabilidades-e-decis%C3%B5es-regress%C3%A3o-log%C3%ADstica-na-pr%C3%A1tica-045a37c88f0e", "d": "2026-01", "lang": "pt"},
+        {"t": "The Day My “Perfect” Machine Learning Model Lied to Me", "u": "https://medium.com/@yucavalcante/the-day-my-perfect-machine-learning-model-lied-to-me-10afe73a1955", "d": "2025-11", "lang": "en"},
+        {"t": "Previsão Não É Magia: É Contexto e Os Dados Externos São o Trunfo", "u": "https://medium.com/@yucavalcante/previs%C3%A3o-n%C3%A3o-%C3%A9-magia-%C3%A9-contexto-e-os-dados-externos-s%C3%A3o-o-trunfo-b3bd2ac44405", "d": "2025-11", "lang": "pt"},
+        {"t": "O Modelo é uma Caixa-Preta? Como Explicar o que a IA Está Pensando", "u": "https://medium.com/@yucavalcante/o-modelo-%C3%A9-uma-caixa-preta-como-explicar-o-que-a-ia-est%C3%A1-pensando-7d36eaca6315", "d": "2025-10", "lang": "pt"},
+        {"t": "Regressão Logística: Classificação Binária com Probabilidade", "u": "https://medium.com/@yucavalcante/regress%C3%A3o-log%C3%ADstica-classifica%C3%A7%C3%A3o-bin%C3%A1ria-com-probabilidade-197ffacc9786", "d": "2024-10", "lang": "pt"},
+        {"t": "Regressão Linear: Simplicidade e Limitações", "u": "https://medium.com/@yucavalcante/regress%C3%A3o-linear-simplicidade-e-limita%C3%A7%C3%B5es-ae30637d4e0e", "d": "2024-10", "lang": "pt"},
+        {"t": "Introdução à Modelagem Preditiva com Machine Learning", "u": "https://medium.com/@yucavalcante/introdu%C3%A7%C3%A3o-%C3%A0-modelagem-preditiva-com-machine-learning-eeb806b7e5e5", "d": "2024-10", "lang": "pt"}
+      ]
+    },
+    {
+      "id": "ia",
+      "nome": "Deep learning, IA e RAG",
+      "descricao": "Redes neurais, sistemas de recomendação, RAG e previsão com deep learning, sem mágica.",
+      "itens": [
+        {"t": "Por que a Netflix parece te conhecer? Sistemas de recomendação por dentro", "u": "https://medium.com/@yucavalcante/por-que-a-netflix-parece-te-conhecer-sistemas-de-recomenda%C3%A7%C3%A3o-por-dentro-65656b04c51c", "d": "2026-11", "lang": "pt"},
+        {"t": "Rede neural não é cérebro: o que realmente acontece quando uma máquina aprende", "u": "https://medium.com/@yucavalcante/rede-neural-n%C3%A3o-%C3%A9-c%C3%A9rebro-o-que-realmente-acontece-quando-uma-m%C3%A1quina-aprende-003c1bf67609", "d": "2026-11", "lang": "pt"},
+        {"t": "IA sem mágica: por que decidi reaprender Inteligência Artificial do zero", "u": "https://medium.com/@yucavalcante/ia-sem-m%C3%A1gica-por-que-decidi-reaprender-intelig%C3%AAncia-artificial-do-zero-c10804ee7050", "d": "2026-11", "lang": "pt"},
+        {"t": "RAG: o modelo pode ser ótimo e ainda responder errado", "u": "https://medium.com/@yucavalcante/rag-o-modelo-pode-ser-%C3%B3timo-e-ainda-responder-errado-808567736155", "d": "2026-08", "lang": "pt"},
+        {"t": "O Tempo, o Código e as Dez Mil Tentativas: o que aprendi tentando prever o futuro com Deep Learning", "u": "https://medium.com/@yucavalcante/o-tempo-o-c%C3%B3digo-e-as-dez-mil-tentativas-o-que-aprendi-tentando-prever-o-futuro-com-deep-learning-a1d052819459", "d": "2025-10", "lang": "pt"}
+      ]
+    },
+    {
+      "id": "escrita",
+      "nome": "IA e escrita",
+      "descricao": "Detectores de IA, autoria, marcas d’água e como usar IA para editar sem perder a própria voz.",
+      "itens": [
+        {"t": "Where Can I Humanize AI for Free? I Tested 9 Tools and Their Real Limits", "u": "https://medium.com/@yucavalcante/where-can-i-humanize-ai-for-free-i-tested-9-tools-and-their-real-limits-cdf520f8b499", "d": "2026-09", "lang": "en"},
+        {"t": "What If Writing Had a Git History?", "u": "https://medium.com/ai-ai-oh/what-if-writing-had-a-git-history-1e1d010f968e", "d": "2026-09", "lang": "en"},
+        {"t": "AI Is a Bad Editor. That Doesn’t Mean You Shouldn’t Use It to Edit.", "u": "https://medium.com/coding-nexus/ai-is-a-bad-editor-that-doesnt-mean-you-shouldn-t-use-it-to-edit-1020f104c724", "d": "2026-09", "lang": "en"},
+        {"t": "Claude Humanizer Skill: What It Actually Is (and How to Use It)", "u": "https://medium.com/coding-nexus/claude-humanizer-skill-what-it-actually-is-and-how-to-use-it-92956d0df019", "d": "2026-09", "lang": "en"},
+        {"t": "Is There a 100% Accurate AI Detector? What the Falade Case Reveals", "u": "https://medium.com/coding-nexus/is-there-a-100-accurate-ai-detector-what-the-falade-case-reveals-12cdc5e0029c", "d": "2026-09", "lang": "en"},
+        {"t": "The Next AI Detector Might Be Your Draft History", "u": "https://medium.com/ai-ai-oh/the-next-ai-detector-might-be-your-draft-history-6297485501a6", "d": "2026-09", "lang": "en"},
+        {"t": "You Probably Can’t Spot AI Writing Anymore", "u": "https://medium.com/ai-ai-oh/you-probably-cant-spot-ai-writing-anymore-05988edac1a6", "d": "2026-08", "lang": "en"},
+        {"t": "AI Didn’t Invent the Author Who Didn’t Write the Book", "u": "https://medium.com/@yucavalcante/ai-didnt-invent-the-author-who-didn-t-write-the-book-92102a9d9958", "d": "2026-08", "lang": "en"},
+        {"t": "Claude Started Watermarking Its Answers. GitHub Took 36 Hours to Start Pulling It Apart.", "u": "https://medium.com/coding-nexus/claude-started-watermarking-its-answers-github-took-36-hours-to-start-pulling-it-apart-0b52e121b1f7", "d": "2026-08", "lang": "en"},
+        {"t": "How to Make AI Writing Undetectable (Without Tricks, Hacks, or Plugins)", "u": "https://medium.com/@yucavalcante/how-to-make-ai-writing-undetectable-without-tricks-hacks-or-plugins-1c31bdb39a8e", "d": "2025-11", "lang": "en"},
+        {"t": "The Silent Shift: How AI Is Reshaping Your Job Before You Even Notice", "u": "https://medium.com/@yucavalcante/the-silent-shift-how-ai-is-reshaping-your-job-before-you-even-notice-bc7c7bb3b740", "d": "2025-11", "lang": "en"}
+      ]
+    },
+    {
+      "id": "dados",
+      "nome": "Data science e dados",
+      "descricao": "Carreira, arquitetura de dados, governança, bancos NoSQL e por que projetos de dados falham.",
+      "itens": [
+        {"t": "Your System Is Running. That Doesn’t Mean It’s Available.", "u": "https://medium.com/@yucavalcante/your-system-is-running-that-doesnt-mean-it-s-available-0e203a35fcf4", "d": "2026-10", "lang": "en"},
+        {"t": "Quando as Tabelas Não Bastam: uma introdução aos bancos de dados NoSQL", "u": "https://medium.com/@yucavalcante/quando-as-tabelas-n%C3%A3o-bastam-uma-introdu%C3%A7%C3%A3o-aos-bancos-de-dados-nosql-e5f9aedfd8c0", "d": "2026-08", "lang": "pt"},
+        {"t": "The Ultimate Roadmap to Become a Data Scientist in 2025", "u": "https://medium.com/@yucavalcante/the-ultimate-roadmap-to-become-a-data-scientist-in-2025-b84942fa4216", "d": "2025-11", "lang": "en"},
+        {"t": "The Clear, Human Explanation of Data Lakes vs. Lakehouses That Everyone Has Been Missing", "u": "https://medium.com/@yucavalcante/the-clear-human-explanation-of-data-lakes-vs-lakehouses-that-everyone-has-been-missing-8d5d495b1630", "d": "2025-11", "lang": "en"},
+        {"t": "Why 90% of Data Projects Fail and What the 10% Do Differently", "u": "https://medium.com/@yucavalcante/why-90-of-data-projects-fail-and-what-the-10-do-differently-b22c3bf809a3", "d": "2025-11", "lang": "en"},
+        {"t": "O Que Você Faz com Seus Dados?", "u": "https://medium.com/@yucavalcante/o-que-voc%C3%AA-faz-com-seus-dados-1c2f2052f8f8", "d": "2025-10", "lang": "pt"},
+        {"t": "Análise Comparativa das Ferramentas de ETL: Power BI e Qlik", "u": "https://medium.com/@yucavalcante/an%C3%A1lise-comparativa-de-t%C3%A9cnicas-vantagens-e-desvantagens-das-ferramentas-de-etl-power-bi-e-qlik-c6c95fbb86b9", "d": "2023-04", "lang": "pt"},
+        {"t": "ERWIN DATA GOVERNANCE: a ferramenta completa para gestão eficiente de dados", "u": "https://medium.com/@yucavalcante/erwin-data-governance-a-ferramenta-completa-para-gest%C3%A3o-eficiente-de-dados-18fc867e6167", "d": "2023-04", "lang": "pt"}
+      ]
+    },
+    {
+      "id": "python",
+      "nome": "Python e programação",
+      "descricao": "Tutoriais de Python para dados (Pandas, NumPy, Polars, Matplotlib, Seaborn, séries temporais) e a passagem de Python para JavaScript.",
+      "itens": [
+        {"t": "The JavaScript Behaviors Python Didn’t Prepare Me For", "u": "https://medium.com/coding-nexus/the-javascript-behaviors-python-didnt-prepare-me-for-6e28b36abcef", "d": "2026-10", "lang": "en"},
+        {"t": "JavaScript Looks a Lot Like Python. Until It Doesn’t.", "u": "https://medium.com/coding-nexus/javascript-looks-a-lot-like-python-until-it-doesnt-7de147ddfb13", "d": "2026-10", "lang": "en"},
+        {"t": "I Know Python. Now I Have to Learn JavaScript.", "u": "https://medium.com/coding-nexus/i-know-python-now-i-have-to-learn-javascript-a8c329a6e6e9", "d": "2026-09", "lang": "en"},
+        {"t": "Before I Learn JavaScript, Where Do I Actually Run It?", "u": "https://medium.com/coding-nexus/before-i-learn-javascript-where-do-i-actually-run-it-0a8502c20762", "d": "2026-09", "lang": "en"},
+        {"t": "10 Python Tricks Every Data Scientist Learns Too Late", "u": "https://medium.com/@yucavalcante/10-python-tricks-every-data-scientist-learns-too-late-0986f2b51efb", "d": "2025-11", "lang": "en"},
+        {"t": "Construindo Árvores de Decisão do Zero Usando Polars", "u": "https://medium.com/@yucavalcante/construindo-%C3%A1rvores-de-decis%C3%A3o-do-zero-usando-polars-cc5bd40d8f5b", "d": "2025-02", "lang": "pt"},
+        {"t": "Introdução ao Polars: A Nova Fronteira do Processamento de Dados em Python", "u": "https://medium.com/@yucavalcante/introdu%C3%A7%C3%A3o-ao-polars-a-nova-fronteira-do-processamento-de-dados-em-python-892c8fc256de", "d": "2025-02", "lang": "pt"},
+        {"t": "Seaborn em Ação: Elevando a Visualização de Dados a Novas Alturas com Python", "u": "https://medium.com/@yucavalcante/seaborn-em-a%C3%A7%C3%A3o-elevando-a-visualiza%C3%A7%C3%A3o-de-dados-a-novas-alturas-com-python-11d69da27aec", "d": "2024-01", "lang": "pt"},
+        {"t": "Matplotlib em Foco: A Arte da Visualização de Dados com Python", "u": "https://medium.com/@yucavalcante/matplotlib-em-foco-a-arte-da-visualiza%C3%A7%C3%A3o-de-dados-com-python-a8020629a241", "d": "2023-10", "lang": "pt"},
+        {"t": "Introdução à Ciência de Dados em Python: Uma Visão Profunda sobre NumPy e Pandas", "u": "https://medium.com/@yucavalcante/introdu%C3%A7%C3%A3o-%C3%A0-ci%C3%AAncia-de-dados-em-python-uma-vis%C3%A3o-profunda-sobre-numpy-e-pandas-babca0ffac32", "d": "2023-10", "lang": "pt"},
+        {"t": "Python na Prática: Da Manipulação Básica à Análise de Dados", "u": "https://medium.com/@yucavalcante/python-na-pr%C3%A1tica-da-manipula%C3%A7%C3%A3o-b%C3%A1sica-%C3%A0-an%C3%A1lise-de-dados-4ac658ff1c45", "d": "2023-10", "lang": "pt"},
+        {"t": "Séries Temporais com Python: Quando e Como Utilizar?", "u": "https://medium.com/@yucavalcante/s%C3%A9ries-temporais-com-python-quando-e-como-utilizar-08e1a95d1943", "d": "2023-10", "lang": "pt"}
+      ]
+    },
+    {
+      "id": "negocios",
+      "nome": "Gestão e negócios",
+      "descricao": "Estudos de caso de estratégia e marketing.",
+      "itens": [
+        {"t": "Estudo de caso da BACHI Barcelona: Estratégias de sucesso em um negócio de moda de gama média-alta", "u": "https://medium.com/@yucavalcante/estudo-de-caso-da-bachi-barcelona-estrat%C3%A9gias-de-sucesso-em-um-neg%C3%B3cio-de-moda-de-gama-m%C3%A9dia-alta-8437cc7a1d78", "d": "2023-03", "lang": "pt"},
+        {"t": "Plano de Marketing para um E-commerce de Vinhos na Espanha", "u": "https://medium.com/@yucavalcante/plano-de-marketing-para-um-e-commerce-de-vinhos-na-espanha-960e7f3405f3", "d": "2023-03", "lang": "pt"}
+      ]
+    },
+    {
+      "id": "cronicas",
+      "nome": "Crônicas pessoais",
+      "descricao": "Textos em primeira pessoa sobre saúde, rotina e recomeços.",
+      "itens": [
+        {"t": "Congratulations! One Eye Is Officially Out of Service", "u": "https://medium.com/@yucavalcante/congratulations-one-eye-is-officially-out-of-service-84f0316335f6", "d": "2026-10", "lang": "en"},
+        {"t": "The Child Nobody Chose", "u": "https://medium.com/@yucavalcante/the-child-nobody-chose-c613fa730c6e", "d": "2026-10", "lang": "en"},
+        {"t": "Today I Moved the Lamp", "u": "https://medium.com/@yucavalcante/today-i-moved-the-lamp-b45a7b5c8a06", "d": "2026-10", "lang": "en"},
+        {"t": "Tonight, maybe I just need to stay", "u": "https://medium.com/@yucavalcante/tonight-maybe-i-just-need-to-stay-4739b2eb9820", "d": "2026-10", "lang": "en"},
+        {"t": "I Managed to Get Out", "u": "https://medium.com/@yucavalcante/i-managed-to-get-out-8481ed57902b", "d": "2026-10", "lang": "en"},
+        {"t": "The Depression Monster Knows When I’m Awake", "u": "https://medium.com/things-we-leave-behind/the-depression-monster-knows-when-im-awake-620dc994f206", "d": "2026-10", "lang": "en"},
+        {"t": "I Sleep 5 Hours a Night and Feel Fine. Apparently, That’s a Problem.", "u": "https://medium.com/@yucavalcante/i-sleep-5-hours-a-night-and-feel-fine-apparently-thats-a-problem-8a9ab429b6b9", "d": "2026-08", "lang": "en"}
+      ]
+    },
+    {
+      "id": "contos",
+      "nome": "Contos",
+      "descricao": "Ficção em séries curtas, publicadas parte por parte. O link abre a primeira parte.",
+      "itens": [
+        {"t": "The Cure", "sub": "Uma história do universo de The People Who Look Away", "u": "https://medium.com/@yucavalcante/the-cure-part-i-the-cure-bb6dc8c3f568", "d": "2026-11", "lang": "en", "partes": 2},
+        {"t": "The People Who Look Away", "sub": "Inspirada em “Ugly” e “Lonely”, do 2NE1", "u": "https://medium.com/@yucavalcante/the-people-who-look-away-part-i-ugly-16ead200ffd5", "d": "2026-11", "lang": "en", "partes": 3},
+        {"t": "A Table for One", "sub": "As horas depois de uma má notícia e a decisão de transformar a solidão em culpa", "u": "https://medium.com/@yucavalcante/a-table-for-one-part-i-four-chairs-2edb6a003e18", "d": "2026-10", "lang": "en", "partes": 2},
+        {"t": "Nineteen", "sub": "Inspirada em “Would’ve, Could’ve, Should’ve”", "u": "https://medium.com/@yucavalcante/nineteen-part-i-nineteen-683b450b02db", "d": "2026-10", "lang": "en", "partes": 5},
+        {"t": "Thirty-One", "sub": "As versões de nós que deixamos para trás e as pessoas que se lembram delas", "u": "https://medium.com/things-we-leave-behind/thirty-one-part-1-thirty-one-ab106e2ec32f", "d": "2026-10", "lang": "en", "partes": 5},
+        {"t": "The Summer After Winter", "sub": "Perda, um amor inacabado e o preço de voltar", "u": "https://medium.com/things-we-leave-behind/the-summer-after-winter-part-1-of-5-come-before-summer-105a5aeca39d", "d": "2026-09", "lang": "en", "partes": 5},
+        {"t": "The Hours Between", "sub": "Inspirada em “Delilah”, de Florence + the Machine", "u": "https://medium.com/things-we-leave-behind/the-hours-between-part-1-of-5-he-said-hed-call-88f948d27ad5", "d": "2026-09", "lang": "en", "partes": 5}
+      ]
+    }
+  ]
+}

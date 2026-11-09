@@ -119,6 +119,28 @@
   .contact p { margin: 0; color: var(--ink-2); }
   footer { font-size: .8125rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
 
+  /* Textos: filtros em cápsula (rolam de lado no celular) + lista agrupada */
+  .txt-intro { margin: -4px 0 16px; color: var(--muted); font-size: .9375rem; max-width: 680px; }
+  .txt-tabs { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 12px; margin: 0 -2px; scrollbar-width: none; }
+  .txt-tabs::-webkit-scrollbar { display: none; }
+  .txt-tab { flex: none; appearance: none; border: 0; min-height: 36px; padding: 0 14px; border-radius: 9999px; font: inherit; font-size: .9375rem; font-weight: 500; background: var(--badge); color: var(--ink); cursor: pointer; white-space: nowrap; transition: background-color 150ms var(--ease-out), color 150ms var(--ease-out); }
+  .txt-tab span { color: var(--muted); font-variant-numeric: tabular-nums; margin-left: 2px; }
+  .txt-tab[aria-selected="true"] { background: var(--accent); color: #ffffff; font-weight: 600; }
+  .txt-tab[aria-selected="true"] span { color: rgba(255, 255, 255, .8); }
+  .txt-tab:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+  .txt-panel { display: flex; flex-direction: column; gap: 8px; }
+  .txt-desc { margin: 0 0 0 16px; font-size: .8125rem; color: var(--muted); max-width: 680px; }
+  .txt-list { list-style: none; margin: 0; padding: 0; background: var(--panel); border-radius: 12px; overflow: hidden; max-width: 820px; }
+  .txt-list li { position: relative; }
+  .txt-list li + li::before { content: ""; position: absolute; top: 0; left: 16px; right: 0; border-top: 1px solid var(--line); }
+  .txt-list a { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; align-items: center; padding: 11px 16px; min-height: 44px; color: var(--ink); text-decoration: none; }
+  .txt-list a::after { content: "›"; grid-column: 2; grid-row: 1 / span 3; color: var(--accent-2); font-size: 1.375rem; line-height: 1; }
+  .txt-list a:hover { background: var(--badge); text-decoration: none; }
+  .txt-list a:focus-visible { box-shadow: inset var(--focus-ring); border-radius: 0; }
+  .txt-t { font-size: 1rem; font-weight: 500; line-height: 1.35; }
+  .txt-sub { grid-column: 1; font-size: .875rem; color: var(--muted); line-height: 1.35; margin-top: 2px; }
+  .txt-meta { grid-column: 1; font-size: .75rem; color: var(--muted); margin-top: 3px; font-variant-numeric: tabular-nums; }
+
   @media (max-width: 980px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
   @media (max-width: 680px) {
     .grid, .soon { grid-template-columns: 1fr; }
@@ -141,7 +163,8 @@
     <span>Yury Cavalcante</span>
     <nav>
       <a href="#projetos">Projetos</a>
-      <a href="#estudos">Estudos e artigos</a>
+      <a href="#textos">Textos</a>
+      <a href="#estudos">Estudos</a>
       <a href="https://github.com/YUCAVALCANTE">GitHub</a>
       <a href="https://www.linkedin.com/in/yucavalcante/">LinkedIn</a>
     </nav>
@@ -251,7 +274,7 @@
   </section>
 
   <section class="read" id="estudos" aria-labelledby="estudos-titulo">
-    <p class="label" id="estudos-titulo">Estudos e artigos</p>
+    <p class="label" id="estudos-titulo">Estudos com código</p>
     <ul class="studies">
       <li><a href="https://github.com/YUCAVALCANTE/Tutorials_Linkedin">Tutoriais do LinkedIn</a><span>Código dos artigos, como "Previsão Não É Magia" e árvores de decisão do zero com Polars.</span></li>
       <li><a href="https://github.com/YUCAVALCANTE/DATAVIZ_MATPLOTLIB">Matplotlib em Foco</a><span>Gráficos do artigo sobre visualização de dados com Python.</span></li>
@@ -259,6 +282,162 @@
       <li><a href="https://github.com/YUCAVALCANTE/ML_Studies">ML Studies</a><span>Fundamentos de machine learning: árvores, SVM, KNN, PCA, clusterização e viés-variância.</span></li>
     </ul>
   </section>
+
+<!-- TEXTOS:INICIO -->
+  <section id="textos" aria-labelledby="textos-titulo">
+    <div class="sec-head">
+      <h2 id="textos-titulo">Textos</h2>
+      <a href="https://medium.com/@yucavalcante">Ver tudo no Medium</a>
+    </div>
+    <p class="txt-intro">91 textos publicados no Medium, de mar/2023 a nov/2026: artigos técnicos, tutoriais, crônicas e contos.</p>
+    <div class="txt-tabs" role="tablist" aria-label="Categorias de textos">
+        <button class="txt-tab" role="tab" type="button" id="aba-ml" aria-controls="txt-ml" aria-selected="true">Machine learning <span>19</span></button>
+        <button class="txt-tab" role="tab" type="button" id="aba-ia" aria-controls="txt-ia" aria-selected="false">Deep learning, IA e RAG <span>5</span></button>
+        <button class="txt-tab" role="tab" type="button" id="aba-escrita" aria-controls="txt-escrita" aria-selected="false">IA e escrita <span>11</span></button>
+        <button class="txt-tab" role="tab" type="button" id="aba-dados" aria-controls="txt-dados" aria-selected="false">Data science e dados <span>8</span></button>
+        <button class="txt-tab" role="tab" type="button" id="aba-python" aria-controls="txt-python" aria-selected="false">Python e programação <span>12</span></button>
+        <button class="txt-tab" role="tab" type="button" id="aba-negocios" aria-controls="txt-negocios" aria-selected="false">Gestão e negócios <span>2</span></button>
+        <button class="txt-tab" role="tab" type="button" id="aba-cronicas" aria-controls="txt-cronicas" aria-selected="false">Crônicas pessoais <span>7</span></button>
+        <button class="txt-tab" role="tab" type="button" id="aba-contos" aria-controls="txt-contos" aria-selected="false">Contos <span>27</span></button>
+    </div>
+    <div class="txt-panels">
+      <div class="txt-panel" role="tabpanel" id="txt-ml" aria-labelledby="aba-ml">
+        <p class="txt-desc">Algoritmos explicados pela intuição e pela geometria: regressão, árvores, SVM, KNN, clusterização, anomalias e explicabilidade.</p>
+        <ul class="txt-list">
+          <li><a href="https://medium.com/@yucavalcante/geometria-do-espa%C3%A7o-de-dados-f2a6ce283a5d"><span class="txt-t">Geometria do Espaço de Dados</span><span class="txt-meta">fev/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/quando-n%C3%A3o-existe-resposta-correta-avalia%C3%A7%C3%A3o-estrutural-em-clusteriza%C3%A7%C3%A3o-e9ad84c58d8c"><span class="txt-t">Quando não existe resposta correta: avaliação estrutural em clusterização</span><span class="txt-meta">fev/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/redu%C3%A7%C3%A3o-de-dimensionalidade-como-engenharia-do-espa%C3%A7o-2a8d6aefec6d"><span class="txt-t">Redução de dimensionalidade como engenharia do espaço</span><span class="txt-meta">fev/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/antes-do-modelo-existe-o-espa%C3%A7o-a-base-da-representa%C3%A7%C3%A3o-5933b21d2163"><span class="txt-t">Antes do Modelo, Existe o Espaço: A base da Representação</span><span class="txt-meta">fev/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/anomaly-detection-quando-o-problema-n%C3%A3o-%C3%A9-classificar-mas-detectar-o-improv%C3%A1vel-35bc06456713"><span class="txt-t">Anomaly Detection: Quando o Problema Não é Classificar, Mas Detectar o Improvável</span><span class="txt-meta">fev/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/quando-n%C3%A3o-existe-resposta-certa-entendendo-clusteriza%C3%A7%C3%A3o-c74002ba4b10"><span class="txt-t">Quando Não Existe Resposta Certa: Entendendo Clusterização</span><span class="txt-meta">fev/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/knn-quando-a-decis%C3%A3o-n%C3%A3o-vem-de-uma-fronteira-mas-da-vizinhan%C3%A7a-4a72e7a4e7dd"><span class="txt-t">KNN: Quando a Decisão Não Vem de uma Fronteira, mas da Vizinhança</span><span class="txt-meta">jan/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/svm-n%C3%A3o-decide-sozinho-ele-desenha-limites-79f4cb21243e"><span class="txt-t">SVM Não Decide Sozinho: Ele Desenha Limites</span><span class="txt-meta">jan/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/entendendo-vi%C3%A9s-vari%C3%A2ncia-e-o-trade-off-que-todo-modelo-carrega-e-lembre-se-seu-modelo-n%C3%A3o-%C3%A9-ruim-a200e46a73f8"><span class="txt-t">Entendendo viés, variância e o trade-off que todo modelo carrega</span><span class="txt-meta">jan/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/%C3%A1rvores-de-regress%C3%A3o-n%C3%A3o-preveem-valores-mas-sim-negociam-limites-b2b410200802"><span class="txt-t">Árvores de Regressão não preveem valores, mas sim negociam limites</span><span class="txt-meta">jan/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/%C3%A1rvores-que-decidem-como-modelos-simples-explicam-problemas-complexos-e2e4ea30708d"><span class="txt-t">Árvores que Decidem: Como Modelos Simples Explicam Problemas Complexos</span><span class="txt-meta">jan/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/introdu%C3%A7%C3%A3o-%C3%A0-classifica%C3%A7%C3%A3o-em-machine-learning-ddaff28cd846"><span class="txt-t">Introdução à Classificação em Machine Learning</span><span class="txt-meta">jan/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/entre-probabilidades-e-decis%C3%B5es-regress%C3%A3o-log%C3%ADstica-na-pr%C3%A1tica-045a37c88f0e"><span class="txt-t">Entre probabilidades e decisões: regressão logística na prática</span><span class="txt-meta">jan/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/the-day-my-perfect-machine-learning-model-lied-to-me-10afe73a1955"><span class="txt-t" lang="en">The Day My “Perfect” Machine Learning Model Lied to Me</span><span class="txt-meta">nov/2025 · inglês</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/previs%C3%A3o-n%C3%A3o-%C3%A9-magia-%C3%A9-contexto-e-os-dados-externos-s%C3%A3o-o-trunfo-b3bd2ac44405"><span class="txt-t">Previsão Não É Magia: É Contexto e Os Dados Externos São o Trunfo</span><span class="txt-meta">nov/2025 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/o-modelo-%C3%A9-uma-caixa-preta-como-explicar-o-que-a-ia-est%C3%A1-pensando-7d36eaca6315"><span class="txt-t">O Modelo é uma Caixa-Preta? Como Explicar o que a IA Está Pensando</span><span class="txt-meta">out/2025 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/regress%C3%A3o-log%C3%ADstica-classifica%C3%A7%C3%A3o-bin%C3%A1ria-com-probabilidade-197ffacc9786"><span class="txt-t">Regressão Logística: Classificação Binária com Probabilidade</span><span class="txt-meta">out/2024 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/regress%C3%A3o-linear-simplicidade-e-limita%C3%A7%C3%B5es-ae30637d4e0e"><span class="txt-t">Regressão Linear: Simplicidade e Limitações</span><span class="txt-meta">out/2024 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/introdu%C3%A7%C3%A3o-%C3%A0-modelagem-preditiva-com-machine-learning-eeb806b7e5e5"><span class="txt-t">Introdução à Modelagem Preditiva com Machine Learning</span><span class="txt-meta">out/2024 · português</span></a></li>
+        </ul>
+      </div>
+      <div class="txt-panel" role="tabpanel" id="txt-ia" aria-labelledby="aba-ia">
+        <p class="txt-desc">Redes neurais, sistemas de recomendação, RAG e previsão com deep learning, sem mágica.</p>
+        <ul class="txt-list">
+          <li><a href="https://medium.com/@yucavalcante/por-que-a-netflix-parece-te-conhecer-sistemas-de-recomenda%C3%A7%C3%A3o-por-dentro-65656b04c51c"><span class="txt-t">Por que a Netflix parece te conhecer? Sistemas de recomendação por dentro</span><span class="txt-meta">nov/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/rede-neural-n%C3%A3o-%C3%A9-c%C3%A9rebro-o-que-realmente-acontece-quando-uma-m%C3%A1quina-aprende-003c1bf67609"><span class="txt-t">Rede neural não é cérebro: o que realmente acontece quando uma máquina aprende</span><span class="txt-meta">nov/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/ia-sem-m%C3%A1gica-por-que-decidi-reaprender-intelig%C3%AAncia-artificial-do-zero-c10804ee7050"><span class="txt-t">IA sem mágica: por que decidi reaprender Inteligência Artificial do zero</span><span class="txt-meta">nov/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/rag-o-modelo-pode-ser-%C3%B3timo-e-ainda-responder-errado-808567736155"><span class="txt-t">RAG: o modelo pode ser ótimo e ainda responder errado</span><span class="txt-meta">ago/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/o-tempo-o-c%C3%B3digo-e-as-dez-mil-tentativas-o-que-aprendi-tentando-prever-o-futuro-com-deep-learning-a1d052819459"><span class="txt-t">O Tempo, o Código e as Dez Mil Tentativas: o que aprendi tentando prever o futuro com Deep Learning</span><span class="txt-meta">out/2025 · português</span></a></li>
+        </ul>
+      </div>
+      <div class="txt-panel" role="tabpanel" id="txt-escrita" aria-labelledby="aba-escrita">
+        <p class="txt-desc">Detectores de IA, autoria, marcas d’água e como usar IA para editar sem perder a própria voz.</p>
+        <ul class="txt-list">
+          <li><a href="https://medium.com/@yucavalcante/where-can-i-humanize-ai-for-free-i-tested-9-tools-and-their-real-limits-cdf520f8b499"><span class="txt-t" lang="en">Where Can I Humanize AI for Free? I Tested 9 Tools and Their Real Limits</span><span class="txt-meta">set/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/ai-ai-oh/what-if-writing-had-a-git-history-1e1d010f968e"><span class="txt-t" lang="en">What If Writing Had a Git History?</span><span class="txt-meta">set/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/coding-nexus/ai-is-a-bad-editor-that-doesnt-mean-you-shouldn-t-use-it-to-edit-1020f104c724"><span class="txt-t" lang="en">AI Is a Bad Editor. That Doesn’t Mean You Shouldn’t Use It to Edit.</span><span class="txt-meta">set/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/coding-nexus/claude-humanizer-skill-what-it-actually-is-and-how-to-use-it-92956d0df019"><span class="txt-t" lang="en">Claude Humanizer Skill: What It Actually Is (and How to Use It)</span><span class="txt-meta">set/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/coding-nexus/is-there-a-100-accurate-ai-detector-what-the-falade-case-reveals-12cdc5e0029c"><span class="txt-t" lang="en">Is There a 100% Accurate AI Detector? What the Falade Case Reveals</span><span class="txt-meta">set/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/ai-ai-oh/the-next-ai-detector-might-be-your-draft-history-6297485501a6"><span class="txt-t" lang="en">The Next AI Detector Might Be Your Draft History</span><span class="txt-meta">set/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/ai-ai-oh/you-probably-cant-spot-ai-writing-anymore-05988edac1a6"><span class="txt-t" lang="en">You Probably Can’t Spot AI Writing Anymore</span><span class="txt-meta">ago/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/ai-didnt-invent-the-author-who-didn-t-write-the-book-92102a9d9958"><span class="txt-t" lang="en">AI Didn’t Invent the Author Who Didn’t Write the Book</span><span class="txt-meta">ago/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/coding-nexus/claude-started-watermarking-its-answers-github-took-36-hours-to-start-pulling-it-apart-0b52e121b1f7"><span class="txt-t" lang="en">Claude Started Watermarking Its Answers. GitHub Took 36 Hours to Start Pulling It Apart.</span><span class="txt-meta">ago/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/how-to-make-ai-writing-undetectable-without-tricks-hacks-or-plugins-1c31bdb39a8e"><span class="txt-t" lang="en">How to Make AI Writing Undetectable (Without Tricks, Hacks, or Plugins)</span><span class="txt-meta">nov/2025 · inglês</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/the-silent-shift-how-ai-is-reshaping-your-job-before-you-even-notice-bc7c7bb3b740"><span class="txt-t" lang="en">The Silent Shift: How AI Is Reshaping Your Job Before You Even Notice</span><span class="txt-meta">nov/2025 · inglês</span></a></li>
+        </ul>
+      </div>
+      <div class="txt-panel" role="tabpanel" id="txt-dados" aria-labelledby="aba-dados">
+        <p class="txt-desc">Carreira, arquitetura de dados, governança, bancos NoSQL e por que projetos de dados falham.</p>
+        <ul class="txt-list">
+          <li><a href="https://medium.com/@yucavalcante/your-system-is-running-that-doesnt-mean-it-s-available-0e203a35fcf4"><span class="txt-t" lang="en">Your System Is Running. That Doesn’t Mean It’s Available.</span><span class="txt-meta">out/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/quando-as-tabelas-n%C3%A3o-bastam-uma-introdu%C3%A7%C3%A3o-aos-bancos-de-dados-nosql-e5f9aedfd8c0"><span class="txt-t">Quando as Tabelas Não Bastam: uma introdução aos bancos de dados NoSQL</span><span class="txt-meta">ago/2026 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/the-ultimate-roadmap-to-become-a-data-scientist-in-2025-b84942fa4216"><span class="txt-t" lang="en">The Ultimate Roadmap to Become a Data Scientist in 2025</span><span class="txt-meta">nov/2025 · inglês</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/the-clear-human-explanation-of-data-lakes-vs-lakehouses-that-everyone-has-been-missing-8d5d495b1630"><span class="txt-t" lang="en">The Clear, Human Explanation of Data Lakes vs. Lakehouses That Everyone Has Been Missing</span><span class="txt-meta">nov/2025 · inglês</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/why-90-of-data-projects-fail-and-what-the-10-do-differently-b22c3bf809a3"><span class="txt-t" lang="en">Why 90% of Data Projects Fail and What the 10% Do Differently</span><span class="txt-meta">nov/2025 · inglês</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/o-que-voc%C3%AA-faz-com-seus-dados-1c2f2052f8f8"><span class="txt-t">O Que Você Faz com Seus Dados?</span><span class="txt-meta">out/2025 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/an%C3%A1lise-comparativa-de-t%C3%A9cnicas-vantagens-e-desvantagens-das-ferramentas-de-etl-power-bi-e-qlik-c6c95fbb86b9"><span class="txt-t">Análise Comparativa das Ferramentas de ETL: Power BI e Qlik</span><span class="txt-meta">abr/2023 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/erwin-data-governance-a-ferramenta-completa-para-gest%C3%A3o-eficiente-de-dados-18fc867e6167"><span class="txt-t">ERWIN DATA GOVERNANCE: a ferramenta completa para gestão eficiente de dados</span><span class="txt-meta">abr/2023 · português</span></a></li>
+        </ul>
+      </div>
+      <div class="txt-panel" role="tabpanel" id="txt-python" aria-labelledby="aba-python">
+        <p class="txt-desc">Tutoriais de Python para dados (Pandas, NumPy, Polars, Matplotlib, Seaborn, séries temporais) e a passagem de Python para JavaScript.</p>
+        <ul class="txt-list">
+          <li><a href="https://medium.com/coding-nexus/the-javascript-behaviors-python-didnt-prepare-me-for-6e28b36abcef"><span class="txt-t" lang="en">The JavaScript Behaviors Python Didn’t Prepare Me For</span><span class="txt-meta">out/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/coding-nexus/javascript-looks-a-lot-like-python-until-it-doesnt-7de147ddfb13"><span class="txt-t" lang="en">JavaScript Looks a Lot Like Python. Until It Doesn’t.</span><span class="txt-meta">out/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/coding-nexus/i-know-python-now-i-have-to-learn-javascript-a8c329a6e6e9"><span class="txt-t" lang="en">I Know Python. Now I Have to Learn JavaScript.</span><span class="txt-meta">set/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/coding-nexus/before-i-learn-javascript-where-do-i-actually-run-it-0a8502c20762"><span class="txt-t" lang="en">Before I Learn JavaScript, Where Do I Actually Run It?</span><span class="txt-meta">set/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/10-python-tricks-every-data-scientist-learns-too-late-0986f2b51efb"><span class="txt-t" lang="en">10 Python Tricks Every Data Scientist Learns Too Late</span><span class="txt-meta">nov/2025 · inglês</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/construindo-%C3%A1rvores-de-decis%C3%A3o-do-zero-usando-polars-cc5bd40d8f5b"><span class="txt-t">Construindo Árvores de Decisão do Zero Usando Polars</span><span class="txt-meta">fev/2025 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/introdu%C3%A7%C3%A3o-ao-polars-a-nova-fronteira-do-processamento-de-dados-em-python-892c8fc256de"><span class="txt-t">Introdução ao Polars: A Nova Fronteira do Processamento de Dados em Python</span><span class="txt-meta">fev/2025 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/seaborn-em-a%C3%A7%C3%A3o-elevando-a-visualiza%C3%A7%C3%A3o-de-dados-a-novas-alturas-com-python-11d69da27aec"><span class="txt-t">Seaborn em Ação: Elevando a Visualização de Dados a Novas Alturas com Python</span><span class="txt-meta">jan/2024 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/matplotlib-em-foco-a-arte-da-visualiza%C3%A7%C3%A3o-de-dados-com-python-a8020629a241"><span class="txt-t">Matplotlib em Foco: A Arte da Visualização de Dados com Python</span><span class="txt-meta">out/2023 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/introdu%C3%A7%C3%A3o-%C3%A0-ci%C3%AAncia-de-dados-em-python-uma-vis%C3%A3o-profunda-sobre-numpy-e-pandas-babca0ffac32"><span class="txt-t">Introdução à Ciência de Dados em Python: Uma Visão Profunda sobre NumPy e Pandas</span><span class="txt-meta">out/2023 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/python-na-pr%C3%A1tica-da-manipula%C3%A7%C3%A3o-b%C3%A1sica-%C3%A0-an%C3%A1lise-de-dados-4ac658ff1c45"><span class="txt-t">Python na Prática: Da Manipulação Básica à Análise de Dados</span><span class="txt-meta">out/2023 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/s%C3%A9ries-temporais-com-python-quando-e-como-utilizar-08e1a95d1943"><span class="txt-t">Séries Temporais com Python: Quando e Como Utilizar?</span><span class="txt-meta">out/2023 · português</span></a></li>
+        </ul>
+      </div>
+      <div class="txt-panel" role="tabpanel" id="txt-negocios" aria-labelledby="aba-negocios">
+        <p class="txt-desc">Estudos de caso de estratégia e marketing.</p>
+        <ul class="txt-list">
+          <li><a href="https://medium.com/@yucavalcante/estudo-de-caso-da-bachi-barcelona-estrat%C3%A9gias-de-sucesso-em-um-neg%C3%B3cio-de-moda-de-gama-m%C3%A9dia-alta-8437cc7a1d78"><span class="txt-t">Estudo de caso da BACHI Barcelona: Estratégias de sucesso em um negócio de moda de gama média-alta</span><span class="txt-meta">mar/2023 · português</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/plano-de-marketing-para-um-e-commerce-de-vinhos-na-espanha-960e7f3405f3"><span class="txt-t">Plano de Marketing para um E-commerce de Vinhos na Espanha</span><span class="txt-meta">mar/2023 · português</span></a></li>
+        </ul>
+      </div>
+      <div class="txt-panel" role="tabpanel" id="txt-cronicas" aria-labelledby="aba-cronicas">
+        <p class="txt-desc">Textos em primeira pessoa sobre saúde, rotina e recomeços.</p>
+        <ul class="txt-list">
+          <li><a href="https://medium.com/@yucavalcante/congratulations-one-eye-is-officially-out-of-service-84f0316335f6"><span class="txt-t" lang="en">Congratulations! One Eye Is Officially Out of Service</span><span class="txt-meta">out/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/the-child-nobody-chose-c613fa730c6e"><span class="txt-t" lang="en">The Child Nobody Chose</span><span class="txt-meta">out/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/today-i-moved-the-lamp-b45a7b5c8a06"><span class="txt-t" lang="en">Today I Moved the Lamp</span><span class="txt-meta">out/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/tonight-maybe-i-just-need-to-stay-4739b2eb9820"><span class="txt-t" lang="en">Tonight, maybe I just need to stay</span><span class="txt-meta">out/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/i-managed-to-get-out-8481ed57902b"><span class="txt-t" lang="en">I Managed to Get Out</span><span class="txt-meta">out/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/things-we-leave-behind/the-depression-monster-knows-when-im-awake-620dc994f206"><span class="txt-t" lang="en">The Depression Monster Knows When I’m Awake</span><span class="txt-meta">out/2026 · inglês</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/i-sleep-5-hours-a-night-and-feel-fine-apparently-thats-a-problem-8a9ab429b6b9"><span class="txt-t" lang="en">I Sleep 5 Hours a Night and Feel Fine. Apparently, That’s a Problem.</span><span class="txt-meta">ago/2026 · inglês</span></a></li>
+        </ul>
+      </div>
+      <div class="txt-panel" role="tabpanel" id="txt-contos" aria-labelledby="aba-contos">
+        <p class="txt-desc">Ficção em séries curtas, publicadas parte por parte. O link abre a primeira parte.</p>
+        <ul class="txt-list">
+          <li><a href="https://medium.com/@yucavalcante/the-cure-part-i-the-cure-bb6dc8c3f568"><span class="txt-t" lang="en">The Cure</span><span class="txt-sub">Uma história do universo de The People Who Look Away</span><span class="txt-meta">nov/2026 · inglês · 2 partes</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/the-people-who-look-away-part-i-ugly-16ead200ffd5"><span class="txt-t" lang="en">The People Who Look Away</span><span class="txt-sub">Inspirada em “Ugly” e “Lonely”, do 2NE1</span><span class="txt-meta">nov/2026 · inglês · 3 partes</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/a-table-for-one-part-i-four-chairs-2edb6a003e18"><span class="txt-t" lang="en">A Table for One</span><span class="txt-sub">As horas depois de uma má notícia e a decisão de transformar a solidão em culpa</span><span class="txt-meta">out/2026 · inglês · 2 partes</span></a></li>
+          <li><a href="https://medium.com/@yucavalcante/nineteen-part-i-nineteen-683b450b02db"><span class="txt-t" lang="en">Nineteen</span><span class="txt-sub">Inspirada em “Would’ve, Could’ve, Should’ve”</span><span class="txt-meta">out/2026 · inglês · 5 partes</span></a></li>
+          <li><a href="https://medium.com/things-we-leave-behind/thirty-one-part-1-thirty-one-ab106e2ec32f"><span class="txt-t" lang="en">Thirty-One</span><span class="txt-sub">As versões de nós que deixamos para trás e as pessoas que se lembram delas</span><span class="txt-meta">out/2026 · inglês · 5 partes</span></a></li>
+          <li><a href="https://medium.com/things-we-leave-behind/the-summer-after-winter-part-1-of-5-come-before-summer-105a5aeca39d"><span class="txt-t" lang="en">The Summer After Winter</span><span class="txt-sub">Perda, um amor inacabado e o preço de voltar</span><span class="txt-meta">set/2026 · inglês · 5 partes</span></a></li>
+          <li><a href="https://medium.com/things-we-leave-behind/the-hours-between-part-1-of-5-he-said-hed-call-88f948d27ad5"><span class="txt-t" lang="en">The Hours Between</span><span class="txt-sub">Inspirada em “Delilah”, de Florence + the Machine</span><span class="txt-meta">set/2026 · inglês · 5 partes</span></a></li>
+        </ul>
+      </div>
+    </div>
+    <script>
+      (function () {
+        const abas = [...document.querySelectorAll('.txt-tab')];
+        const abrir = (aba) => {
+          abas.forEach((a) => {
+            const ativa = a === aba;
+            a.setAttribute('aria-selected', String(ativa));
+            a.tabIndex = ativa ? 0 : -1;
+            document.getElementById(a.getAttribute('aria-controls')).hidden = !ativa;
+          });
+        };
+        abas.forEach((a, i) => {
+          a.addEventListener('click', () => abrir(a));
+          a.addEventListener('keydown', (ev) => {
+            const passo = ev.key === 'ArrowRight' ? 1 : ev.key === 'ArrowLeft' ? -1 : 0;
+            if (!passo) return;
+            const prox = abas[(i + passo + abas.length) % abas.length];
+            abrir(prox); prox.focus(); prox.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+          });
+        });
+        abrir(abas[0]);
+      })();
+    </script>
+  </section>
+  <!-- TEXTOS:FIM -->
 
   <section class="contact read" aria-labelledby="contato">
     <p class="label" id="contato">Contato</p>
