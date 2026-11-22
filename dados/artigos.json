@@ -1,6 +1,6 @@
 {
   "perfil": "https://medium.com/@yucavalcante",
-  "atualizado": "2026-11-08",
+  "atualizado": "2026-11-22",
   "categorias": [
     {
       "id": "ml",
@@ -33,6 +33,7 @@
       "nome": "Deep learning, IA e RAG",
       "descricao": "Redes neurais, sistemas de recomendação, RAG e previsão com deep learning, sem mágica.",
       "itens": [
+        {"t": "Como uma IA enxerga um jogo e decide onde clicar", "u": "https://medium.com/@yucavalcante/como-uma-ia-enxerga-um-jogo-e-decide-onde-clicar-d70ac633f756", "d": "2026-11", "lang": "pt"},
         {"t": "Por que a Netflix parece te conhecer? Sistemas de recomendação por dentro", "u": "https://medium.com/@yucavalcante/por-que-a-netflix-parece-te-conhecer-sistemas-de-recomenda%C3%A7%C3%A3o-por-dentro-65656b04c51c", "d": "2026-11", "lang": "pt"},
         {"t": "Rede neural não é cérebro: o que realmente acontece quando uma máquina aprende", "u": "https://medium.com/@yucavalcante/rede-neural-n%C3%A3o-%C3%A9-c%C3%A9rebro-o-que-realmente-acontece-quando-uma-m%C3%A1quina-aprende-003c1bf67609", "d": "2026-11", "lang": "pt"},
         {"t": "IA sem mágica: por que decidi reaprender Inteligência Artificial do zero", "u": "https://medium.com/@yucavalcante/ia-sem-m%C3%A1gica-por-que-decidi-reaprender-intelig%C3%AAncia-artificial-do-zero-c10804ee7050", "d": "2026-11", "lang": "pt"},
