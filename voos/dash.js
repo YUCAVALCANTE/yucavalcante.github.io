@@ -11,6 +11,7 @@
   const DATASETS = [
     'filtros', 'indicadores', 'mensal', 'por_hora', 'por_dia_semana', 'rotas',
     'modelo_metricas', 'modelo_decis', 'modelo_importancia',
+    'projecao_series', 'projecao_serie', 'projecao_modelos',
   ];
   const CORES = {
     // Cores do sistema do HIG Designer. A 3ª (vermelho) marca "pior que a média" na página.
