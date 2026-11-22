@@ -3,7 +3,7 @@
 Uso:
     python scripts/atualizar_vitrine.py
 
-Lê os dados já publicados de cada projeto (voos, comércio exterior e aeroportos) e grava
+Lê os dados já publicados de cada projeto (voos, comércio exterior, aeroportos e agente-revoada) e grava
 um único arquivo leve, para a página inicial não precisar baixar as bases completas.
 """
 
@@ -17,6 +17,7 @@ from pathlib import Path
 
 SITE = Path(__file__).resolve().parents[1]
 COMEX = "https://yucavalcante.github.io/comercio-exterior-brasileiro"
+REVOADA = "https://yucavalcante.com/agente-revoada"
 
 
 def baixar(url: str) -> bytes:
@@ -53,10 +54,15 @@ def aeroportos() -> list[dict]:
     return [{"aeroporto": nome(o), "fob_bi": round(o["fob"] / 1e9, 1)} for o in top]
 
 
+def revoada() -> list[dict]:
+    """Classes que o detector COCO dá às aves de papel do jogo (publicado pelo projeto agente-revoada)."""
+    return json.loads(baixar(f"{REVOADA}/resultados.json").decode("utf-8"))["vitrine"]
+
+
 def main() -> None:
     saida = SITE / "dados" / "vitrine.json"
     saida.parent.mkdir(exist_ok=True)
-    dados = {"voos": voos(), "comex": comex(), "aeroportos": aeroportos()}
+    dados = {"voos": voos(), "comex": comex(), "aeroportos": aeroportos(), "revoada": revoada()}
     saida.write_text(json.dumps(dados, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(json.dumps(dados["aeroportos"], ensure_ascii=False))
     print(f"{saida.relative_to(SITE)}: {saida.stat().st_size / 1e3:.1f} KB")

@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Yury Cavalcante · Ciência de Dados</title>
-<meta name="description" content="Portfólio de Yury Cavalcante: projetos ponta a ponta de machine learning, séries temporais e análise de dados com bases públicas brasileiras.">
+<meta name="description" content="Portfólio de Yury Cavalcante: projetos ponta a ponta de machine learning, visão computacional, séries temporais e análise de dados, com avaliação honesta e código aberto.">
 <meta property="og:title" content="Yury Cavalcante · Ciência de Dados">
-<meta property="og:description" content="Projetos ponta a ponta com dados públicos brasileiros: atrasos de voos, comércio exterior até 2030 e exportações aéreas.">
+<meta property="og:description" content="Projetos ponta a ponta: atrasos de voos, comércio exterior até 2030, exportações aéreas e um agente que joga vendo só os pixels da tela.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://yucavalcante.com/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23007aff'/%3E%3Ctext x='16' y='22.5' text-anchor='middle' font-family='-apple-system,Segoe UI,Helvetica,Arial,sans-serif' font-weight='700' font-size='18' fill='white'%3EY%3C/text%3E%3C/svg%3E">
@@ -78,7 +78,7 @@
   .sec-head span { font-size: .9375rem; color: var(--muted); }
 
   /* Vitrine: cards lisos (bg-tertiary sobre bg-secondary), cantos concêntricos 16 → 8 */
-  .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
   .card { background: var(--panel); border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
   .viz { background: var(--fill); margin: 8px 8px 0; border-radius: 8px; padding: 16px 16px 12px; display: flex; flex-direction: column; gap: 6px; }
   .viz-title { font-size: .75rem; color: var(--muted); line-height: 1.35; min-height: 2.7em; }
@@ -171,9 +171,9 @@
   </header>
 
   <section class="intro read">
-    <span class="kicker">ciência de dados · machine learning · séries temporais · RAG</span>
-    <h1>Modelos que respondem perguntas <em>reais</em>, com dados públicos brasileiros.</h1>
-    <p>Sou mestre em Gestão de Projetos e especialista em Data Science e Business Intelligence. Trabalho na interseção entre gestão e dados: pego bases públicas, construo o projeto ponta a ponta e mostro com honestidade o quanto o modelo acerta, onde erra e por quê. Cada projeto abaixo tem um painel interativo e o código aberto.</p>
+    <span class="kicker">ciência de dados · machine learning · visão computacional · séries temporais</span>
+    <h1>Modelos que respondem perguntas <em>reais</em>, medidos com honestidade.</h1>
+    <p>Sou mestre em Gestão de Projetos e especialista em Data Science e Business Intelligence. Trabalho na interseção entre gestão e dados: parto de bases públicas brasileiras (ou gero os dados quando eles não existem), construo o projeto ponta a ponta e mostro o quanto o modelo acerta, onde erra e por quê. Cada projeto abaixo tem um painel interativo e o código aberto.</p>
   </section>
 
   <section id="projetos" aria-labelledby="projetos-titulo">
@@ -250,6 +250,28 @@
           <div class="actions">
             <a class="btn primary" href="/comercio-exterior-brasileiro/?visao=aeroportos">Abrir painel →</a>
             <a class="btn" href="https://github.com/YUCAVALCANTE/comercio-exterior-brasileiro">Código</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card">
+        <figure class="viz" style="margin:0">
+          <span class="viz-title">Que nome um detector pronto (COCO) dá às aves de papel do jogo, em 2.462 aves de teste</span>
+          <svg data-viz="revoada" viewBox="0 0 300 130" role="img" aria-label="59% não detectadas, 40% chamadas de kite e só 1 chamada de bird"></svg>
+        </figure>
+        <div class="body">
+          <span class="area">visão computacional</span>
+          <h3>Como uma IA enxerga um jogo e decide onde clicar</h3>
+          <p>Um agente que só vê os pixels de um jogo original, detecta os alvos com YOLOv8 no seu navegador e decide onde atirar. Detector pronto contra detector treinado no jogo, e quanto a latência custa.</p>
+          <ul class="tags"><li>YOLOv8</li><li>ONNX</li><li>Web Worker</li><li>Playwright</li></ul>
+          <div class="stats">
+            <div class="stat"><b>5 mil</b><span>quadros rotulados pelo próprio jogo</span></div>
+            <div class="stat"><b>1</b><span>de 2.462 aves o COCO chamou de "bird"</span></div>
+            <div class="stat"><b>0,27</b><span>AP@0,5 do COCO tratando bird/kite como alvo</span></div>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="/agente-revoada/">Jogar com o agente →</a>
+            <a class="btn" href="https://github.com/YUCAVALCANTE/agente-revoada">Código</a>
           </div>
         </div>
       </article>
@@ -507,6 +529,18 @@
           const w = (x.fob_bi / max) * (W - rot - valW);
           el('rect', { x: rot, y: y + 4, width: w, height: lh - 8, rx: 4, fill: i === 0 ? cor() : cor2(), class: 'anim-x', style: `animation-delay:${i * 60}ms` }, svg);
           txt(svg, rot + w + 4, y + lh / 2 + 3, num(x.fob_bi, 1), i === 0 ? { class: 'forte' } : {});
+        });
+      },
+      revoada(svg, d) {
+        const lh = (H - 4) / d.length, rot = 96, valW = 40;
+        d.forEach((x, i) => {
+          const y = i * lh + 2;
+          const destaque = x.classe === 'kite';
+          txt(svg, 0, y + lh / 2 + 3, x.classe, destaque ? { class: 'forte' } : {});
+          const w = Math.max(2, x.fracao * (W - rot - valW));
+          el('rect', { x: rot, y: y + 4, width: w, height: lh - 8, rx: 4, fill: destaque ? cor() : cor2(), class: 'anim-x', style: `animation-delay:${i * 60}ms` }, svg);
+          const rotulo = x.fracao >= 0.01 ? num(x.fracao * 100) + '%' : `${x.n} ${x.n === 1 ? 'ave' : 'aves'}`;
+          txt(svg, rot + w + 4, y + lh / 2 + 3, rotulo, destaque ? { class: 'forte' } : {});
         });
       },
     };
