@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Yury Cavalcante · Ciência de Dados</title>
-<meta name="description" content="Portfólio de Yury Cavalcante: projetos ponta a ponta de machine learning, visão computacional, séries temporais e análise de dados, com avaliação honesta e código aberto.">
+<meta name="description" content="Portfólio de Yury Cavalcante: projetos ponta a ponta de machine learning, visão computacional, algoritmos genéticos, séries temporais e análise de dados, com avaliação honesta e código aberto.">
 <meta property="og:title" content="Yury Cavalcante · Ciência de Dados">
 <meta property="og:description" content="Projetos ponta a ponta: atrasos de voos, comércio exterior até 2030, exportações aéreas e um agente que joga vendo só os pixels da tela.">
 <meta property="og:type" content="website">
@@ -285,6 +285,25 @@
         </div>
       </article>
 
+      <article class="card">
+        <div class="body">
+          <span class="area">algoritmos genéticos</span>
+          <h3>Carros que ninguém projetou</h3>
+          <p>Uma população de carros 2D evolui numa pista, ao vivo no seu navegador. Ninguém programou como um bom carro deve ser, só o que conta como bom. Com experimentos sobre aptidão mal formulada, diversidade, generalização e linhas de base.</p>
+          <ul class="tags"><li>Algoritmo genético</li><li>planck.js</li><li>Node</li><li>Simulação determinística</li></ul>
+          <div class="stats">
+            <div class="stat"><b>14</b><span>genes descrevem cada carro</span></div>
+            <div class="stat"><b>40</b><span>carros por geração correndo juntos</span></div>
+            <div class="stat"><b>100%</b><span>reproduzível: mesmo número no navegador e no Node</span></div>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="/algoritmos-geneticos/">Ver a evolução →</a>
+            <a class="btn" href="https://github.com/YUCAVALCANTE/algoritmos-geneticos">Código</a>
+            <a class="btn" href="https://medium.com/@yucavalcante/algoritmos-gen%C3%A9ticos-quando-uma-m%C3%A1quina-encontra-solu%C3%A7%C3%B5es-que-ningu%C3%A9m-programou-1a6fbd77c3da">Artigo</a>
+          </div>
+        </div>
+      </article>
+
     </div>
   </section>
 
@@ -319,10 +338,10 @@
       <h2 id="textos-titulo">Textos</h2>
       <a href="https://medium.com/@yucavalcante">Ver tudo no Medium</a>
     </div>
-    <p class="txt-intro">92 textos publicados no Medium, de mar/2023 a nov/2026: artigos técnicos, tutoriais, crônicas e contos.</p>
+    <p class="txt-intro">93 textos publicados no Medium, de mar/2023 a nov/2026: artigos técnicos, tutoriais, crônicas e contos.</p>
     <div class="txt-tabs" role="tablist" aria-label="Categorias de textos">
         <button class="txt-tab" role="tab" type="button" id="aba-ml" aria-controls="txt-ml" aria-selected="true">Machine learning <span>19</span></button>
-        <button class="txt-tab" role="tab" type="button" id="aba-ia" aria-controls="txt-ia" aria-selected="false">Deep learning, IA e RAG <span>6</span></button>
+        <button class="txt-tab" role="tab" type="button" id="aba-ia" aria-controls="txt-ia" aria-selected="false">Deep learning, IA e RAG <span>7</span></button>
         <button class="txt-tab" role="tab" type="button" id="aba-escrita" aria-controls="txt-escrita" aria-selected="false">IA e escrita <span>11</span></button>
         <button class="txt-tab" role="tab" type="button" id="aba-dados" aria-controls="txt-dados" aria-selected="false">Data science e dados <span>8</span></button>
         <button class="txt-tab" role="tab" type="button" id="aba-python" aria-controls="txt-python" aria-selected="false">Python e programação <span>12</span></button>
@@ -358,6 +377,7 @@
       <div class="txt-panel" role="tabpanel" id="txt-ia" aria-labelledby="aba-ia">
         <p class="txt-desc">Redes neurais, sistemas de recomendação, RAG e previsão com deep learning, sem mágica.</p>
         <ul class="txt-list">
+          <li><a href="https://medium.com/@yucavalcante/algoritmos-gen%C3%A9ticos-quando-uma-m%C3%A1quina-encontra-solu%C3%A7%C3%B5es-que-ningu%C3%A9m-programou-1a6fbd77c3da"><span class="txt-t">Algoritmos genéticos: quando uma máquina encontra soluções que ninguém programou</span><span class="txt-meta">nov/2026 · português</span></a></li>
           <li><a href="https://medium.com/@yucavalcante/como-uma-ia-enxerga-um-jogo-e-decide-onde-clicar-d70ac633f756"><span class="txt-t">Como uma IA enxerga um jogo e decide onde clicar</span><span class="txt-meta">nov/2026 · português</span></a></li>
           <li><a href="https://medium.com/@yucavalcante/por-que-a-netflix-parece-te-conhecer-sistemas-de-recomenda%C3%A7%C3%A3o-por-dentro-65656b04c51c"><span class="txt-t">Por que a Netflix parece te conhecer? Sistemas de recomendação por dentro</span><span class="txt-meta">nov/2026 · português</span></a></li>
           <li><a href="https://medium.com/@yucavalcante/rede-neural-n%C3%A3o-%C3%A9-c%C3%A9rebro-o-que-realmente-acontece-quando-uma-m%C3%A1quina-aprende-003c1bf67609"><span class="txt-t">Rede neural não é cérebro: o que realmente acontece quando uma máquina aprende</span><span class="txt-meta">nov/2026 · português</span></a></li>
@@ -550,6 +570,17 @@
           el('rect', { x: rot, y: y + 4, width: w, height: lh - 8, rx: 4, fill: destaque ? cor() : cor2(), class: 'anim-x', style: `animation-delay:${i * 60}ms` }, svg);
           const rotulo = x.fracao >= 0.01 ? num(x.fracao * 100) + '%' : `${x.n} ${x.n === 1 ? 'ave' : 'aves'}`;
           txt(svg, rot + w + 4, y + lh / 2 + 3, rotulo, destaque ? { class: 'forte' } : {});
+        });
+      },
+      geneticos(svg, d) {
+        const max = Math.max(...d.map((x) => x.valor));
+        const lh = (H - 4) / d.length, rot = 112, valW = 44;
+        d.forEach((x, i) => {
+          const y = i * lh + 2;
+          txt(svg, 0, y + lh / 2 + 3, x.metodo, i === 0 ? { class: 'forte' } : {});
+          const w = (x.valor / max) * (W - rot - valW);
+          el('rect', { x: rot, y: y + 6, width: w, height: lh - 12, rx: 4, fill: i === 0 ? cor() : cor2(), class: 'anim-x', style: `animation-delay:${i * 60}ms` }, svg);
+          txt(svg, rot + w + 4, y + lh / 2 + 3, num(x.valor) + ' m', i === 0 ? { class: 'forte' } : {});
         });
       },
     };
