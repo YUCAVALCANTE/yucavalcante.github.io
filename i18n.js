@@ -16,26 +16,33 @@
     'Idioma': 'Language',
     'Ir para Sobre': 'Go to About',
     'Olá, eu sou Yury Cavalcante': "Hi, I'm Yury Cavalcante",
-    'Ciência de dados · Machine learning · Visão computacional · Séries temporais': 'Data science · Machine learning · Computer vision · Time series',
-    'Modelos que respondem perguntas reais, medidos com honestidade. Construo projetos ponta a ponta com dados públicos brasileiros e mostro o quanto o modelo acerta, onde erra e por quê.':
-      'Models that answer real questions, measured honestly. I build end-to-end projects on Brazilian public data and show how often the model is right, where it fails, and why.',
+    'Business Intelligence · Data Analytics · Data Science · Inteligência Artificial': 'Business Intelligence · Data Analytics · Data Science · Artificial Intelligence',
+    'Minha trajetória profissional combina negócios, dados e tecnologia. Trabalho com inteligência comercial, análise de desempenho e desenvolvimento de soluções analíticas.':
+      'My career brings together business, data and technology. I work in sales intelligence, performance analysis and building analytical solutions.',
+    'Neste espaço, compartilho projetos, estudos e experimentos que refletem minha curiosidade por dados, programação e inteligência artificial.':
+      'Here I share projects, studies and experiments that reflect my curiosity about data, programming and artificial intelligence.',
     'Ver projetos': 'View projects',
     'Ler os textos': 'Read my writing',
 
     // Sobre
     'Sobre mim': 'About me',
-    'Mestre em Gestão de Projetos e especialista em Data Science e Business Intelligence.': "Master's in Project Management, with a specialization in Data Science and Business Intelligence.",
-    'Entre gestão e dados': 'Between management and data',
-    'Trabalho na interseção entre gestão e dados: parto de bases públicas brasileiras (ou gero os dados quando eles não existem), construo o projeto ponta a ponta e mostro o quanto o modelo acerta, onde erra e por quê.':
-      "I work where management meets data: I start from Brazilian public datasets (or generate the data when it doesn't exist), build the project end to end, and show how often the model is right, where it fails, and why.",
-    'Cada projeto tem um painel interativo e o código aberto. Também escrevo no Medium sobre machine learning, IA e programação, e de vez em quando ficção.':
-      'Every project has an interactive dashboard and open-source code. I also write on Medium about machine learning, AI and programming, and now and then fiction.',
-    'Machine learning aplicado': 'Applied machine learning',
-    'Modelos de classificação e previsão com validação temporal, explicabilidade (SHAP) e API para uso real.': 'Classification and forecasting models with time-based validation, explainability (SHAP) and an API for real use.',
-    'Séries temporais e BI': 'Time series and BI',
-    'Pipelines com DuckDB e dbt, projeções com faixas de erro empíricas e painéis interativos.': 'Pipelines with DuckDB and dbt, forecasts with empirical error bands, and interactive dashboards.',
-    'Visão computacional e LLMs': 'Computer vision and LLMs',
-    'Detecção de objetos e modelos de linguagem rodando no próprio navegador, com experimentos medidos.': 'Object detection and language models running right in the browser, with measured experiments.',
+    'Mestre em Gestão de Projetos, com formação em Administração e especializações em Business Intelligence, Big Data e Business Analytics.':
+      "Master's in Project Management, with a degree in Business Administration and specializations in Business Intelligence, Big Data and Business Analytics.",
+    'Entre negócios, dados e tecnologia': 'Between business, data and technology',
+    'Sou um profissional de dados com experiência em inteligência de negócios, planejamento e analytics, tendo atuado em diferentes setores, como aviação, bens de consumo e bebidas.':
+      "I'm a data professional with experience in business intelligence, planning and analytics, having worked across industries such as aviation, consumer goods and beverages.",
+    'Atualmente, trabalho como Sales Intelligence Specialist na Red Bull Brasil, com foco em inteligência comercial, análise de performance e desenvolvimento de soluções de dados para o negócio.':
+      'I currently work as a Sales Intelligence Specialist at Red Bull Brasil, focused on sales intelligence, performance analysis and building data solutions for the business.',
+    'Minha formação em gestão influencia diretamente a maneira como trabalho com tecnologia. Tenho interesse não apenas na construção de soluções técnicas, mas também em compreender o contexto, os desafios e as decisões que existem por trás dos dados.':
+      'My management background directly shapes how I work with technology. I care not only about building technical solutions, but also about understanding the context, the challenges and the decisions behind the data.',
+    'Fora do ambiente corporativo, desenvolvo projetos independentes, estudo novas tecnologias e escrevo no Medium. Meus interesses também passam por fotografia, arquitetura, cinema e literatura.':
+      "Outside work, I build independent projects, study new technologies and write on Medium. I'm also into photography, architecture, film and literature.",
+    'Inteligência comercial, análise de performance, indicadores de negócio, planejamento e desenvolvimento de soluções analíticas.':
+      'Sales intelligence, performance analysis, business KPIs, planning and building analytical solutions.',
+    'Integração, transformação e governança de dados, construção de pipelines e automação de processos analíticos.':
+      'Data integration, transformation and governance, building pipelines and automating analytical processes.',
+    'Modelagem estatística, machine learning, séries temporais, visão computacional e experimentação com novas tecnologias.':
+      'Statistical modeling, machine learning, time series, computer vision and experimenting with new technologies.',
 
     // Habilidades
     'Habilidades técnicas': 'Technical skills',
@@ -179,6 +186,7 @@
     'Tutoriais de Python para dados (Pandas, NumPy, Polars, Matplotlib, Seaborn, séries temporais) e a passagem de Python para JavaScript.': 'Python tutorials for data (Pandas, NumPy, Polars, Matplotlib, Seaborn, time series) and the move from Python to JavaScript.',
     'Estudos de caso de estratégia e marketing.': 'Strategy and marketing case studies.',
     'Textos em primeira pessoa sobre saúde, rotina e recomeços.': 'First-person pieces about health, routine and starting over.',
+    'Uma mensagem de áudio de uma amiga morta há treze anos': 'A voice message from a friend who died thirteen years ago',
     'Ficção em séries curtas, publicadas parte por parte. O link abre a primeira parte.': 'Short fiction serials, published part by part. The link opens part one.',
     'Uma história do universo de The People Who Look Away': 'A story set in the world of The People Who Look Away',
     'Inspirada em “Ugly” e “Lonely”, do 2NE1': 'Inspired by “Ugly” and “Lonely” by 2NE1',
