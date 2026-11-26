@@ -94,6 +94,7 @@
   .hero { min-height: calc(100svh - 64px); display: flex; align-items: center; justify-content: center; text-align: center; padding: 72px 16px 48px;
     background: linear-gradient(180deg, var(--bg) 0%, var(--band) 100%); }
   .hero .in { display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 860px; }
+  .avatar { width: 136px; height: 136px; border-radius: 9999px; object-fit: cover; box-shadow: 0 0 0 4px var(--panel), 0 0 0 5px var(--line), var(--shadow); margin-bottom: 4px; }
   .hero h1 { font-weight: 500; font-size: clamp(2.5rem, 6.5vw, 4.25rem); line-height: 1.05; letter-spacing: -.03em; margin: 0; }
   .hero .role { font-size: clamp(1.125rem, 2.4vw, 1.5rem); color: var(--muted); margin: 0; }
   .hero .lead { font-size: 1.125rem; line-height: 1.6; color: var(--ink-2); margin: 0; max-width: 680px; text-wrap: pretty; }
@@ -218,6 +219,38 @@
   .acad + .acad { margin-top: 20px; }
   .acad-acoes { margin-top: 4px; }
 
+  /* Experiência: linha do tempo */
+  .linha-tempo { list-style: none; margin: 0 auto; padding: 0; max-width: 860px; position: relative; }
+  .linha-tempo::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; border-left: 2px solid var(--line); }
+  .exp { position: relative; padding: 0 0 28px 36px; }
+  .exp::before { content: ""; position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 9999px; background: var(--panel); border: 2px solid var(--ink); box-sizing: border-box; }
+  .exp:first-child::before { background: var(--ink); }
+  .exp-top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 16px; }
+  .exp h3 { margin: 0; font-size: 1.125rem; font-weight: 600; letter-spacing: -.01em; }
+  .exp-per { font-size: .875rem; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .exp-emp { margin: 2px 0 8px; font-size: .9375rem; color: var(--ink-2); font-weight: 500; }
+  .exp p:not(.exp-emp) { margin: 0 0 10px; color: var(--muted); font-size: .9375rem; line-height: 1.6; }
+  .mais { max-width: 860px; margin: 4px auto 0; }
+  .mais > summary, .form details > summary { cursor: pointer; font-weight: 600; font-size: .9375rem; padding: 10px 0; list-style: none; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }
+  .mais > summary::-webkit-details-marker, .form details > summary::-webkit-details-marker { display: none; }
+  .mais > summary::before, .form details > summary::before { content: "+"; display: inline-flex; width: 22px; height: 22px; border-radius: 9999px; background: var(--badge); align-items: center; justify-content: center; font-weight: 600; }
+  .mais[open] > summary::before, .form details[open] > summary::before { content: "−"; }
+  .mais .linha-tempo { margin-top: 16px; }
+
+  /* Formação */
+  .sub-h { font-size: .8125rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin: 32px 0 12px; }
+  .sub-h:first-of-type { margin-top: 0; }
+  .forms { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+  .form { display: flex; flex-direction: column; gap: 6px; padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
+  .form h3 { margin: 4px 0 0; font-size: 1.0625rem; font-weight: 600; line-height: 1.35; }
+  .form .exp-emp { margin: 0; font-size: .875rem; color: var(--muted); font-weight: 400; }
+  .form details > summary { font-size: .875rem; min-height: 36px; padding: 4px 0; }
+  .cursos { margin: 4px 0 0; padding-left: 18px; font-size: .875rem; color: var(--ink-2); display: flex; flex-direction: column; gap: 4px; }
+  .form-link { margin: 4px 0 0; font-size: .875rem; }
+  .status.ok { background: var(--fill); }
+  .form-extra { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; margin-top: 8px; }
+  @media (max-width: 760px) { .form-extra { grid-template-columns: 1fr; gap: 0; } }
+
   /* Contato */
   .contact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
   .contact-card { display: flex; align-items: center; gap: 16px; padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; text-decoration: none; color: var(--ink); box-shadow: var(--shadow); transition: background-color 150ms var(--ease-out); }
@@ -273,10 +306,9 @@
     <a class="brand" href="#inicio">Yury Cavalcante</a>
     <nav aria-label="Seções">
       <a href="#sobre">Sobre</a>
-      <a href="#habilidades">Habilidades</a>
+      <a href="#experiencia">Experiência</a>
       <a href="#projetos">Projetos</a>
-      <a href="#certificacoes">Certificações</a>
-      <a href="#academico">Acadêmico</a>
+      <a href="#formacao">Formação</a>
       <a href="#textos">Textos</a>
       <a href="#contato">Contato</a>
     </nav>
@@ -293,6 +325,7 @@
 <main>
 <section class="hero" id="inicio">
   <div class="in">
+    <img class="avatar" src="/img/yury-240.jpg" srcset="/img/yury-240.jpg 1x, /img/yury-480.jpg 2x" width="136" height="136" alt="Foto de Yury Cavalcante">
     <h1>Olá, eu sou Yury Cavalcante</h1>
     <p class="role">Business Intelligence · Data Analytics · Data Science · Inteligência Artificial</p>
     <p class="lead">Minha trajetória profissional combina negócios, dados e tecnologia. Trabalho com inteligência comercial, análise de desempenho e desenvolvimento de soluções analíticas.</p>
@@ -343,7 +376,78 @@
   </div>
 </section>
 
-<section class="band alt" id="habilidades" aria-labelledby="habilidades-titulo">
+<section class="band alt" id="experiencia" aria-labelledby="exp-titulo">
+  <div class="in">
+    <div class="sec-head">
+      <h2 id="exp-titulo">Experiência</h2>
+      <p>Desde 2007 trabalhando com dados em telecomunicações, aviação, bens de consumo, bebidas e educação.</p>
+    </div>
+    <ol class="linha-tempo">
+        <li class="exp">
+          <div class="exp-top"><h3>Sales Intelligence Specialist (Data &amp; Analytics)</h3><span class="exp-per">mar/2026 – atual</span></div>
+          <p class="exp-emp">Red Bull · São Paulo</p>
+          <p>Inteligência comercial, análise de performance e desenvolvimento de soluções de dados para o negócio.</p>
+        </li>
+        <li class="exp">
+          <div class="exp-top"><h3>Senior Data Analyst · Business Intelligence</h3><span class="exp-per">jan/2025 – mar/2026</span></div>
+          <p class="exp-emp">Grupo Bimbo · São Paulo</p>
+          
+        </li>
+        <li class="exp">
+          <div class="exp-top"><h3>Senior Data Analyst · Business Intelligence</h3><span class="exp-per">mai/2021 – dez/2024</span></div>
+          <p class="exp-emp">VINCI Airports · Salvador</p>
+          <p>Indicadores de receita não aeronáutica e comerciais do Aeroporto de Salvador, como gasto e receita por passageiro, yield e taxa de ocupação, e acompanhamento do plano de negócios de longo prazo.</p><ul class="tags"><li>Power BI</li><li>SQL</li><li>Excel</li></ul>
+        </li>
+        <li class="exp">
+          <div class="exp-top"><h3>Senior Data Analyst · Business Intelligence</h3><span class="exp-per">fev/2017 – mai/2021</span></div>
+          <p class="exp-emp">Claro Brasil · Salvador</p>
+          <p>KPIs do canal de recarga na Bahia, painel diário de resultados dos distribuidores e definição de metas de vendas a partir do histórico e das comissões.</p><ul class="tags"><li>SQL</li><li>Power BI</li><li>Tableau</li><li>Grafana</li><li>SAP</li><li>VBA</li></ul>
+        </li>
+        <li class="exp">
+          <div class="exp-top"><h3>Analista de dados · indicadores internacionais de educação</h3><span class="exp-per">jul/2016 – jan/2017</span></div>
+          <p class="exp-emp">Universidade Salvador (UNIFACS) · Salvador</p>
+          <p>Painéis de indicadores acadêmicos, de RH e financeiros, e acompanhamento de rankings e avaliações como QS Stars, ENADE e IGC.</p><ul class="tags"><li>Power BI</li><li>SQL</li><li>Access</li></ul>
+        </li>
+    </ol>
+    <details class="mais">
+      <summary>Início de carreira (2007 a 2016)</summary>
+      <ol class="linha-tempo">
+        <li class="exp">
+          <div class="exp-top"><h3>Auditor interno · dados e KPIs</h3><span class="exp-per">mar/2015 – mar/2016</span></div>
+          <p class="exp-emp">Claro Brasil · Salvador</p>
+          <p>Auditorias SOX e ISO 9001 e acompanhamento do plano de negócios nas regionais Bahia/Sergipe, Nordeste e São Paulo.</p>
+        </li>
+        <li class="exp">
+          <div class="exp-top"><h3>Analista de dados · BI e inteligência comercial</h3><span class="exp-per">dez/2012 – fev/2015</span></div>
+          <p class="exp-emp">Claro Brasil · Belém</p>
+          <p>Indicadores de vendas, churn e portabilidade, metas e abastecimento dos centros de distribuição do Pará, Amazonas e Maranhão, e controle do orçamento regional.</p>
+        </li>
+        <li class="exp">
+          <div class="exp-top"><h3>Analista de dados · performance comercial</h3><span class="exp-per">abr/2011 – nov/2012</span></div>
+          <p class="exp-emp">HEINEKEN · Belém</p>
+          <p>Análise por ponto de venda, participação de mercado e preços com dados Nielsen, e apoio ao orçamento e ao P&amp;L da área comercial.</p>
+        </li>
+        <li class="exp">
+          <div class="exp-top"><h3>Auditor de certificação · indústria automotiva</h3><span class="exp-per">set/2010 – abr/2011</span></div>
+          <p class="exp-emp">Bureau Veritas · São Paulo</p>
+          <p>Auditorias de sistemas de qualidade em montadoras e inspeções para os bancos das montadoras.</p>
+        </li>
+        <li class="exp">
+          <div class="exp-top"><h3>Estagiário de análise de dados · Qualidade</h3><span class="exp-per">nov/2008 – out/2010</span></div>
+          <p class="exp-emp">Oi · Belém</p>
+          <p>Painéis de controle gerencial e indicadores de qualidade (Seis Sigma e metas da Anatel).</p>
+        </li>
+        <li class="exp">
+          <div class="exp-top"><h3>Estagiário de análise de dados · Licitações</h3><span class="exp-per">mai/2007 – out/2008</span></div>
+          <p class="exp-emp">Infraero · Belém</p>
+          <p>Indicadores de qualidade e implantação da ISO 9001 na área de licitações.</p>
+        </li>
+      </ol>
+    </details>
+  </div>
+</section>
+
+<section class="band" id="habilidades" aria-labelledby="habilidades-titulo">
   <div class="in">
     <div class="sec-head">
       <h2 id="habilidades-titulo">Habilidades técnicas</h2>
@@ -389,7 +493,7 @@
   </div>
 </section>
 
-  <section class="band" id="projetos" aria-labelledby="projetos-titulo">
+  <section class="band alt" id="projetos" aria-labelledby="projetos-titulo">
   <div class="in">
     <div class="sec-head">
       <h2 id="projetos-titulo">Projetos</h2>
@@ -540,7 +644,7 @@
     </div>
 </section>
 
-  <section class="band alt" id="estudos" aria-labelledby="estudos-titulo">
+  <section class="band" id="estudos" aria-labelledby="estudos-titulo">
   <div class="in">
     <div class="sec-head">
       <h2 id="estudos-titulo">Mais no GitHub</h2>
@@ -565,6 +669,70 @@
       </div>
     </div>
     </div>
+</section>
+
+<section class="band alt" id="formacao" aria-labelledby="form-titulo">
+  <div class="in">
+    <div class="sec-head">
+      <h2 id="form-titulo">Formação e estudos</h2>
+      <p>O que estou estudando agora e as especializações que já concluí.</p>
+    </div>
+    <h3 class="sub-h">Estudando agora</h3>
+    <ul class="forms">
+        <li class="form">
+          <span class="status">em andamento</span>
+          <h3>Especialização em Engenharia e Administração de Banco de Dados</h3>
+          <p class="exp-emp">Unicamp · abr/2025 – mai/2027</p>
+        </li>
+        <li class="form">
+          <span class="status">em andamento</span>
+          <h3>Especialização em Engenharia de Software com IA Aplicada</h3>
+          <p class="exp-emp">UNIPDS · set/2026 – out/2027</p>
+        </li>
+        <li class="form">
+          <span class="status">em andamento</span>
+          <h3>Pós-graduação em Market Intelligence &amp; Decision-Making</h3>
+          <p class="exp-emp">ESPM · set/2026 – out/2027</p>
+        </li>
+    </ul>
+    <h3 class="sub-h">Especializações concluídas</h3>
+    <ul class="forms">
+        <li class="form">
+          <span class="status ok">concluído</span>
+          <h3>Algorithms Specialization</h3>
+          <p class="exp-emp">Stanford Online</p>
+          <details><summary>4 cursos</summary><ul class="cursos"><li>Divide and Conquer, Sorting and Searching, and Randomized Algorithms</li><li>Graph Search, Shortest Paths, and Data Structures</li><li>Greedy Algorithms, Minimum Spanning Trees, and Dynamic Programming</li><li>Shortest Paths Revisited, NP-Complete Problems and What To Do About Them</li></ul></details>
+        </li>
+        <li class="form">
+          <span class="status ok">concluído</span>
+          <h3>Business and Financial Modeling Specialization</h3>
+          <p class="exp-emp">The Wharton School · jan/2024 – ago/2024</p>
+          <details><summary>5 cursos</summary><ul class="cursos"><li>Fundamentals of Quantitative Modeling</li><li>Introduction to Spreadsheets and Models</li><li>Modeling Risk and Realities</li><li>Decision-Making and Scenarios</li><li>Wharton Business and Financial Modeling Capstone</li></ul></details>
+        </li>
+        <li class="form">
+          <span class="status ok">concluído</span>
+          <h3>Finance &amp; Quantitative Modeling for Analysts Specialization</h3>
+          <p class="exp-emp">The Wharton School · 2024</p>
+          <details><summary>4 cursos</summary><ul class="cursos"><li>Fundamentals of Quantitative Modeling</li><li>Introduction to Spreadsheets and Models</li><li>Financial Acumen for Non-Financial Managers</li><li>Introduction to Corporate Finance</li></ul></details>
+        </li>
+        <li class="form">
+          <span class="status ok">concluído</span>
+          <h3>Data Science Professional Certificate</h3>
+          <p class="exp-emp">IBM · jul/2023 – jan/2024</p>
+          <p class="form-link"><a href="/capstone-spacex/">Ver o projeto final revisitado →</a></p>
+        </li>
+    </ul>
+    <div class="form-extra">
+      <div>
+        <h3 class="sub-h">Outras certificações</h3>
+        <ul class="chips"><li>AI-Powered Knowledge Management: Optimizing, Searching, and Organizing Information</li><li>Strategic Leadership</li><li>R Programming</li><li>Inteligência Artificial II</li><li>Six Sigma Yellow Belt</li></ul>
+      </div>
+      <div>
+        <h3 class="sub-h">Idiomas</h3>
+        <ul class="chips"><li>Português (nativo)</li><li>Inglês (profissional)</li><li>Espanhol (básico)</li></ul>
+      </div>
+    </div>
+  </div>
 </section>
 
 <section class="band" id="certificacoes" aria-labelledby="cert-titulo">
@@ -830,8 +998,10 @@
         <h3>Seções</h3>
         <ul>
           <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#experiencia">Experiência</a></li>
           <li><a href="#habilidades">Habilidades</a></li>
           <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#formacao">Formação e estudos</a></li>
           <li><a href="#certificacoes">Certificações</a></li>
           <li><a href="#academico">Trabalhos acadêmicos</a></li>
           <li><a href="#textos">Textos</a></li>
