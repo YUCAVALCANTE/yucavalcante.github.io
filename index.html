@@ -76,6 +76,11 @@
   .top nav a { font-size: .9375rem; color: var(--ink-2); text-decoration: none; }
   .top nav a:hover { color: var(--ink); }
   .top .btn { min-height: 36px; padding: 0 14px; font-size: .875rem; }
+  .top-end { display: flex; align-items: center; gap: 10px; }
+  .lang { display: inline-flex; padding: 3px; gap: 2px; border-radius: 9999px; background: var(--fill); }
+  .lang button { appearance: none; border: 0; background: transparent; color: var(--muted); font: inherit; font-size: .8125rem; font-weight: 600; min-width: 36px; min-height: 30px; padding: 0 10px; border-radius: 9999px; cursor: pointer; }
+  .lang button:hover { color: var(--ink); }
+  .lang button[aria-pressed="true"] { background: var(--panel); color: var(--ink); box-shadow: 0 1px 2px rgba(3, 2, 19, .12); }
 
   /* Botões */
   .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 20px; border-radius: 8px; font-size: .9375rem; font-weight: 600; text-decoration: none; white-space: nowrap;
@@ -208,6 +213,7 @@
     .about, .soon, .skills { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
   }
+  @media (max-width: 420px) { .gh-txt { display: none; } }
   @media (max-width: 680px) {
     .band { padding-block: 72px; }
     .grid { grid-template-columns: 1fr; }
@@ -244,7 +250,13 @@
       <a href="#textos">Textos</a>
       <a href="#contato">Contato</a>
     </nav>
-    <a class="btn" href="https://github.com/YUCAVALCANTE"><svg class="i fill"><use href="#i-github"/></svg>GitHub</a>
+    <div class="top-end">
+      <div class="lang" role="group" aria-label="Idioma">
+        <button type="button" data-lang="pt" aria-pressed="true" lang="pt-BR">PT</button>
+        <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
+      </div>
+      <a class="btn" href="https://github.com/YUCAVALCANTE"><svg class="i fill"><use href="#i-github"/></svg><span class="gh-txt">GitHub</span></a>
+    </div>
   </div>
 </header>
 
@@ -739,6 +751,7 @@
   </div>
 </footer>
 
+<script src="/i18n.js"></script>
 <script>
   // Mini gráficos dos cards, a partir de dados/vitrine.json (gerado por scripts/atualizar_vitrine.py)
   (function () {
@@ -750,8 +763,9 @@
       if (pai) pai.appendChild(n);
       return n;
     };
-    const txt = (pai, x, y, s, attrs = {}) => { const t = el('text', { x, y, ...attrs }, pai); t.textContent = s; return t; };
-    const num = (v, d = 0) => v.toLocaleString('pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d });
+    const tr = (s) => (window.t ? window.t(String(s)) : String(s));
+    const txt = (pai, x, y, s, attrs = {}) => { const t = el('text', { x, y, ...attrs }, pai); t.textContent = tr(s); return t; };
+    const num = (v, d = 0) => v.toLocaleString(window.idioma && window.idioma() === 'en' ? 'en-US' : 'pt-BR', { minimumFractionDigits: d, maximumFractionDigits: d });
     const cor = () => getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
     const cor2 = () => getComputedStyle(document.documentElement).getPropertyValue('--accent-2').trim();
     const linha = () => getComputedStyle(document.documentElement).getPropertyValue('--line').trim();
@@ -809,7 +823,7 @@
           txt(svg, 0, y + lh / 2 + 3, x.classe, destaque ? { class: 'forte' } : {});
           const w = Math.max(2, x.fracao * (W - rot - valW));
           el('rect', { x: rot, y: y + 4, width: w, height: lh - 8, rx: 4, fill: destaque ? cor() : cor2(), class: 'anim-x', style: `animation-delay:${i * 60}ms` }, svg);
-          const rotulo = x.fracao >= 0.01 ? num(x.fracao * 100) + '%' : `${x.n} ${x.n === 1 ? 'ave' : 'aves'}`;
+          const rotulo = x.fracao >= 0.01 ? num(x.fracao * 100) + '%' : `${x.n} ${tr(x.n === 1 ? 'ave' : 'aves')}`;
           txt(svg, rot + w + 4, y + lh / 2 + 3, rotulo, destaque ? { class: 'forte' } : {});
         });
       },
@@ -852,6 +866,7 @@
       .then((dados) => {
         desenhar(dados);
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => desenhar(dados));
+        document.addEventListener('idioma', () => desenhar(dados));
       })
       .catch(() => document.querySelectorAll('svg[data-viz]').forEach((s) => { s.closest('figure').hidden = true; }));
   })();
