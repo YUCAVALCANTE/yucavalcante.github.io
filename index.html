@@ -215,6 +215,8 @@
   .acad h3 { margin: 4px 0 0; font-size: 1.375rem; font-weight: 600; letter-spacing: -.01em; }
   .acad .acad-sub { margin: -6px 0 0; font-size: .9375rem; color: var(--muted); }
   .acad p { margin: 0; color: var(--ink-2); line-height: 1.65; }
+  .acad + .acad { margin-top: 20px; }
+  .acad-acoes { margin-top: 4px; }
 
   /* Contato */
   .contact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
@@ -603,7 +605,7 @@
   <div class="in">
     <div class="sec-head">
       <h2 id="academico-titulo">Trabalhos acadêmicos</h2>
-      <p>Pesquisas da pós-graduação.</p>
+      <p>A pesquisa da pós em andamento e o projeto final da formação em ciência de dados da IBM.</p>
     </div>
     <article class="acad">
       <div class="acad-top">
@@ -614,6 +616,17 @@
       <p class="acad-sub">Pós-graduação em Engenharia e Administração de Banco de Dados</p>
       <p>Como a geometria dos dados (dimensionalidade intrínseca e espaços métricos) pode reduzir o custo das consultas em bancos de dados vetoriais sem perder qualidade na recuperação. A avaliação experimental usa 2,68 milhões de textos da Wikipédia (Natural Questions / BEIR) representados em vetores de 384 dimensões.</p>
       <ul class="tags"><li>Bancos de dados vetoriais</li><li>Espaços métricos</li><li>Redução de dimensionalidade</li><li>Python</li></ul>
+    </article>
+    <article class="acad">
+      <div class="acad-top">
+        <span class="status">concluído</span>
+        <span class="acad-inst">IBM · Coursera · jan/2024</span>
+      </div>
+      <h3>Pouso do Falcon 9: o capstone da IBM, revisitado</h3>
+      <p class="acad-sub">Projeto final do IBM Data Science Professional Certificate</p>
+      <p>Prever se o primeiro estágio do Falcon 9 volta inteiro, com dados da API da SpaceX, SQL, mapas, dashboard e quatro modelos. Revi o projeto com o que eu faria hoje: entender o rótulo, medir a incerteza e validar na ordem do tempo.</p>
+      <ul class="tags"><li>Python</li><li>SQL</li><li>scikit-learn</li><li>Plotly Dash</li><li>Folium</li></ul>
+      <div class="acad-acoes"><a class="btn primary" href="/capstone-spacex/">Ver o projeto revisitado →</a></div>
     </article>
   </div>
 </section>

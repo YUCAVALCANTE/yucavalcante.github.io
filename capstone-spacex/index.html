@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pouso do Falcon 9, revisitado · Yury Cavalcante</title>
+<meta name="description" content="O projeto final do IBM Data Science Professional Certificate (prever o pouso do primeiro estágio do Falcon 9), revisto: o que eu fiz em 2024 e o que eu faria hoje.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23030213'/%3E%3Ctext x='16' y='22.5' text-anchor='middle' font-family='-apple-system,Segoe UI,Helvetica,Arial,sans-serif' font-weight='700' font-size='18' fill='white'%3EY%3C/text%3E%3C/svg%3E">
+<style>
+  /* Mesmos tokens e linguagem visual da página inicial */
+  :root {
+    color-scheme: light;
+    --bg: #ffffff; --band: #f8f8fa; --panel: #ffffff; --fill: #f3f3f5; --ink: #030213; --on-ink: #ffffff; --ink-2: #3f3f4a;
+    --muted: #6b6b7b; --line: rgba(3, 2, 19, .10); --accent-2: #cbced4; --badge: #ececf0; --falha: #d4473f;
+    --shadow: 0 1px 2px rgba(3, 2, 19, .04), 0 8px 24px rgba(3, 2, 19, .05); --focus-ring: 0 0 0 3px rgba(3, 2, 19, .25);
+    --nav-bg: rgba(255, 255, 255, .8);
+    --system: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --ease-out: cubic-bezier(0, 0, .58, 1);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #0b0b10; --band: #121218; --panel: #16161d; --fill: #1f1f28; --ink: #f4f4f6; --on-ink: #0b0b10; --ink-2: #d4d4dc;
+      --muted: #9b9bab; --line: rgba(255, 255, 255, .10); --accent-2: #44444f; --badge: #24242e; --falha: #f0645b;
+      --shadow: none; --focus-ring: 0 0 0 3px rgba(255, 255, 255, .3); --nav-bg: rgba(11, 11, 16, .8);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #0b0b10; --band: #121218; --panel: #16161d; --fill: #1f1f28; --ink: #f4f4f6; --on-ink: #0b0b10; --ink-2: #d4d4dc;
+    --muted: #9b9bab; --line: rgba(255, 255, 255, .10); --accent-2: #44444f; --badge: #24242e; --falha: #f0645b;
+    --shadow: none; --focus-ring: 0 0 0 3px rgba(255, 255, 255, .3); --nav-bg: rgba(11, 11, 16, .8);
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { background: var(--bg); color: var(--ink); font-family: var(--system); font-size: 1rem; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: currentColor; }
+  a:focus-visible, button:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: 8px; }
+
+  .top { position: sticky; top: 0; z-index: 10; background: var(--nav-bg); backdrop-filter: saturate(180%) blur(12px); -webkit-backdrop-filter: saturate(180%) blur(12px); border-bottom: 1px solid var(--line); }
+  .top .in { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; padding: 0 16px; max-width: 1152px; margin: 0 auto; }
+  .brand { font-size: 1.125rem; font-weight: 500; text-decoration: none; white-space: nowrap; }
+  .lang { display: inline-flex; padding: 3px; gap: 2px; border-radius: 9999px; background: var(--fill); }
+  .lang button { appearance: none; border: 0; background: transparent; color: var(--muted); font: inherit; font-size: .8125rem; font-weight: 600; min-width: 36px; min-height: 30px; padding: 0 10px; border-radius: 9999px; cursor: pointer; }
+  .lang button[aria-pressed="true"] { background: var(--panel); color: var(--ink); box-shadow: 0 1px 2px rgba(3, 2, 19, .12); }
+
+  .band { padding: 72px 16px; }
+  .band.alt { background: var(--band); }
+  .in { max-width: 920px; margin: 0 auto; }
+  .hero { padding: 72px 16px 56px; background: linear-gradient(180deg, var(--bg) 0%, var(--band) 100%); }
+  .kicker { font-size: .8125rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin: 0 0 12px; }
+  h1 { font-weight: 500; font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.1; letter-spacing: -.03em; margin: 0 0 20px; text-wrap: balance; }
+  .lead { font-size: 1.1875rem; color: var(--ink-2); margin: 0 0 12px; max-width: 760px; text-wrap: pretty; }
+  h2 { font-weight: 500; font-size: clamp(1.625rem, 3.5vw, 2.25rem); letter-spacing: -.02em; line-height: 1.2; margin: 0 0 12px; }
+  h3 { font-size: 1.1875rem; font-weight: 600; margin: 0 0 8px; letter-spacing: -.01em; }
+  p { margin: 0 0 14px; color: var(--ink-2); }
+  .sub { color: var(--muted); font-size: 1.0625rem; margin-bottom: 32px; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 28px 0 0; }
+  .stat { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+  .stat b { display: block; font-size: 1.5rem; font-weight: 600; line-height: 1.15; font-variant-numeric: tabular-nums; }
+  .stat span { font-size: .8125rem; color: var(--muted); line-height: 1.35; display: block; margin-top: 4px; }
+
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .steps li { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: var(--shadow); }
+  .steps b { display: block; font-weight: 600; margin-bottom: 4px; }
+  .steps span { font-size: .875rem; color: var(--muted); }
+
+  .slides { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+  figure { margin: 0; }
+  .slides figure { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
+  .slides img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #f2f3f7; }
+  figcaption { font-size: .8125rem; color: var(--muted); padding: 10px 14px 12px; line-height: 1.4; }
+
+  .ponto { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; padding: 32px 0; border-top: 1px solid var(--line); }
+  .ponto:first-of-type { border-top: 0; padding-top: 8px; }
+  .num { width: 36px; height: 36px; border-radius: 9999px; background: var(--ink); color: var(--on-ink); display: inline-flex; align-items: center; justify-content: center; font-weight: 600; font-size: .9375rem; }
+  .grafico { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin-top: 16px; box-shadow: var(--shadow); }
+  .grafico-titulo { font-size: .875rem; font-weight: 600; margin: 0 0 4px; color: var(--ink); }
+  .grafico-sub { font-size: .8125rem; color: var(--muted); margin: 0 0 12px; }
+  .grafico svg { display: block; width: 100%; height: auto; overflow: visible; }
+  .grafico svg text { font-family: var(--system); font-size: 11px; fill: var(--muted); }
+  .grafico svg .forte { fill: var(--ink); font-weight: 600; }
+  .legenda { display: flex; flex-wrap: wrap; gap: 16px; font-size: .8125rem; color: var(--muted); margin-top: 10px; padding: 0; list-style: none; }
+  .legenda i { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+  .callouts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 16px; }
+  .callouts .stat b { font-size: 1.375rem; }
+
+  pre { background: var(--fill); border-radius: 10px; padding: 14px 16px; overflow-x: auto; font-size: .875rem; line-height: 1.5; margin: 0 0 14px; }
+  code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: .9em; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; border-radius: 8px; font-size: .9375rem; font-weight: 600; text-decoration: none; background: var(--panel); color: var(--ink); border: 1px solid var(--line); }
+  .btn.primary { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+  .btn:hover { opacity: .88; }
+  .acoes { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  .foot { border-top: 1px solid var(--line); padding: 32px 16px; background: var(--band); font-size: .8125rem; color: var(--muted); text-align: center; }
+  .foot p { color: var(--muted); margin: 0 auto; max-width: 720px; }
+
+  @media (max-width: 760px) {
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .steps, .slides, .callouts { grid-template-columns: 1fr; }
+    .ponto { grid-template-columns: 1fr; gap: 10px; }
+    .band { padding-block: 56px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="in">
+    <a class="brand" href="/#academico">← Yury Cavalcante</a>
+    <div class="lang" role="group" aria-label="Idioma">
+      <button type="button" data-lang="pt" aria-pressed="true" lang="pt-BR">PT</button>
+      <button type="button" data-lang="en" aria-pressed="false" lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="in">
+    <p class="kicker">Trabalho acadêmico · IBM Data Science Professional Certificate</p>
+    <h1>Pouso do Falcon 9: o capstone da IBM, revisitado</h1>
+    <p class="lead">Em janeiro de 2024 concluí o projeto final da formação em ciência de dados da IBM. A pergunta era prever se o primeiro estágio do Falcon 9 voltaria inteiro depois do lançamento.</p>
+    <p class="lead">Gostei bastante de fazer esse projeto, porque ele passa por todas as etapas: coleta de dados numa API, raspagem de página, SQL, mapas, dashboard e modelos. Abaixo está o que eu fiz na época e, com o mesmo conjunto de dados, o que eu faria diferente hoje.</p>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="pergunta">
+  <div class="in">
+    <h2 id="pergunta">A pergunta</h2>
+    <p>A SpaceX anunciava lançamentos do Falcon 9 por US$ 62 milhões, enquanto outros fornecedores cobravam a partir de US$ 165 milhões. Grande parte da diferença vem de reaproveitar o primeiro estágio do foguete. Saber se ele vai pousar ajuda a estimar o custo de um lançamento, informação útil para uma empresa que queira concorrer com a SpaceX.</p>
+    <div class="stats">
+      <div class="stat"><b>90</b><span>lançamentos do Falcon 9, de jun/2010 a nov/2020</span></div>
+      <div class="stat"><b>60</b><span>primeiros estágios pousaram</span></div>
+      <div class="stat"><b>4</b><span>modelos comparados com GridSearch</span></div>
+      <div class="stat"><b>83,3%</b><span>de acerto da árvore de decisão no teste</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" aria-labelledby="em2024">
+  <div class="in">
+    <h2 id="em2024">O que eu fiz em 2024</h2>
+    <p class="sub">O roteiro do curso, do dado bruto à apresentação.</p>
+    <ul class="steps">
+      <li><b>Coleta</b><span>API da SpaceX e raspagem da Wikipédia com BeautifulSoup.</span></li>
+      <li><b>Tratamento</b><span>Valores faltantes, rótulo de pouso (0 ou 1) e one-hot das categorias.</span></li>
+      <li><b>Exploração com SQL</b><span>Consultas sobre bases de lançamento, cargas, clientes e resultados.</span></li>
+      <li><b>Visualização</b><span>Taxa de sucesso por órbita, por ano, por carga e por base.</span></li>
+      <li><b>Mapa e dashboard</b><span>Folium para as bases de lançamento e Plotly Dash com filtros.</span></li>
+      <li><b>Modelos</b><span>Regressão logística, SVM, árvore de decisão e KNN, com validação cruzada.</span></li>
+    </ul>
+    <div class="slides">
+      <figure><img src="slides/capa.jpg" width="1200" height="675" loading="lazy" alt="Capa da apresentação Winning Space Race with Data Science, de janeiro de 2024"><figcaption>A capa da apresentação final.</figcaption></figure>
+      <figure><img src="slides/exploracao.jpg" width="1200" height="675" loading="lazy" alt="Slide com a taxa de sucesso por órbita e a tendência anual de pousos"><figcaption>Exploração: taxa de pouso por órbita e ao longo dos anos.</figcaption></figure>
+      <figure><img src="slides/dashboard.jpg" width="1200" height="675" loading="lazy" alt="Slide com o gráfico de pizza do dashboard em Plotly Dash"><figcaption>Dashboard em Plotly Dash: pousos por base de lançamento.</figcaption></figure>
+      <figure><img src="slides/matriz-confusao.jpg" width="1200" height="675" loading="lazy" alt="Slide com a matriz de confusão da árvore de decisão: 83,3% de acerto no teste"><figcaption>O resultado: árvore de decisão, 83,3% de acerto em 18 voos de teste.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="hoje">
+  <div class="in">
+    <h2 id="hoje">O que eu faria hoje</h2>
+    <p class="sub">Mesmos dados, outras perguntas. Refiz a avaliação com o código abaixo; os números desta seção saem dele.</p>
+
+    <div class="ponto">
+      <span class="num">1</span>
+      <div>
+        <h3>Entender o que o rótulo quer dizer</h3>
+        <p>Em 2024 eu tratei "não pousou" como uma coisa só. Olhando de novo, a maior parte desses casos não é falha: são voos em que a SpaceX nem tentou recuperar o estágio, por causa do perfil da missão. São duas perguntas diferentes: <b>a empresa vai tentar pousar?</b> e, se tentar, <b>o pouso vai dar certo?</b></p>
+        <figure class="grafico">
+          <p class="grafico-titulo">Os 90 voos, em ordem</p>
+          <p class="grafico-sub">Cada quadrado é um voo. A linha é a taxa de pouso nas 10 tentativas mais recentes.</p>
+          <svg id="g-linha" viewBox="0 0 720 190" role="img" aria-label="Linha do tempo dos 90 voos: as falhas se concentram nos primeiros 20 voos e a taxa de pouso nas tentativas sobe para perto de 100%"></svg>
+          <ul class="legenda">
+            <li><i style="background:var(--ink)"></i>pousou</li>
+            <li><i style="background:var(--falha)"></i>tentou e falhou</li>
+            <li><i style="background:transparent;border:1.5px solid var(--accent-2)"></i>sem tentativa de pouso</li>
+          </ul>
+        </figure>
+        <div class="callouts">
+          <div class="stat"><b id="n-sem">21 de 30</b><span>voos marcados como "não pousou" não tiveram tentativa</span></div>
+          <div class="stat"><b id="n-taxa">87%</b><span>das tentativas de pouso deram certo</span></div>
+          <div class="stat"><b>6 de 9</b><span>falhas de pouso aconteceram até o 19º voo</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <span class="num">2</span>
+      <div>
+        <h3>Medir a incerteza antes de comemorar</h3>
+        <p>O teste tinha 18 voos. Nesse grupo, apostar sempre em "pousa" já acertava 67%, então os 83,3% da árvore representam 3 voos a mais. Repeti a divisão aleatória 200 vezes com a mesma configuração da árvore vencedora: o acerto variou de <b id="n-p5">56%</b> a <b id="n-p95">94%</b>, só por causa de quais voos caíram no teste.</p>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <span class="num">3</span>
+      <div>
+        <h3>Comparar com regras simples e validar na ordem do tempo</h3>
+        <p>Na prática, um modelo assim é usado para prever o próximo lançamento com o que já aconteceu. Por isso refiz a avaliação na ordem cronológica: cada um dos 60 últimos voos foi previsto usando só os voos anteriores. Junto com os modelos, coloquei regras simples como régua.</p>
+        <figure class="grafico">
+          <p class="grafico-titulo">Acerto prevendo cada voo só com o passado</p>
+          <p class="grafico-sub">60 voos (do 31º ao 90º). A barra fina é o intervalo de 90% por bootstrap.</p>
+          <svg id="g-modelos" viewBox="0 0 720 230" role="img" aria-label="Acerto na validação temporal: regressão logística e a regra das pernas de pouso 88%, taxa dos últimos 10 voos 78%, taxa histórica 72% e árvore de decisão 67%"></svg>
+        </figure>
+        <p style="margin-top:16px">A árvore de decisão, que venceu na divisão aleatória, ficou abaixo de "apostar na taxa histórica". Uma regra de uma linha (o foguete tem pernas de pouso instaladas?) empatou com a regressão logística. Hoje eu apresentaria a regressão logística, por ser simples, estável e dar probabilidades, e mostraria a regra das pernas ao lado para deixar claro de onde vem o acerto.</p>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <span class="num">4</span>
+      <div>
+        <h3>Entregar probabilidade, não só "pousa ou não pousa"</h3>
+        <p>Quem vai disputar um contrato com a SpaceX precisa de uma chance de pouso por tipo de missão, para transformar em custo esperado, e não de um sim ou não. Por isso eu avaliaria as probabilidades também (Brier score: <b id="n-brier">0,114</b> na regressão logística contra 0,215 da taxa histórica) e mostraria a chance de pouso por órbita e faixa de carga.</p>
+      </div>
+    </div>
+
+    <div class="ponto">
+      <span class="num">5</span>
+      <div>
+        <h3>Atualizar os dados e contar a história em menos slides</h3>
+        <p>Os dados do curso terminam em novembro de 2020. Hoje eu coletaria de novo os lançamentos mais recentes para ver se a conclusão se mantém num período em que pousar virou rotina. E trocaria os mais de 40 slides por uma página como esta: uma pergunta, dois gráficos e uma recomendação.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" aria-labelledby="codigo">
+  <div class="in">
+    <h2 id="codigo">O código</h2>
+    <p>A reanálise é um único script em Python (pandas e scikit-learn) que lê os dados do curso e grava os números usados nos gráficos desta página.</p>
+    <pre><code>python capstone-spacex/analise/revisitar.py</code></pre>
+    <div class="acoes">
+      <a class="btn primary" href="https://github.com/YUCAVALCANTE/yucavalcante.github.io/blob/main/capstone-spacex/analise/revisitar.py">Ver o código</a>
+      <a class="btn" href="https://www.credly.com/badges/0d1c51f7-f064-40f0-8beb-26caae4442e2">Badge do capstone no Credly</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <p>Dados do curso Applied Data Science Capstone (IBM / Coursera), coletados da API pública da SpaceX. <a href="/">Voltar ao portfólio</a></p>
+</footer>
+
+<script>
+  // Textos desta página em inglês (lidos por /i18n.js)
+  window.I18N_META_EN = { title: 'Falcon 9 landing, revisited · Yury Cavalcante', desc: 'The IBM Data Science Professional Certificate capstone (predicting whether the Falcon 9 first stage lands), revisited: what I did in 2024 and what I would do today.' };
+  window.I18N_EXTRA = {
+    'Trabalho acadêmico · IBM Data Science Professional Certificate': 'Academic work · IBM Data Science Professional Certificate',
+    'Pouso do Falcon 9: o capstone da IBM, revisitado': 'Falcon 9 landing: the IBM capstone, revisited',
+    'Em janeiro de 2024 concluí o projeto final da formação em ciência de dados da IBM. A pergunta era prever se o primeiro estágio do Falcon 9 voltaria inteiro depois do lançamento.':
+      "In January 2024 I completed the final project of IBM's data science program. The question was whether the Falcon 9 first stage would come back in one piece after launch.",
+    'Gostei bastante de fazer esse projeto, porque ele passa por todas as etapas: coleta de dados numa API, raspagem de página, SQL, mapas, dashboard e modelos. Abaixo está o que eu fiz na época e, com o mesmo conjunto de dados, o que eu faria diferente hoje.':
+      'I really enjoyed this project because it goes through every step: pulling data from an API, scraping a web page, SQL, maps, a dashboard and models. Below is what I did back then and, with the same dataset, what I would do differently today.',
+    'A pergunta': 'The question',
+    'A SpaceX anunciava lançamentos do Falcon 9 por US$ 62 milhões, enquanto outros fornecedores cobravam a partir de US$ 165 milhões. Grande parte da diferença vem de reaproveitar o primeiro estágio do foguete. Saber se ele vai pousar ajuda a estimar o custo de um lançamento, informação útil para uma empresa que queira concorrer com a SpaceX.':
+      "SpaceX advertised Falcon 9 launches at US$ 62 million, while other providers charged upward of US$ 165 million. Much of the gap comes from reusing the rocket's first stage. Knowing whether it will land helps estimate the cost of a launch, which is useful for a company that wants to bid against SpaceX.",
+    'lançamentos do Falcon 9, de jun/2010 a nov/2020': 'Falcon 9 launches, Jun 2010 to Nov 2020',
+    'primeiros estágios pousaram': 'first stages landed',
+    'modelos comparados com GridSearch': 'models compared with GridSearch',
+    '83,3%': '83.3%',
+    'de acerto da árvore de decisão no teste': 'decision tree accuracy on the test set',
+    'O que eu fiz em 2024': 'What I did in 2024',
+    'O roteiro do curso, do dado bruto à apresentação.': "The course's path, from raw data to presentation.",
+    'Coleta': 'Collection',
+    'API da SpaceX e raspagem da Wikipédia com BeautifulSoup.': 'SpaceX API and Wikipedia scraping with BeautifulSoup.',
+    'Tratamento': 'Wrangling',
+    'Valores faltantes, rótulo de pouso (0 ou 1) e one-hot das categorias.': 'Missing values, a landing label (0 or 1) and one-hot encoded categories.',
+    'Exploração com SQL': 'Exploration with SQL',
+    'Consultas sobre bases de lançamento, cargas, clientes e resultados.': 'Queries on launch sites, payloads, customers and outcomes.',
+    'Visualização': 'Visualization',
+    'Taxa de sucesso por órbita, por ano, por carga e por base.': 'Success rate by orbit, year, payload and site.',
+    'Mapa e dashboard': 'Map and dashboard',
+    'Folium para as bases de lançamento e Plotly Dash com filtros.': 'Folium for the launch sites and Plotly Dash with filters.',
+    'Modelos': 'Models',
+    'Regressão logística, SVM, árvore de decisão e KNN, com validação cruzada.': 'Logistic regression, SVM, decision tree and KNN, with cross-validation.',
+    'A capa da apresentação final.': 'The cover of the final presentation.',
+    'Exploração: taxa de pouso por órbita e ao longo dos anos.': 'Exploration: landing rate by orbit and over the years.',
+    'Dashboard em Plotly Dash: pousos por base de lançamento.': 'Plotly Dash dashboard: landings by launch site.',
+    'O resultado: árvore de decisão, 83,3% de acerto em 18 voos de teste.': 'The result: decision tree, 83.3% accuracy on 18 test flights.',
+    'O que eu faria hoje': 'What I would do today',
+    'Mesmos dados, outras perguntas. Refiz a avaliação com o código abaixo; os números desta seção saem dele.': 'Same data, different questions. I redid the evaluation with the code below; the numbers in this section come from it.',
+    'Entender o que o rótulo quer dizer': 'Understand what the label means',
+    'Em 2024 eu tratei "não pousou" como uma coisa só. Olhando de novo, a maior parte desses casos não é falha: são voos em que a SpaceX nem tentou recuperar o estágio, por causa do perfil da missão. São duas perguntas diferentes:':
+      'In 2024 I treated "did not land" as a single thing. Looking again, most of those cases are not failures: they are flights where SpaceX did not even try to recover the stage, because of the mission profile. These are two different questions:',
+    'a empresa vai tentar pousar?': 'will the company try to land?',
+    'e, se tentar,': 'and, if it tries,',
+    'o pouso vai dar certo?': 'will the landing succeed?',
+    'Os 90 voos, em ordem': 'The 90 flights, in order',
+    'Cada quadrado é um voo. A linha é a taxa de pouso nas 10 tentativas mais recentes.': 'Each square is a flight. The line is the landing rate over the 10 most recent attempts.',
+    'pousou': 'landed',
+    'tentou e falhou': 'tried and failed',
+    'sem tentativa de pouso': 'no landing attempt',
+    'voos marcados como "não pousou" não tiveram tentativa': 'flights labeled "did not land" had no attempt',
+    '21 de 30': '21 of 30',
+    'das tentativas de pouso deram certo': 'of landing attempts succeeded',
+    '6 de 9': '6 of 9',
+    'falhas de pouso aconteceram até o 19º voo': 'landing failures happened by the 19th flight',
+    'Medir a incerteza antes de comemorar': 'Measure uncertainty before celebrating',
+    'O teste tinha 18 voos. Nesse grupo, apostar sempre em "pousa" já acertava 67%, então os 83,3% da árvore representam 3 voos a mais. Repeti a divisão aleatória 200 vezes com a mesma configuração da árvore vencedora: o acerto variou de':
+      'The test set had 18 flights. In that group, always betting on "lands" was already right 67% of the time, so the tree\'s 83.3% means 3 more flights. I repeated the random split 200 times with the winning tree\'s exact configuration: accuracy ranged from',
+    'a': 'to',
+    ', só por causa de quais voos caíram no teste.': ', just because of which flights ended up in the test set.',
+    'Comparar com regras simples e validar na ordem do tempo': 'Compare with simple rules and validate in time order',
+    'Na prática, um modelo assim é usado para prever o próximo lançamento com o que já aconteceu. Por isso refiz a avaliação na ordem cronológica: cada um dos 60 últimos voos foi previsto usando só os voos anteriores. Junto com os modelos, coloquei regras simples como régua.':
+      'In practice, a model like this predicts the next launch from what has already happened. So I redid the evaluation in chronological order: each of the last 60 flights was predicted using only earlier flights. Next to the models, I added simple rules as a yardstick.',
+    'Acerto prevendo cada voo só com o passado': 'Accuracy predicting each flight from the past only',
+    '60 voos (do 31º ao 90º). A barra fina é o intervalo de 90% por bootstrap.': '60 flights (31st to 90th). The thin bar is the 90% bootstrap interval.',
+    'A árvore de decisão, que venceu na divisão aleatória, ficou abaixo de "apostar na taxa histórica". Uma regra de uma linha (o foguete tem pernas de pouso instaladas?) empatou com a regressão logística. Hoje eu apresentaria a regressão logística, por ser simples, estável e dar probabilidades, e mostraria a regra das pernas ao lado para deixar claro de onde vem o acerto.':
+      'The decision tree, which won on the random split, fell below "bet on the historical rate". A one-line rule (does the rocket have landing legs fitted?) tied with logistic regression. Today I would present logistic regression, because it is simple, stable and gives probabilities, and show the landing-legs rule next to it to make clear where the accuracy comes from.',
+    'Entregar probabilidade, não só "pousa ou não pousa"': 'Deliver probabilities, not just "lands or not"',
+    'Quem vai disputar um contrato com a SpaceX precisa de uma chance de pouso por tipo de missão, para transformar em custo esperado, e não de um sim ou não. Por isso eu avaliaria as probabilidades também (Brier score:':
+      'A company bidding against SpaceX needs a landing probability per mission type, to turn into expected cost, not a yes or no. So I would also evaluate the probabilities (Brier score:',
+    '0,114': '0.114',
+    'na regressão logística contra 0,215 da taxa histórica) e mostraria a chance de pouso por órbita e faixa de carga.': 'for logistic regression versus 0.215 for the historical rate) and show the landing probability by orbit and payload range.',
+    'Atualizar os dados e contar a história em menos slides': 'Update the data and tell the story in fewer slides',
+    'Os dados do curso terminam em novembro de 2020. Hoje eu coletaria de novo os lançamentos mais recentes para ver se a conclusão se mantém num período em que pousar virou rotina. E trocaria os mais de 40 slides por uma página como esta: uma pergunta, dois gráficos e uma recomendação.':
+      "The course data ends in November 2020. Today I would collect the more recent launches to see whether the conclusion holds in a period when landing has become routine. And I would replace the 40-plus slides with a page like this: one question, two charts and one recommendation.",
+    'O código': 'The code',
+    'A reanálise é um único script em Python (pandas e scikit-learn) que lê os dados do curso e grava os números usados nos gráficos desta página.': "The reanalysis is a single Python script (pandas and scikit-learn) that reads the course data and writes the numbers used in this page's charts.",
+    'Ver o código': 'View the code',
+    'Badge do capstone no Credly': 'Capstone badge on Credly',
+    'Dados do curso Applied Data Science Capstone (IBM / Coursera), coletados da API pública da SpaceX.': 'Data from the Applied Data Science Capstone course (IBM / Coursera), collected from the public SpaceX API.',
+    'Voltar ao portfólio': 'Back to the portfolio',
+    '← Yury Cavalcante': '← Yury Cavalcante',
+    // gráficos
+    'voo': 'flight',
+    'taxa nas 10 últimas tentativas': 'rate over the last 10 attempts',
+    'Regressão logística': 'Logistic regression',
+    'Regra: tem pernas de pouso': 'Rule: has landing legs',
+    'Taxa dos últimos 10 voos': 'Rate of the last 10 flights',
+    'Taxa histórica': 'Historical rate',
+    'Árvore de decisão (2024)': 'Decision tree (2024)',
+    'Timeline of the 90 flights': 'Timeline of the 90 flights',
+    'Linha do tempo dos 90 voos: as falhas se concentram nos primeiros 20 voos e a taxa de pouso nas tentativas sobe para perto de 100%':
+      'Timeline of the 90 flights: failures cluster in the first 20 flights and the landing rate among attempts rises close to 100%',
+    'Acerto na validação temporal: regressão logística e a regra das pernas de pouso 88%, taxa dos últimos 10 voos 78%, taxa histórica 72% e árvore de decisão 67%':
+      'Accuracy under time-ordered validation: logistic regression and the landing-legs rule 88%, last-10-flights rate 78%, historical rate 72% and decision tree 67%',
+    'Capa da apresentação Winning Space Race with Data Science, de janeiro de 2024': 'Cover of the Winning Space Race with Data Science presentation, January 2024',
+    'Slide com a taxa de sucesso por órbita e a tendência anual de pousos': 'Slide with the success rate by orbit and the yearly landing trend',
+    'Slide com o gráfico de pizza do dashboard em Plotly Dash': 'Slide with the pie chart from the Plotly Dash dashboard',
+    'Slide com a matriz de confusão da árvore de decisão: 83,3% de acerto no teste': 'Slide with the decision tree confusion matrix: 83.3% test accuracy',
+    'Idioma': 'Language',
+  };
+</script>
+<script src="/i18n.js"></script>
+<script>
+  (function () {
+    const NS = 'http://www.w3.org/2000/svg';
+    const t = (s) => (window.t ? window.t(String(s)) : String(s));
+    const en = () => window.idioma && window.idioma() === 'en';
+    const pct = (v) => (v * 100).toLocaleString(en() ? 'en-US' : 'pt-BR', { maximumFractionDigits: 0 }) + '%';
+    const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+    const el = (tag, attrs, pai) => { const n = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v); pai.appendChild(n); return n; };
+    const txt = (pai, x, y, s, attrs = {}) => { const n = el('text', { x, y, ...attrs }, pai); n.textContent = s; return n; };
+
+    // Desenha na largura real do gráfico, para o texto ficar legível também no celular
+    const largura = (svg) => Math.max(300, Math.round(svg.parentElement.clientWidth - 40));
+
+    function linha(svg, d) {
+      svg.replaceChildren();
+      const W = largura(svg), x0 = 34, x1 = W - 4, topo = 10, base = 120, quadY = 150;
+      svg.setAttribute('viewBox', `0 0 ${W} 190`);
+      const q = Math.max(1.6, Math.min(6.2, ((x1 - x0) / d.voos.length) * 0.75));
+      const X = (n) => x0 + ((n - 1) / (d.voos.length - 1)) * (x1 - x0);
+      const Y = (v) => base - v * (base - topo);
+      [0, 0.5, 1].forEach((v) => {
+        el('line', { x1: x0, x2: x1, y1: Y(v), y2: Y(v), stroke: css('--line') }, svg);
+        txt(svg, x0 - 6, Y(v) + 4, pct(v), { 'text-anchor': 'end' });
+      });
+      const pts = d.voos.filter((v) => v.taxa10 != null);
+      el('path', { d: pts.map((v, i) => (i ? 'L' : 'M') + X(v.n).toFixed(1) + ',' + Y(v.taxa10).toFixed(1)).join(''), fill: 'none', stroke: css('--ink'), 'stroke-width': 2, 'stroke-linejoin': 'round' }, svg);
+      d.voos.forEach((v) => {
+        const a = { x: X(v.n) - q / 2, y: quadY, width: q, height: 14, rx: Math.min(1.5, q / 3) };
+        if (v.tipo === 'pousou') el('rect', { ...a, fill: css('--ink') }, svg);
+        else if (v.tipo === 'falhou') el('rect', { ...a, fill: css('--falha') }, svg);
+        else el('rect', { ...a, x: a.x + .5, y: a.y + .5, width: Math.max(.6, q - 1), height: 13, fill: 'none', stroke: css('--accent-2'), 'stroke-width': 1 }, svg);
+      });
+      [1, 30, 60, 90].forEach((n) => txt(svg, X(n), quadY + 14 + 16, (n === 1 ? t('voo') + ' ' : '') + n, { 'text-anchor': n === 1 ? 'start' : n === 90 ? 'end' : 'middle' }));
+    }
+
+    function modelos(svg, d) {
+      svg.replaceChildren();
+      const m = d.temporal.modelos;
+      const linhas = [
+        ['Regressão logística', m.logistica, true],
+        ['Regra: tem pernas de pouso', m.pernas, true],
+        ['Taxa dos últimos 10 voos', m.ultimos10, false],
+        ['Taxa histórica', m.historico, false],
+        ['Árvore de decisão (2024)', m.arvore, false],
+      ];
+      const W = largura(svg), estreito = W < 520;
+      // Telas estreitas: rótulo em cima da barra; largas: rótulo à esquerda
+      const rot = estreito ? 0 : 210, x1 = W - 44, h = estreito ? 50 : 40, topo = estreito ? 4 : 8;
+      const altura = topo + linhas.length * h + 24;
+      svg.setAttribute('viewBox', `0 0 ${W} ${altura}`);
+      const X = (v) => rot + ((v - 0.5) / 0.5) * (x1 - rot);
+      [0.5, 0.75, 1].forEach((v) => {
+        el('line', { x1: X(v), x2: X(v), y1: topo - 4, y2: topo + linhas.length * h, stroke: css('--line') }, svg);
+        txt(svg, X(v), topo + linhas.length * h + 16, pct(v), { 'text-anchor': v === 0.5 && estreito ? 'start' : 'middle' });
+      });
+      linhas.forEach(([nome, r, forte], i) => {
+        const y = topo + i * h + h / 2 + (estreito ? 8 : 0);
+        txt(svg, 0, estreito ? y - 14 : y + 4, t(nome), forte ? { class: 'forte' } : {});
+        el('rect', { x: rot, y: y - (estreito ? 7 : 9), width: X(r.acerto) - rot, height: estreito ? 14 : 18, rx: 4, fill: forte ? css('--ink') : css('--accent-2') }, svg);
+        el('line', { x1: X(r.lo), x2: X(r.hi), y1: y, y2: y, stroke: forte ? css('--muted') : css('--muted'), 'stroke-width': 1.5 }, svg);
+        txt(svg, Math.max(X(r.acerto), X(r.hi)) + 8, y + 4, pct(r.acerto), forte ? { class: 'forte' } : {});
+      });
+    }
+
+    let dados = null;
+    const desenhar = () => {
+      if (!dados) return;
+      linha(document.getElementById('g-linha'), dados);
+      modelos(document.getElementById('g-modelos'), dados);
+    };
+    fetch('dados.json').then((r) => r.json()).then((d) => { dados = d; desenhar(); });
+    document.addEventListener('idioma', desenhar);
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', desenhar);
+    let espera;
+    window.addEventListener('resize', () => { clearTimeout(espera); espera = setTimeout(desenhar, 150); });
+  })();
+</script>
+</body>
+</html>
