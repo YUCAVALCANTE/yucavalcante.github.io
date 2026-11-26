@@ -207,6 +207,17 @@
   .cert:hover, .cert-destaque:hover { background: var(--fill); }
   @media (max-width: 560px) { .cert-destaque { grid-template-columns: 1fr; justify-items: start; } }
 
+  /* Trabalhos acadêmicos */
+  .acad { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; padding: 28px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
+  .acad-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+  .acad-top .status { margin: 0; }
+  .acad-inst { font-size: .8125rem; color: var(--muted); }
+  .acad h3 { margin: 4px 0 0; font-size: 1.375rem; font-weight: 600; letter-spacing: -.01em; }
+  .acad .acad-sub { margin: -6px 0 0; font-size: .9375rem; color: var(--muted); }
+  .acad p { margin: 0; color: var(--ink-2); line-height: 1.65; }
+  .acad + .acad { margin-top: 20px; }
+  .acad-acoes { margin-top: 4px; }
+
   /* Contato */
   .contact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
   .contact-card { display: flex; align-items: center; gap: 16px; padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; text-decoration: none; color: var(--ink); box-shadow: var(--shadow); transition: background-color 150ms var(--ease-out); }
@@ -225,8 +236,8 @@
   .foot ul a:hover { color: var(--ink); }
   .foot .base { max-width: none; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); font-size: .8125rem; color: var(--muted); text-align: center; }
 
+  @media (max-width: 1080px) { .top nav { display: none; } }
   @media (max-width: 900px) {
-    .top nav { display: none; }
     .about, .soon, .skills { grid-template-columns: 1fr; }
     .contact-grid { grid-template-columns: 1fr; }
   }
@@ -265,6 +276,7 @@
       <a href="#habilidades">Habilidades</a>
       <a href="#projetos">Projetos</a>
       <a href="#certificacoes">Certificações</a>
+      <a href="#academico">Acadêmico</a>
       <a href="#textos">Textos</a>
       <a href="#contato">Contato</a>
     </nav>
@@ -589,7 +601,37 @@
   </div>
 </section>
 
-<div class="band alt" id="textos-faixa">
+<section class="band alt" id="academico" aria-labelledby="academico-titulo">
+  <div class="in">
+    <div class="sec-head">
+      <h2 id="academico-titulo">Trabalhos acadêmicos</h2>
+      <p>A pesquisa da pós em andamento e o projeto final da formação em ciência de dados da IBM.</p>
+    </div>
+    <article class="acad">
+      <div class="acad-top">
+        <span class="status">em desenvolvimento</span>
+        <span class="acad-inst">Unicamp · Faculdade de Tecnologia · 2026</span>
+      </div>
+      <h3>A Geometria dos Dados</h3>
+      <p class="acad-sub">Pós-graduação em Engenharia e Administração de Banco de Dados</p>
+      <p>Como a geometria dos dados (dimensionalidade intrínseca e espaços métricos) pode reduzir o custo das consultas em bancos de dados vetoriais sem perder qualidade na recuperação. A avaliação experimental usa 2,68 milhões de textos da Wikipédia (Natural Questions / BEIR) representados em vetores de 384 dimensões.</p>
+      <ul class="tags"><li>Bancos de dados vetoriais</li><li>Espaços métricos</li><li>Redução de dimensionalidade</li><li>Python</li></ul>
+    </article>
+    <article class="acad">
+      <div class="acad-top">
+        <span class="status">concluído</span>
+        <span class="acad-inst">IBM · Coursera · jan/2024</span>
+      </div>
+      <h3>Pouso do Falcon 9: o capstone da IBM, revisitado</h3>
+      <p class="acad-sub">Projeto final do IBM Data Science Professional Certificate</p>
+      <p>Prever se o primeiro estágio do Falcon 9 volta inteiro, com dados da API da SpaceX, SQL, mapas, dashboard e quatro modelos. Revi o projeto com o que eu faria hoje: entender o rótulo, medir a incerteza e validar na ordem do tempo.</p>
+      <ul class="tags"><li>Python</li><li>SQL</li><li>scikit-learn</li><li>Plotly Dash</li><li>Folium</li></ul>
+      <div class="acad-acoes"><a class="btn primary" href="/capstone-spacex/">Ver o projeto revisitado →</a></div>
+    </article>
+  </div>
+</section>
+
+<div class="band" id="textos-faixa">
 <div class="in">
 <!-- TEXTOS:INICIO -->
   <section id="textos" aria-labelledby="textos-titulo">
@@ -753,7 +795,7 @@
 </div>
 </div>
 
-<section class="band" id="contato" aria-labelledby="contato-titulo">
+<section class="band alt" id="contato" aria-labelledby="contato-titulo">
   <div class="in">
     <div class="sec-head">
       <h2 id="contato-titulo">Vamos conversar</h2>
@@ -791,6 +833,7 @@
           <li><a href="#habilidades">Habilidades</a></li>
           <li><a href="#projetos">Projetos</a></li>
           <li><a href="#certificacoes">Certificações</a></li>
+          <li><a href="#academico">Trabalhos acadêmicos</a></li>
           <li><a href="#textos">Textos</a></li>
         </ul>
       </div>

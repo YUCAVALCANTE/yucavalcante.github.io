@@ -204,6 +204,26 @@
     'Programa de 10 cursos: ferramentas e metodologia, Python, SQL, análise e visualização de dados, machine learning e um projeto final aplicado.':
       'A 10-course program: tools and methodology, Python, SQL, data analysis and visualization, machine learning, and an applied capstone project.',
 
+    // Trabalhos acadêmicos
+    'Acadêmico': 'Academic',
+    'Trabalhos acadêmicos': 'Academic work',
+    'A pesquisa da pós em andamento e o projeto final da formação em ciência de dados da IBM.': "My ongoing graduate research and the final project of IBM's data science program.",
+    'concluído': 'completed',
+    'Pouso do Falcon 9: o capstone da IBM, revisitado': 'Falcon 9 landing: the IBM capstone, revisited',
+    'Projeto final do IBM Data Science Professional Certificate': 'Final project of the IBM Data Science Professional Certificate',
+    'Prever se o primeiro estágio do Falcon 9 volta inteiro, com dados da API da SpaceX, SQL, mapas, dashboard e quatro modelos. Revi o projeto com o que eu faria hoje: entender o rótulo, medir a incerteza e validar na ordem do tempo.':
+      'Predicting whether the Falcon 9 first stage comes back in one piece, with SpaceX API data, SQL, maps, a dashboard and four models. I revisited it with what I would do today: understand the label, measure uncertainty and validate in time order.',
+    'Ver o projeto revisitado →': 'See the revisited project →',
+    'em desenvolvimento': 'in progress',
+    'Unicamp · Faculdade de Tecnologia · 2026': 'Unicamp · School of Technology · 2026',
+    'A Geometria dos Dados': 'The Geometry of Data',
+    'Pós-graduação em Engenharia e Administração de Banco de Dados': 'Graduate program in Database Engineering and Administration',
+    'Como a geometria dos dados (dimensionalidade intrínseca e espaços métricos) pode reduzir o custo das consultas em bancos de dados vetoriais sem perder qualidade na recuperação. A avaliação experimental usa 2,68 milhões de textos da Wikipédia (Natural Questions / BEIR) representados em vetores de 384 dimensões.':
+      'How the geometry of data (intrinsic dimensionality and metric spaces) can lower query cost in vector databases without losing retrieval quality. The experiments use 2.68 million Wikipedia passages (Natural Questions / BEIR) represented as 384-dimensional vectors.',
+    'Bancos de dados vetoriais': 'Vector databases',
+    'Espaços métricos': 'Metric spaces',
+    'Redução de dimensionalidade': 'Dimensionality reduction',
+
     // Contato e rodapé
     'Vamos conversar': "Let's talk",
     'Para conversar sobre dados, vagas ou projetos, me chame no LinkedIn. Todo o código está no GitHub.': 'To talk about data, roles or projects, reach me on LinkedIn. All the code is on GitHub.',
@@ -226,6 +246,9 @@
     'GPT-2 português': 'GPT-2 Portuguese',
   };
 
+  // Páginas internas podem trazer os próprios textos (window.I18N_EXTRA) antes de carregar este arquivo
+  Object.assign(EN, window.I18N_EXTRA || {});
+
   const MESES = { jan: 'Jan', fev: 'Feb', mar: 'Mar', abr: 'Apr', mai: 'May', jun: 'Jun', jul: 'Jul', ago: 'Aug', set: 'Sep', out: 'Oct', nov: 'Nov', dez: 'Dec' };
   const mes = (m, a) => `${MESES[m] || m} ${a}`;
   // Textos com números que mudam sempre que os artigos são atualizados
@@ -247,10 +270,9 @@
   const raiz = document.documentElement;
   const META = {
     pt: { title: document.title, desc: document.querySelector('meta[name="description"]').content },
-    en: { title: 'Yury Cavalcante · Data Science', desc: 'Portfolio of Yury Cavalcante: end-to-end projects in machine learning, computer vision, genetic algorithms, time series and data analysis, with honest evaluation and open-source code.' },
+    en: window.I18N_META_EN || { title: 'Yury Cavalcante · Data Science', desc: 'Portfolio of Yury Cavalcante: end-to-end projects in machine learning, computer vision, genetic algorithms, time series and data analysis, with honest evaluation and open-source code.' },
   };
   const originais = new Map();   // nó de texto → texto em português
-  const atributos = new Map();   // elemento → aria-label em português
   let idioma = 'pt';
 
   // Função usada pelos mini gráficos: traduz um rótulo e diz o idioma atual
@@ -273,10 +295,12 @@
       const en = novo === 'en' ? traduz(chave) : null;
       n.nodeValue = en == null ? pt : pt.replace(pt.trim(), () => en);   // mantém os espaços das pontas
     }
-    for (const el of document.querySelectorAll('[aria-label]')) {
-      if (!atributos.has(el)) atributos.set(el, el.getAttribute('aria-label'));
-      const pt = atributos.get(el);
-      el.setAttribute('aria-label', novo === 'en' ? traduz(pt) ?? pt : pt);
+    for (const nome of ['aria-label', 'alt']) {
+      for (const el of document.querySelectorAll(`[${nome}]`)) {
+        const chave = el.getAttribute(`data-pt-${nome}`) ?? el.getAttribute(nome);
+        if (!el.hasAttribute(`data-pt-${nome}`)) el.setAttribute(`data-pt-${nome}`, chave);
+        el.setAttribute(nome, novo === 'en' ? traduz(chave) ?? chave : chave);
+      }
     }
     for (const b of document.querySelectorAll('.lang button')) b.setAttribute('aria-pressed', String(b.dataset.lang === novo));
     document.dispatchEvent(new CustomEvent('idioma', { detail: novo }));
