@@ -9,146 +9,211 @@
 <meta property="og:description" content="Projetos ponta a ponta: atrasos de voos, comércio exterior até 2030, exportações aéreas e um agente que joga vendo só os pixels da tela.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://yucavalcante.com/">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23007aff'/%3E%3Ctext x='16' y='22.5' text-anchor='middle' font-family='-apple-system,Segoe UI,Helvetica,Arial,sans-serif' font-weight='700' font-size='18' fill='white'%3EY%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23030213'/%3E%3Ctext x='16' y='22.5' text-anchor='middle' font-family='-apple-system,Segoe UI,Helvetica,Arial,sans-serif' font-weight='700' font-size='18' fill='white'%3EY%3C/text%3E%3C/svg%3E">
 <style>
-  /* Layout: apresentação curta numa coluna de leitura; vitrine de projetos em grade de cards iguais
-     (gráfico do projeto no topo, texto, números, ações). Visual: design system HIG Designer
-     (fonte do sistema, azul como única cor de ação, superfícies lisas em camadas, cápsulas, alvos de 44px). */
+  /* Layout: navegação fixa, abertura centralizada e seções em faixas alternadas (branco / cinza),
+     cada uma com título centralizado. Visual monocromático: tinta quase preta, cinza de apoio,
+     cards brancos com borda fina, botão principal preto e secundário com contorno. */
   :root {
     color-scheme: light;
-    --bg: #f2f2f7;            /* bg-secondary / grouped */
-    --panel: #ffffff;         /* bg-tertiary */
-    --fill: #f2f2f7;          /* área do gráfico dentro do card */
-    --ink: #000000;           /* label-primary */
-    --ink-2: #3c3c43;         /* texto corrido de apoio */
-    --muted: #6c6c70;         /* label-secondary sobre fundo claro */
-    --line: #c6c6c8;          /* separator-opaque */
-    --accent: #007aff;        /* system-blue: ações, links, foco, série em destaque */
-    --accent-2: #c7c7cc;      /* system-gray3: séries de apoio */
-    --accent-tint: rgba(0, 122, 255, .12);
-    --badge: rgba(120, 120, 128, .12);   /* fill-tertiary */
-    --focus-ring: 0 0 0 4px rgba(0, 122, 255, .3);
-    --system: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
-    --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    --bg: #ffffff;            /* faixa clara */
+    --band: #f8f8fa;          /* faixa alternada */
+    --panel: #ffffff;         /* card */
+    --fill: #f3f3f5;          /* área do gráfico, campos, etiquetas */
+    --ink: #030213;           /* texto principal e botão principal */
+    --on-ink: #ffffff;        /* texto sobre o botão principal */
+    --ink-2: #3f3f4a;
+    --muted: #6b6b7b;
+    --line: rgba(3, 2, 19, .10);
+    --accent: #030213;        /* série em destaque nos mini gráficos, links */
+    --accent-2: #cbced4;      /* séries de apoio */
+    --badge: #ececf0;
+    --shadow: 0 1px 2px rgba(3, 2, 19, .04), 0 8px 24px rgba(3, 2, 19, .05);
+    --focus-ring: 0 0 0 3px rgba(3, 2, 19, .25);
+    --nav-bg: rgba(255, 255, 255, .8);
+    --system: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
     --ease-out: cubic-bezier(0, 0, .58, 1);
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
       color-scheme: dark;
-      --bg: #000000; --panel: #1c1c1e; --fill: #2c2c2e; --ink: #ffffff; --ink-2: #d1d1d6; --muted: #98989f; --line: #38383a;
-      --accent: #0a84ff; --accent-2: #48484a; --accent-tint: rgba(10, 132, 255, .18); --badge: rgba(120, 120, 128, .24);
-      --focus-ring: 0 0 0 4px rgba(10, 132, 255, .4);
+      --bg: #0b0b10; --band: #121218; --panel: #16161d; --fill: #1f1f28; --ink: #f4f4f6; --on-ink: #0b0b10; --ink-2: #d4d4dc;
+      --muted: #9b9bab; --line: rgba(255, 255, 255, .10); --accent: #f4f4f6; --accent-2: #44444f; --badge: #24242e;
+      --shadow: none; --focus-ring: 0 0 0 3px rgba(255, 255, 255, .3); --nav-bg: rgba(11, 11, 16, .8);
     }
   }
   :root[data-theme="dark"] {
     color-scheme: dark;
-    --bg: #000000; --panel: #1c1c1e; --fill: #2c2c2e; --ink: #ffffff; --ink-2: #d1d1d6; --muted: #98989f; --line: #38383a;
-    --accent: #0a84ff; --accent-2: #48484a; --accent-tint: rgba(10, 132, 255, .18); --badge: rgba(120, 120, 128, .24);
-    --focus-ring: 0 0 0 4px rgba(10, 132, 255, .4);
+    --bg: #0b0b10; --band: #121218; --panel: #16161d; --fill: #1f1f28; --ink: #f4f4f6; --on-ink: #0b0b10; --ink-2: #d4d4dc;
+    --muted: #9b9bab; --line: rgba(255, 255, 255, .10); --accent: #f4f4f6; --accent-2: #44444f; --badge: #24242e;
+    --shadow: none; --focus-ring: 0 0 0 3px rgba(255, 255, 255, .3); --nav-bg: rgba(11, 11, 16, .8);
   }
   * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   html, body { margin: 0; }
   body {
-    background: var(--bg); color: var(--ink); font-family: var(--system); font-size: 1.0625rem; line-height: 1.47;
+    background: var(--bg); color: var(--ink); font-family: var(--system); font-size: 1rem; line-height: 1.55;
     -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-    padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px));
-    padding-block: 0 64px;
   }
-  ::selection { background: rgba(0, 122, 255, .3); }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; text-underline-offset: 3px; }
-  a:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: 8px; }
-  .wrap { max-width: 1120px; margin: 0 auto; display: flex; flex-direction: column; gap: 72px; }
-  .read { max-width: none; }
+  ::selection { background: rgba(3, 2, 19, .15); }
+  a { color: var(--ink); text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 3px; }
+  a:hover { text-decoration-color: currentColor; }
+  a:focus-visible, button:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: 8px; }
+  svg.i { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+  svg.i.fill { fill: currentColor; stroke: none; }
 
-  .top { display: flex; justify-content: space-between; align-items: center; padding-block: 8px; gap: 16px; flex-wrap: wrap; }
-  .top > span { font-weight: 600; font-size: 1.0625rem; }
-  .top nav { display: flex; gap: 20px; flex-wrap: wrap; }
-  .top nav a { font-size: .9375rem; min-height: 44px; display: inline-flex; align-items: center; }
+  /* Faixas de página */
+  .band { padding: 96px max(16px, env(safe-area-inset-left, 0px)); }
+  .band.alt { background: var(--band); }
+  .in { max-width: 1120px; margin: 0 auto; }
 
-  .intro { display: flex; flex-direction: column; gap: 20px; padding-top: 48px; }
-  .intro .cta { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
-  .kicker { font-size: .9375rem; font-weight: 600; color: var(--accent); }
-  h1 { font-family: var(--display); font-weight: 700; font-size: clamp(2.25rem, 4.6vw, 3.5rem); line-height: 1.08; margin: 0; letter-spacing: -.025em; text-wrap: balance; max-width: 920px; }
-  h1 em { font-style: normal; }
-  .intro p { margin: 0; font-size: 1.1875rem; line-height: 1.5; color: var(--muted); text-wrap: pretty; max-width: 760px; }
+  /* Navegação fixa */
+  .top { position: sticky; top: 0; z-index: 10; background: var(--nav-bg); backdrop-filter: saturate(180%) blur(12px); -webkit-backdrop-filter: saturate(180%) blur(12px); border-bottom: 1px solid var(--line); }
+  .top .in { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; padding: 0 16px; max-width: 1152px; }
+  .brand { font-size: 1.25rem; font-weight: 500; letter-spacing: -.01em; text-decoration: none; white-space: nowrap; }
+  .top nav { display: flex; gap: 28px; }
+  .top nav a { font-size: .9375rem; color: var(--ink-2); text-decoration: none; }
+  .top nav a:hover { color: var(--ink); }
+  .top .btn { min-height: 36px; padding: 0 14px; font-size: .875rem; }
 
-  .label { font-size: .8125rem; font-weight: 400; color: var(--muted); text-transform: uppercase; letter-spacing: .02em; margin: 0 0 8px 16px; }
-  .sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; }
-  .sec-head h2 { font-family: var(--display); font-weight: 700; font-size: 1.75rem; margin: 0; line-height: 1.2; letter-spacing: -.015em; }
-  .sec-head span, .sec-head p { font-size: .9375rem; color: var(--muted); margin: 0; }
+  /* Botões */
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; padding: 0 20px; border-radius: 8px; font-size: .9375rem; font-weight: 600; text-decoration: none; white-space: nowrap;
+    background: var(--panel); color: var(--ink); border: 1px solid var(--line); transition: background-color 150ms var(--ease-out), transform 100ms var(--ease-out); }
+  .btn:hover { background: var(--fill); }
+  .btn:active { transform: scale(.98); }
+  .btn.primary { background: var(--ink); color: var(--on-ink); border-color: var(--ink); }
+  .btn.primary:hover { opacity: .88; background: var(--ink); }
 
-  /* Vitrine: cards lisos (bg-tertiary sobre bg-secondary), cantos concêntricos 16 → 8 */
-  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-  .card { background: var(--panel); border-radius: 16px; display: flex; flex-direction: column; overflow: hidden; min-width: 0; }
-  .viz { background: var(--fill); margin: 8px 8px 0; border-radius: 8px; padding: 16px 16px 12px; display: flex; flex-direction: column; gap: 6px; }
+  /* Abertura centralizada */
+  .hero { min-height: calc(100svh - 64px); display: flex; align-items: center; justify-content: center; text-align: center; padding: 72px 16px 48px;
+    background: linear-gradient(180deg, var(--bg) 0%, var(--band) 100%); }
+  .hero .in { display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 860px; }
+  .hero h1 { font-weight: 500; font-size: clamp(2.5rem, 6.5vw, 4.25rem); line-height: 1.05; letter-spacing: -.03em; margin: 0; }
+  .hero .role { font-size: clamp(1.125rem, 2.4vw, 1.5rem); color: var(--muted); margin: 0; }
+  .hero .lead { font-size: 1.125rem; line-height: 1.6; color: var(--ink-2); margin: 8px 0 0; max-width: 680px; text-wrap: pretty; }
+  .hero .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 12px; }
+  .social { display: flex; gap: 8px; margin-top: 20px; }
+  .social a { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 9999px; color: var(--muted); text-decoration: none; }
+  .social a:hover { color: var(--ink); background: var(--fill); }
+  .down { margin-top: 28px; color: var(--muted); }
+  @media (prefers-reduced-motion: no-preference) { .down { animation: quica 2s ease-in-out infinite; } @keyframes quica { 50% { transform: translateY(6px); } } }
+
+  /* Cabeçalhos de seção centralizados */
+  .sec-head { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; margin-bottom: 48px; }
+  .sec-head h2 { font-weight: 500; font-size: clamp(1.875rem, 4vw, 2.5rem); line-height: 1.15; letter-spacing: -.02em; margin: 0; }
+  .sec-head span, .sec-head p { font-size: 1.0625rem; color: var(--muted); margin: 0; max-width: 640px; text-wrap: pretty; }
+  .sec-head a { font-size: .9375rem; color: var(--muted); }
+
+  /* Sobre */
+  .about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: start; }
+  .about-text { display: flex; flex-direction: column; gap: 16px; }
+  .about-text h3 { font-size: 1.375rem; font-weight: 500; margin: 0; letter-spacing: -.01em; }
+  .about-text p { margin: 0; color: var(--ink-2); line-height: 1.7; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 8px 0 0; list-style: none; }
+  .chips li { font-size: .8125rem; font-weight: 500; padding: 4px 12px; border-radius: 9999px; background: var(--badge); color: var(--ink-2); }
+  .areas { display: flex; flex-direction: column; gap: 16px; }
+  .area-card { display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 16px; align-items: start; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 20px; box-shadow: var(--shadow); }
+  .area-card .ico { width: 40px; height: 40px; border-radius: 10px; background: var(--fill); display: inline-flex; align-items: center; justify-content: center; }
+  .area-card .ico svg { width: 22px; height: 22px; }
+  .area-card h3 { margin: 0 0 4px; font-size: 1.0625rem; font-weight: 600; }
+  .area-card p { margin: 0; font-size: .9375rem; color: var(--muted); }
+
+  /* Habilidades: ferramenta + onde foi usada (sem notas inventadas) */
+  .skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+  .skill-card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 24px; box-shadow: var(--shadow); }
+  .skill-card h3 { margin: 0 0 12px; font-size: 1.125rem; font-weight: 600; }
+  .skill-card ul { list-style: none; margin: 0; padding: 0; }
+  .skill-card li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 10px 0; border-top: 1px solid var(--line); }
+  .skill-card li:first-child { border-top: 0; }
+  .skill-card li b { font-weight: 500; }
+  .skill-card li span { font-size: .8125rem; color: var(--muted); text-align: right; }
+
+  /* Projetos: grade de cards com o mini gráfico no topo */
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; display: flex; flex-direction: column; overflow: hidden; min-width: 0; box-shadow: var(--shadow); transition: box-shadow 200ms var(--ease-out), transform 200ms var(--ease-out); }
+  @media (hover: hover) { .card:hover { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(3,2,19,.04), 0 16px 40px rgba(3,2,19,.08); } }
+  .viz { background: var(--fill); margin: 0; padding: 20px 20px 14px; display: flex; flex-direction: column; gap: 6px; border-bottom: 1px solid var(--line); }
   .viz-title { font-size: .75rem; color: var(--muted); line-height: 1.35; min-height: 2.7em; }
   .viz svg { display: block; width: 100%; max-width: none; height: 150px; overflow: visible; }
   .viz svg text { font-family: var(--system); font-size: 10px; fill: var(--muted); }
   .viz svg .forte { fill: var(--ink); font-weight: 600; }
-  .body { padding: 16px 16px 20px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
-  .area { align-self: flex-start; font-size: .75rem; font-weight: 500; color: var(--muted); background: var(--badge); padding: 3px 10px; border-radius: 9999px; }
-  .card h3 { font-family: var(--display); font-weight: 700; font-size: 1.375rem; line-height: 1.2; margin: 0; letter-spacing: -.01em; text-wrap: balance; }
-  .card p { margin: 0; color: var(--muted); font-size: .9375rem; line-height: 1.47; text-wrap: pretty; }
-  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-top: auto; }
+  .body { padding: 24px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+  .area { align-self: flex-start; font-size: .75rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+  .card h3 { font-weight: 600; font-size: 1.25rem; line-height: 1.25; margin: 0; letter-spacing: -.01em; text-wrap: balance; }
+  .card p { margin: 0; color: var(--muted); font-size: .9375rem; line-height: 1.6; text-wrap: pretty; }
+  .stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: auto; }
   .stat { display: flex; flex-direction: column; gap: 2px; border-top: 1px solid var(--line); padding-top: 10px; min-width: 0; }
-  .stat b { font-weight: 700; font-size: 1.375rem; line-height: 1.15; letter-spacing: -.01em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .stat b { font-weight: 600; font-size: 1.25rem; line-height: 1.15; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .stat span { font-size: .75rem; color: var(--muted); line-height: 1.3; min-height: 2.6em; }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; padding: 0; margin: 0; list-style: none; }
-  .tags li { font-size: .75rem; font-weight: 500; padding: 3px 10px; border-radius: 9999px; background: var(--badge); color: var(--muted); }
-  .actions { display: flex; flex-wrap: wrap; gap: 8px; }
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; padding: 0 20px; border-radius: 9999px; font-size: 1.0625rem; font-weight: 600; text-decoration: none; background: var(--accent-tint); color: var(--accent); transition: transform 100ms var(--ease-out), opacity 150ms var(--ease-out); }
-  .btn:hover { text-decoration: none; opacity: .85; }
-  .btn:active { transform: scale(.98); }
-  .btn:focus-visible { box-shadow: var(--focus-ring); border-radius: 9999px; }
-  .btn.primary { background: var(--accent); color: #ffffff; }
+  .tags li { font-size: .75rem; font-weight: 500; padding: 3px 10px; border-radius: 9999px; background: var(--badge); color: var(--ink-2); }
+  .actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 8px; }
+  .actions .btn { min-height: 40px; padding: 0 12px; font-size: .875rem; }
 
-  .soon { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
-  .soon h3.sub { font-size: .8125rem; font-weight: 400; color: var(--muted); text-transform: uppercase; letter-spacing: .02em; margin: 0 0 8px 16px; }
-  .item { display: flex; flex-direction: column; gap: 8px; padding: 16px; background: var(--panel); border-radius: 16px; min-width: 0; }
-  .item h3 { margin: 0; font-size: 1.0625rem; font-weight: 600; }
-  .item p { margin: 0; font-size: .9375rem; color: var(--muted); }
-  .status { align-self: flex-start; font-size: .75rem; font-weight: 500; color: var(--muted); background: var(--badge); padding: 3px 10px; border-radius: 9999px; }
-
-  /* Estudos: lista agrupada (inset grouped), separadores recuados */
-  .studies { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; background: var(--panel); border-radius: 12px; overflow: hidden; }
-  .studies li { display: grid; grid-template-columns: 1fr; gap: 2px; padding: 12px 16px; position: relative; min-height: 44px; }
-  .studies li + li::before { content: ""; position: absolute; top: 0; left: 16px; right: 0; border-top: 1px solid var(--line); }
-  .studies a { font-weight: 600; }
+  /* Mais no GitHub */
+  .soon { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
+  .soon h3.sub { font-size: .8125rem; font-weight: 500; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; margin: 0 0 12px; }
+  .studies { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+  .studies li { display: flex; flex-direction: column; gap: 4px; padding: 18px 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); }
+  .studies a, .studies b { font-weight: 600; }
   .studies span { color: var(--muted); font-size: .9375rem; }
-  .studies .status { justify-self: start; margin-bottom: 4px; }
+  .status { align-self: flex-start; font-size: .75rem; font-weight: 500; color: var(--ink-2); background: var(--badge); padding: 2px 10px; border-radius: 9999px; margin-bottom: 4px; }
+  .studies .status { color: var(--ink-2); font-size: .75rem; }
 
-  .contact { display: flex; flex-direction: column; gap: 8px; background: var(--panel); border-radius: 16px; padding: 20px; }
-  .contact p { margin: 0; color: var(--ink-2); }
-  footer { font-size: .8125rem; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; }
-
-  /* Textos: filtros em cápsula (rolam de lado no celular) + lista agrupada */
-  .txt-intro { margin: -4px 0 16px; color: var(--muted); font-size: .9375rem; max-width: 680px; }
-  .txt-tabs { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 12px; margin: 0 -2px; scrollbar-width: none; }
+  /* Textos (a seção é gerada por scripts/atualizar_artigos.py; aqui só o estilo) */
+  .txt-intro { margin: -32px auto 24px; color: var(--muted); font-size: .9375rem; max-width: 680px; text-align: center; }
+  .txt-tabs { display: flex; gap: 8px; overflow-x: auto; padding: 2px 2px 16px; margin: 0 -2px; scrollbar-width: none; }
+  @media (min-width: 1000px) { .txt-tabs { flex-wrap: wrap; justify-content: center; } }
   .txt-tabs::-webkit-scrollbar { display: none; }
-  .txt-tab { flex: none; appearance: none; border: 0; min-height: 36px; padding: 0 14px; border-radius: 9999px; font: inherit; font-size: .9375rem; font-weight: 500; background: var(--badge); color: var(--ink); cursor: pointer; white-space: nowrap; transition: background-color 150ms var(--ease-out), color 150ms var(--ease-out); }
+  .txt-tab { flex: none; appearance: none; border: 1px solid var(--line); min-height: 36px; padding: 0 14px; border-radius: 9999px; font: inherit; font-size: .875rem; font-weight: 500; background: var(--panel); color: var(--ink); cursor: pointer; white-space: nowrap; transition: background-color 150ms var(--ease-out), color 150ms var(--ease-out); }
+  .txt-tab:hover { background: var(--fill); }
   .txt-tab span { color: var(--muted); font-variant-numeric: tabular-nums; margin-left: 2px; }
-  .txt-tab[aria-selected="true"] { background: var(--accent); color: #ffffff; font-weight: 600; }
-  .txt-tab[aria-selected="true"] span { color: rgba(255, 255, 255, .8); }
-  .txt-tab:focus-visible { outline: none; box-shadow: var(--focus-ring); }
-  .txt-panel { display: flex; flex-direction: column; gap: 8px; }
-  .txt-desc { margin: 0 0 0 16px; font-size: .8125rem; color: var(--muted); max-width: 760px; }
-  .txt-list { list-style: none; margin: 0; padding: 0; background: var(--panel); border-radius: 12px; overflow: hidden; }
+  .txt-tab[aria-selected="true"] { background: var(--ink); border-color: var(--ink); color: var(--on-ink); font-weight: 600; }
+  .txt-tab[aria-selected="true"] span { color: var(--on-ink); opacity: .7; }
+  .txt-panel { display: flex; flex-direction: column; gap: 12px; max-width: 860px; margin: 0 auto; }
+  .txt-desc { margin: 0; font-size: .875rem; color: var(--muted); text-align: center; }
+  .txt-list { list-style: none; margin: 0; padding: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow); }
   .txt-list li { position: relative; }
-  .txt-list li + li::before { content: ""; position: absolute; top: 0; left: 16px; right: 0; border-top: 1px solid var(--line); }
-  .txt-list a { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; align-items: center; padding: 11px 16px; min-height: 44px; color: var(--ink); text-decoration: none; }
-  .txt-list a::after { content: "›"; grid-column: 2; grid-row: 1 / span 3; color: var(--accent-2); font-size: 1.375rem; line-height: 1; }
-  .txt-list a:hover { background: var(--badge); text-decoration: none; }
+  .txt-list li + li::before { content: ""; position: absolute; top: 0; left: 20px; right: 20px; border-top: 1px solid var(--line); }
+  .txt-list a { display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 12px; align-items: center; padding: 14px 20px; min-height: 44px; color: var(--ink); text-decoration: none; }
+  .txt-list a::after { content: "→"; grid-column: 2; grid-row: 1 / span 3; color: var(--muted); font-size: 1rem; line-height: 1; transition: transform 150ms var(--ease-out); }
+  .txt-list a:hover { background: var(--fill); }
+  .txt-list a:hover::after { transform: translateX(3px); color: var(--ink); }
   .txt-list a:focus-visible { box-shadow: inset var(--focus-ring); border-radius: 0; }
   .txt-t { font-size: 1rem; font-weight: 500; line-height: 1.35; }
   .txt-sub { grid-column: 1; font-size: .875rem; color: var(--muted); line-height: 1.35; margin-top: 2px; }
   .txt-meta { grid-column: 1; font-size: .75rem; color: var(--muted); margin-top: 3px; font-variant-numeric: tabular-nums; }
 
-  @media (max-width: 980px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  /* Contato */
+  .contact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .contact-card { display: flex; align-items: center; gap: 16px; padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; text-decoration: none; color: var(--ink); box-shadow: var(--shadow); transition: background-color 150ms var(--ease-out); }
+  .contact-card:hover { background: var(--fill); }
+  .contact-card .ico { width: 44px; height: 44px; border-radius: 10px; background: var(--fill); display: inline-flex; align-items: center; justify-content: center; flex: none; }
+  .contact-card b { display: block; font-weight: 600; }
+  .contact-card span { font-size: .875rem; color: var(--muted); }
+
+  /* Rodapé */
+  .foot { border-top: 1px solid var(--line); padding: 56px 16px 32px; background: var(--band); }
+  .foot .cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 32px; }
+  .foot h3 { font-size: 1rem; font-weight: 600; margin: 0 0 12px; }
+  .foot p { margin: 0; font-size: .875rem; color: var(--muted); max-width: 360px; }
+  .foot ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+  .foot ul a { font-size: .875rem; color: var(--muted); text-decoration: none; }
+  .foot ul a:hover { color: var(--ink); }
+  .foot .base { max-width: none; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--line); font-size: .8125rem; color: var(--muted); text-align: center; }
+
+  @media (max-width: 900px) {
+    .top nav { display: none; }
+    .about, .soon, .skills { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+  }
   @media (max-width: 680px) {
-    .grid, .soon { grid-template-columns: 1fr; }
-    .studies li { grid-template-columns: 1fr; }
-    .wrap { gap: 56px; }
+    .band { padding-block: 72px; }
+    .grid { grid-template-columns: 1fr; }
+    .foot .cols { grid-template-columns: 1fr; }
+    .sec-head { margin-bottom: 36px; }
+    .txt-intro { margin-top: -20px; }
   }
   @media (prefers-reduced-motion: no-preference) {
     .viz svg .anim { transform-box: fill-box; transform-origin: bottom; animation: sobe .4s var(--ease-out) both; }
@@ -156,38 +221,134 @@
     @keyframes sobe { from { transform: scaleY(.04); } to { transform: scaleY(1); } }
     @keyframes abre { from { transform: scaleX(.04); } to { transform: scaleX(1); } }
   }
-  @media (prefers-reduced-motion: reduce) { .btn { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .btn, .card { transition: none; } }
 </style>
 
 </head>
 <body>
-<div class="wrap">
-  <header class="top">
-    <span>Yury Cavalcante</span>
-    <nav>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 .5a11.5 11.5 0 0 0-3.64 22.41c.58.1.79-.25.79-.56v-2c-3.2.7-3.88-1.37-3.88-1.37-.52-1.33-1.28-1.69-1.28-1.69-1.05-.71.08-.7.08-.7 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.71 1.26 3.37.96.1-.75.4-1.26.73-1.55-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.77 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.8 1.19 1.83 1.19 3.09 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.21.67.8.56A11.5 11.5 0 0 0 12 .5Z"/></symbol>
+    <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></symbol>
+    <symbol id="i-medium" viewBox="0 0 24 24"><path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12Zm7.42 0c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42ZM24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12Z"/></symbol>
+  </defs>
+</svg>
+
+<header class="top">
+  <div class="in">
+    <a class="brand" href="#inicio">Yury Cavalcante</a>
+    <nav aria-label="Seções">
+      <a href="#sobre">Sobre</a>
+      <a href="#habilidades">Habilidades</a>
       <a href="#projetos">Projetos</a>
       <a href="#textos">Textos</a>
-      <a href="#estudos">Estudos</a>
-      <a href="https://github.com/YUCAVALCANTE">GitHub</a>
-      <a href="https://www.linkedin.com/in/yucavalcante/">LinkedIn</a>
+      <a href="#contato">Contato</a>
     </nav>
-  </header>
+    <a class="btn" href="https://github.com/YUCAVALCANTE"><svg class="i fill"><use href="#i-github"/></svg>GitHub</a>
+  </div>
+</header>
 
-  <section class="intro read">
-    <span class="kicker">ciência de dados · machine learning · visão computacional · séries temporais</span>
-    <h1>Modelos que respondem perguntas <em>reais</em>, medidos com honestidade.</h1>
-    <p>Sou mestre em Gestão de Projetos e especialista em Data Science e Business Intelligence. Trabalho na interseção entre gestão e dados: parto de bases públicas brasileiras (ou gero os dados quando eles não existem), construo o projeto ponta a ponta e mostro o quanto o modelo acerta, onde erra e por quê. Cada projeto abaixo tem um painel interativo e o código aberto.</p>
+<main>
+<section class="hero" id="inicio">
+  <div class="in">
+    <h1>Olá, eu sou Yury Cavalcante</h1>
+    <p class="role">Ciência de dados · Machine learning · Visão computacional · Séries temporais</p>
+    <p class="lead">Modelos que respondem perguntas reais, medidos com honestidade. Construo projetos ponta a ponta com dados públicos brasileiros e mostro o quanto o modelo acerta, onde erra e por quê.</p>
     <div class="cta">
       <a class="btn primary" href="#projetos">Ver projetos</a>
-      <a class="btn" href="https://github.com/YUCAVALCANTE">GitHub</a>
-      <a class="btn" href="https://www.linkedin.com/in/yucavalcante/">LinkedIn</a>
+      <a class="btn" href="#textos">Ler os textos</a>
     </div>
-  </section>
+    <div class="social">
+      <a href="https://github.com/YUCAVALCANTE" aria-label="GitHub"><svg class="i fill"><use href="#i-github"/></svg></a>
+      <a href="https://www.linkedin.com/in/yucavalcante/" aria-label="LinkedIn"><svg class="i fill"><use href="#i-linkedin"/></svg></a>
+      <a href="https://medium.com/@yucavalcante" aria-label="Medium"><svg class="i fill"><use href="#i-medium"/></svg></a>
+    </div>
+    <a class="down" href="#sobre" aria-label="Ir para Sobre"><svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+  </div>
+</section>
 
-  <section id="projetos" aria-labelledby="projetos-titulo">
+<section class="band" id="sobre" aria-labelledby="sobre-titulo">
+  <div class="in">
+    <div class="sec-head">
+      <h2 id="sobre-titulo">Sobre mim</h2>
+      <p>Mestre em Gestão de Projetos e especialista em Data Science e Business Intelligence.</p>
+    </div>
+    <div class="about">
+      <div class="about-text">
+        <h3>Entre gestão e dados</h3>
+        <p>Trabalho na interseção entre gestão e dados: parto de bases públicas brasileiras (ou gero os dados quando eles não existem), construo o projeto ponta a ponta e mostro o quanto o modelo acerta, onde erra e por quê.</p>
+        <p>Cada projeto tem um painel interativo e o código aberto. Também escrevo no Medium sobre machine learning, IA e programação, e de vez em quando ficção.</p>
+        <ul class="chips"><li>Python</li><li>SQL</li><li>LightGBM</li><li>PyTorch</li><li>YOLOv8</li><li>DuckDB</li><li>dbt</li><li>FastAPI</li><li>Docker</li><li>JavaScript</li></ul>
+      </div>
+      <div class="areas">
+        <div class="area-card">
+          <span class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg></span>
+          <div><h3>Machine learning aplicado</h3><p>Modelos de classificação e previsão com validação temporal, explicabilidade (SHAP) e API para uso real.</p></div>
+        </div>
+        <div class="area-card">
+          <span class="ico"><svg class="i" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.66 3.58 3 8 3s8-1.34 8-3V5"/><path d="M4 12c0 1.66 3.58 3 8 3s8-1.34 8-3"/></svg></span>
+          <div><h3>Séries temporais e BI</h3><p>Pipelines com DuckDB e dbt, projeções com faixas de erro empíricas e painéis interativos.</p></div>
+        </div>
+        <div class="area-card">
+          <span class="ico"><svg class="i" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <div><h3>Visão computacional e LLMs</h3><p>Detecção de objetos e modelos de linguagem rodando no próprio navegador, com experimentos medidos.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band alt" id="habilidades" aria-labelledby="habilidades-titulo">
+  <div class="in">
+    <div class="sec-head">
+      <h2 id="habilidades-titulo">Habilidades técnicas</h2>
+      <p>As ferramentas e onde cada uma foi usada nos projetos abaixo.</p>
+    </div>
+    <div class="skills">
+      <div class="skill-card">
+        <h3>Linguagens</h3>
+        <ul>
+          <li><b>Python</b><span>todos os projetos</span></li>
+          <li><b>SQL</b><span>comércio exterior</span></li>
+          <li><b>JavaScript</b><span>painéis, agente, algoritmos genéticos</span></li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Machine learning e IA</h3>
+        <ul>
+          <li><b>LightGBM e SHAP</b><span>atrasos de voos</span></li>
+          <li><b>Holt-Winters</b><span>comércio exterior</span></li>
+          <li><b>YOLOv8 e ONNX</b><span>agente que joga</span></li>
+          <li><b>PyTorch e Transformers.js</b><span>LLMs por dentro</span></li>
+          <li><b>Algoritmos genéticos</b><span>carros que evoluem</span></li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Dados e engenharia</h3>
+        <ul>
+          <li><b>DuckDB e dbt</b><span>comércio exterior</span></li>
+          <li><b>Pandas e Polars</b><span>estudos e artigos</span></li>
+          <li><b>Comex Stat e ANAC</b><span>bases públicas usadas</span></li>
+        </ul>
+      </div>
+      <div class="skill-card">
+        <h3>Entrega</h3>
+        <ul>
+          <li><b>FastAPI e Docker</b><span>atrasos de voos</span></li>
+          <li><b>Streamlit</b><span>comércio exterior</span></li>
+          <li><b>Web Worker e Playwright</b><span>agente que joga</span></li>
+          <li><b>GitHub Pages</b><span>este site e os painéis</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section class="band" id="projetos" aria-labelledby="projetos-titulo">
+  <div class="in">
     <div class="sec-head">
       <h2 id="projetos-titulo">Projetos</h2>
-      <span>Clique para abrir o painel interativo</span>
+      <p>Cada projeto tem um painel interativo para explorar os dados e o código aberto no GitHub.</p>
     </div>
     <div class="grid">
 
@@ -213,7 +374,7 @@
           </div>
           <div class="actions">
             <a class="btn primary" href="/voos/">Abrir painel →</a>
-            <a class="btn" href="https://github.com/YUCAVALCANTE/atrasos-voos-brasil">Código</a>
+            <a class="btn" href="https://github.com/YUCAVALCANTE/atrasos-voos-brasil"><svg class="i fill"><use href="#i-github"/></svg>Código</a>
           </div>
         </div>
       </article>
@@ -235,7 +396,7 @@
           </div>
           <div class="actions">
             <a class="btn primary" href="/comercio-exterior-brasileiro/">Abrir painel →</a>
-            <a class="btn" href="https://github.com/YUCAVALCANTE/comercio-exterior-brasileiro">Código</a>
+            <a class="btn" href="https://github.com/YUCAVALCANTE/comercio-exterior-brasileiro"><svg class="i fill"><use href="#i-github"/></svg>Código</a>
           </div>
         </div>
       </article>
@@ -257,7 +418,7 @@
           </div>
           <div class="actions">
             <a class="btn primary" href="/comercio-exterior-brasileiro/?visao=aeroportos">Abrir painel →</a>
-            <a class="btn" href="https://github.com/YUCAVALCANTE/comercio-exterior-brasileiro">Código</a>
+            <a class="btn" href="https://github.com/YUCAVALCANTE/comercio-exterior-brasileiro"><svg class="i fill"><use href="#i-github"/></svg>Código</a>
           </div>
         </div>
       </article>
@@ -279,7 +440,7 @@
           </div>
           <div class="actions">
             <a class="btn primary" href="/agente-revoada/">Jogar com o agente →</a>
-            <a class="btn" href="https://github.com/YUCAVALCANTE/agente-revoada">Código</a>
+            <a class="btn" href="https://github.com/YUCAVALCANTE/agente-revoada"><svg class="i fill"><use href="#i-github"/></svg>Código</a>
             <a class="btn" href="https://medium.com/@yucavalcante/como-uma-ia-enxerga-um-jogo-e-decide-onde-clicar-d70ac633f756">Artigo</a>
           </div>
         </div>
@@ -302,7 +463,7 @@
           </div>
           <div class="actions">
             <a class="btn primary" href="/algoritmos-geneticos/">Ver a evolução →</a>
-            <a class="btn" href="https://github.com/YUCAVALCANTE/algoritmos-geneticos">Código</a>
+            <a class="btn" href="https://github.com/YUCAVALCANTE/algoritmos-geneticos"><svg class="i fill"><use href="#i-github"/></svg>Código</a>
             <a class="btn" href="https://medium.com/@yucavalcante/algoritmos-gen%C3%A9ticos-quando-uma-m%C3%A1quina-encontra-solu%C3%A7%C3%B5es-que-ningu%C3%A9m-programou-1a6fbd77c3da">Artigo</a>
           </div>
         </div>
@@ -325,15 +486,17 @@
           </div>
           <div class="actions">
             <a class="btn primary" href="/llm-por-dentro/">Ver por dentro →</a>
-            <a class="btn" href="https://github.com/YUCAVALCANTE/llm-por-dentro">Código</a>
+            <a class="btn" href="https://github.com/YUCAVALCANTE/llm-por-dentro"><svg class="i fill"><use href="#i-github"/></svg>Código</a>
           </div>
         </div>
       </article>
 
     </div>
-  </section>
+    </div>
+</section>
 
-  <section id="estudos" aria-labelledby="estudos-titulo">
+  <section class="band alt" id="estudos" aria-labelledby="estudos-titulo">
+  <div class="in">
     <div class="sec-head">
       <h2 id="estudos-titulo">Mais no GitHub</h2>
       <span>Projetos a caminho e estudos com código</span>
@@ -356,8 +519,11 @@
         </ul>
       </div>
     </div>
-  </section>
+    </div>
+</section>
 
+<div class="band" id="textos-faixa">
+<div class="in">
 <!-- TEXTOS:INICIO -->
   <section id="textos" aria-labelledby="textos-titulo">
     <div class="sec-head">
@@ -515,14 +681,63 @@
     </script>
   </section>
   <!-- TEXTOS:FIM -->
-
-  <section class="contact" aria-labelledby="contato">
-    <div class="sec-head" style="margin-bottom:0"><h2 id="contato">Contato</h2></div>
-    <p>Para conversar sobre dados, vagas ou projetos, me chame no <a href="https://www.linkedin.com/in/yucavalcante/">LinkedIn</a>. Todo o código está no <a href="https://github.com/YUCAVALCANTE">GitHub</a>.</p>
-  </section>
-
-  <footer>Dados públicos da ANAC e do Comex Stat (MDIC); o agente de visão computacional usa dados gerados pelo próprio jogo. Página feita à mão, sem rastreadores.</footer>
 </div>
+</div>
+
+<section class="band alt" id="contato" aria-labelledby="contato-titulo">
+  <div class="in">
+    <div class="sec-head">
+      <h2 id="contato-titulo">Vamos conversar</h2>
+      <p>Para conversar sobre dados, vagas ou projetos, me chame no LinkedIn. Todo o código está no GitHub.</p>
+    </div>
+    <div class="contact-grid">
+      <a class="contact-card" href="https://www.linkedin.com/in/yucavalcante/">
+        <span class="ico"><svg class="i fill"><use href="#i-linkedin"/></svg></span>
+        <span><b>LinkedIn</b><span>in/yucavalcante</span></span>
+      </a>
+      <a class="contact-card" href="https://github.com/YUCAVALCANTE">
+        <span class="ico"><svg class="i fill"><use href="#i-github"/></svg></span>
+        <span><b>GitHub</b><span>YUCAVALCANTE</span></span>
+      </a>
+      <a class="contact-card" href="https://medium.com/@yucavalcante">
+        <span class="ico"><svg class="i fill"><use href="#i-medium"/></svg></span>
+        <span><b>Medium</b><span>@yucavalcante</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="in">
+    <div class="cols">
+      <div>
+        <h3>Yury Cavalcante</h3>
+        <p>Ciência de dados e machine learning com dados públicos brasileiros, avaliação honesta e código aberto.</p>
+      </div>
+      <div>
+        <h3>Seções</h3>
+        <ul>
+          <li><a href="#sobre">Sobre</a></li>
+          <li><a href="#habilidades">Habilidades</a></li>
+          <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#textos">Textos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Painéis</h3>
+        <ul>
+          <li><a href="/voos/">Atrasos de voos</a></li>
+          <li><a href="/comercio-exterior-brasileiro/">Comércio exterior</a></li>
+          <li><a href="/agente-revoada/">Agente que joga</a></li>
+          <li><a href="/algoritmos-geneticos/">Algoritmos genéticos</a></li>
+          <li><a href="/llm-por-dentro/">LLMs por dentro</a></li>
+        </ul>
+      </div>
+    </div>
+    <p class="base">Dados públicos da ANAC e do Comex Stat (MDIC); o agente de visão computacional usa dados gerados pelo próprio jogo. Página feita à mão, sem rastreadores.</p>
+  </div>
+</footer>
 
 <script>
   // Mini gráficos dos cards, a partir de dados/vitrine.json (gerado por scripts/atualizar_vitrine.py)
