@@ -3,7 +3,7 @@
 Uso:
     python scripts/atualizar_vitrine.py
 
-Lê os dados já publicados de cada projeto (voos, comércio exterior, aeroportos, agente-revoada e algoritmos-geneticos) e grava
+Lê os dados já publicados de cada projeto (voos, comércio exterior, aeroportos, agente-revoada, algoritmos-geneticos e llm-por-dentro) e grava
 um único arquivo leve, para a página inicial não precisar baixar as bases completas.
 """
 
@@ -19,6 +19,7 @@ SITE = Path(__file__).resolve().parents[1]
 COMEX = "https://yucavalcante.github.io/comercio-exterior-brasileiro"
 REVOADA = "https://yucavalcante.com/agente-revoada"
 GENETICOS = "https://yucavalcante.com/algoritmos-geneticos"
+LLM = "https://yucavalcante.com/llm-por-dentro"
 
 
 def baixar(url: str) -> bytes:
@@ -65,10 +66,17 @@ def geneticos() -> list[dict]:
     return json.loads(baixar(f"{GENETICOS}/resultados/vitrine.json").decode("utf-8"))
 
 
+def llm() -> list[dict]:
+    """Tokens em português ÷ tokens em inglês, por tokenizador, no WMT24++ (projeto llm-por-dentro)."""
+    tok = json.loads(baixar(f"{LLM}/resultados/tokens.json").decode("utf-8"))
+    linhas = [{"tokenizador": t["nome"], "razao": round(t["razao_pt_en"], 2)} for t in tok["tokenizadores"]]
+    return sorted(linhas, key=lambda x: -x["razao"])
+
+
 def main() -> None:
     saida = SITE / "dados" / "vitrine.json"
     saida.parent.mkdir(exist_ok=True)
-    dados = {"voos": voos(), "comex": comex(), "aeroportos": aeroportos(), "revoada": revoada(), "geneticos": geneticos()}
+    dados = {"voos": voos(), "comex": comex(), "aeroportos": aeroportos(), "revoada": revoada(), "geneticos": geneticos(), "llm": llm()}
     saida.write_text(json.dumps(dados, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(json.dumps(dados["aeroportos"], ensure_ascii=False))
     print(f"{saida.relative_to(SITE)}: {saida.stat().st_size / 1e3:.1f} KB")

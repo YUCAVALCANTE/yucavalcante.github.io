@@ -308,6 +308,28 @@
         </div>
       </article>
 
+      <article class="card">
+        <figure class="viz" style="margin:0">
+          <span class="viz-title">Quantos tokens o português gasta para cada token do inglês, mesmo texto (960 trechos do WMT24++)</span>
+          <svg data-viz="llm" viewBox="0 0 300 130" role="img" aria-label="GPT-2 inglês 1,74 vezes, Qwen2.5 1,35, GPT-4o 1,15 e GPT-2 português 0,72"></svg>
+        </figure>
+        <div class="body">
+          <span class="area">modelos de linguagem</span>
+          <h3>LLMs não pensam em palavras</h3>
+          <p>Um GPT-2 em português rodando inteiro no seu navegador: veja os tokens, os vetores, a atenção de cada camada e as probabilidades do próximo token, com temperatura, top-k e top-p. Os números do artigo, agora medidos num modelo de verdade.</p>
+          <ul class="tags"><li>Transformers.js</li><li>ONNX</li><li>PyTorch</li><li>Web Worker</li></ul>
+          <div class="stats">
+            <div class="stat"><b>124 mi</b><span>parâmetros rodando no navegador</span></div>
+            <div class="stat"><b>1 camada</b><span>basta para separar 83% dos sentidos de "banco"</span></div>
+            <div class="stat"><b>66%</b><span>da atenção vai para o 1º token, que pesa 5%</span></div>
+          </div>
+          <div class="actions">
+            <a class="btn primary" href="/llm-por-dentro/">Ver por dentro →</a>
+            <a class="btn" href="https://github.com/YUCAVALCANTE/llm-por-dentro">Código</a>
+          </div>
+        </div>
+      </article>
+
     </div>
   </section>
 
@@ -585,6 +607,17 @@
           const w = (x.valor / max) * (W - rot - valW);
           el('rect', { x: rot, y: y + 6, width: w, height: lh - 12, rx: 4, fill: i === 0 ? cor() : cor2(), class: 'anim-x', style: `animation-delay:${i * 60}ms` }, svg);
           txt(svg, rot + w + 4, y + lh / 2 + 3, num(x.valor) + ' m', i === 0 ? { class: 'forte' } : {});
+        });
+      },
+      llm(svg, d) {
+        const max = Math.max(...d.map((x) => x.razao));
+        const lh = (H - 4) / d.length, rot = 112, valW = 40;
+        d.forEach((x, i) => {
+          const y = i * lh + 2;
+          txt(svg, 0, y + lh / 2 + 3, x.tokenizador, i === 0 ? { class: 'forte' } : {});
+          const w = (x.razao / max) * (W - rot - valW);
+          el('rect', { x: rot, y: y + 6, width: w, height: lh - 12, rx: 4, fill: i === 0 ? cor() : cor2(), class: 'anim-x', style: `animation-delay:${i * 60}ms` }, svg);
+          txt(svg, rot + w + 4, y + lh / 2 + 3, num(x.razao, 2) + '×', i === 0 ? { class: 'forte' } : {});
         });
       },
     };
