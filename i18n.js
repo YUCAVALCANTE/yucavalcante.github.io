@@ -225,6 +225,7 @@
     'Redução de dimensionalidade': 'Dimensionality reduction',
 
     // Experiência e formação
+    'Foto de Yury Cavalcante': 'Photo of Yury Cavalcante',
     'em andamento': 'in progress',
     'Experiência': 'Experience',
     'Desde 2007 trabalhando com dados em telecomunicações, aviação, bens de consumo, bebidas e educação.': 'Working with data since 2007 in telecom, aviation, consumer goods, beverages and education.',

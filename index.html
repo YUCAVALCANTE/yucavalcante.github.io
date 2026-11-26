@@ -94,6 +94,7 @@
   .hero { min-height: calc(100svh - 64px); display: flex; align-items: center; justify-content: center; text-align: center; padding: 72px 16px 48px;
     background: linear-gradient(180deg, var(--bg) 0%, var(--band) 100%); }
   .hero .in { display: flex; flex-direction: column; align-items: center; gap: 20px; max-width: 860px; }
+  .avatar { width: 136px; height: 136px; border-radius: 9999px; object-fit: cover; box-shadow: 0 0 0 4px var(--panel), 0 0 0 5px var(--line), var(--shadow); margin-bottom: 4px; }
   .hero h1 { font-weight: 500; font-size: clamp(2.5rem, 6.5vw, 4.25rem); line-height: 1.05; letter-spacing: -.03em; margin: 0; }
   .hero .role { font-size: clamp(1.125rem, 2.4vw, 1.5rem); color: var(--muted); margin: 0; }
   .hero .lead { font-size: 1.125rem; line-height: 1.6; color: var(--ink-2); margin: 0; max-width: 680px; text-wrap: pretty; }
@@ -324,6 +325,7 @@
 <main>
 <section class="hero" id="inicio">
   <div class="in">
+    <img class="avatar" src="/img/yury-240.jpg" srcset="/img/yury-240.jpg 1x, /img/yury-480.jpg 2x" width="136" height="136" alt="Foto de Yury Cavalcante">
     <h1>Olá, eu sou Yury Cavalcante</h1>
     <p class="role">Business Intelligence · Data Analytics · Data Science · Inteligência Artificial</p>
     <p class="lead">Minha trajetória profissional combina negócios, dados e tecnologia. Trabalho com inteligência comercial, análise de desempenho e desenvolvimento de soluções analíticas.</p>
