@@ -1,6 +1,6 @@
 {
   "perfil": "https://medium.com/@yucavalcante",
-  "atualizado": "2026-11-25",
+  "atualizado": "2026-11-26",
   "categorias": [
     {
       "id": "ml",
@@ -33,6 +33,7 @@
       "nome": "Deep learning, IA e RAG",
       "descricao": "Redes neurais, sistemas de recomendação, RAG e previsão com deep learning, sem mágica.",
       "itens": [
+        {"t": "Revoada: construí uma IA para jogar e descobri que enxergar bem não significa acertar", "u": "https://medium.com/@yucavalcante/revoada-constru%C3%AD-uma-ia-para-jogar-e-descobri-que-enxergar-bem-n%C3%A3o-significa-acertar-fd20bf1ecc25", "d": "2026-11", "lang": "pt"},
         {"t": "Algoritmos genéticos: quando uma máquina encontra soluções que ninguém programou", "u": "https://medium.com/@yucavalcante/algoritmos-gen%C3%A9ticos-quando-uma-m%C3%A1quina-encontra-solu%C3%A7%C3%B5es-que-ningu%C3%A9m-programou-1a6fbd77c3da", "d": "2026-11", "lang": "pt"},
         {"t": "Como uma IA enxerga um jogo e decide onde clicar", "u": "https://medium.com/@yucavalcante/como-uma-ia-enxerga-um-jogo-e-decide-onde-clicar-d70ac633f756", "d": "2026-11", "lang": "pt"},
         {"t": "Por que a Netflix parece te conhecer? Sistemas de recomendação por dentro", "u": "https://medium.com/@yucavalcante/por-que-a-netflix-parece-te-conhecer-sistemas-de-recomenda%C3%A7%C3%A3o-por-dentro-65656b04c51c", "d": "2026-11", "lang": "pt"},
@@ -122,6 +123,7 @@
       "nome": "Contos",
       "descricao": "Ficção em séries curtas, publicadas parte por parte. O link abre a primeira parte.",
       "itens": [
+        {"t": "The Sixth Voice", "sub": "Uma mensagem de áudio de uma amiga morta há treze anos", "u": "https://medium.com/@yucavalcante/the-sixth-voice-part-i-the-girls-we-used-to-be-02e727c1cd44", "d": "2026-11", "lang": "en", "partes": 5},
         {"t": "The Cure", "sub": "Uma história do universo de The People Who Look Away", "u": "https://medium.com/@yucavalcante/the-cure-part-i-the-cure-bb6dc8c3f568", "d": "2026-11", "lang": "en", "partes": 2},
         {"t": "The People Who Look Away", "sub": "Inspirada em “Ugly” e “Lonely”, do 2NE1", "u": "https://medium.com/@yucavalcante/the-people-who-look-away-part-i-ugly-16ead200ffd5", "d": "2026-11", "lang": "en", "partes": 3},
         {"t": "A Table for One", "sub": "As horas depois de uma má notícia e a decisão de transformar a solidão em culpa", "u": "https://medium.com/@yucavalcante/a-table-for-one-part-i-four-chairs-2edb6a003e18", "d": "2026-10", "lang": "en", "partes": 2},
