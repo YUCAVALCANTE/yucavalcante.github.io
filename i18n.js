@@ -188,6 +188,14 @@
     'Perda, um amor inacabado e o preço de voltar': 'Loss, an unfinished love, and the price of coming back',
     'Inspirada em “Delilah”, de Florence + the Machine': 'Inspired by “Delilah” by Florence + the Machine',
 
+    // Certificações
+    'Certificações': 'Certifications',
+    '14 badges verificados no Credly. Clique em um para ver a verificação.': '14 verified badges on Credly. Click one to see its verification.',
+    'Ver perfil no Credly': 'See Credly profile',
+    'certificado profissional · avançado': 'professional certificate · advanced',
+    'Programa de 10 cursos: ferramentas e metodologia, Python, SQL, análise e visualização de dados, machine learning e um projeto final aplicado.':
+      'A 10-course program: tools and methodology, Python, SQL, data analysis and visualization, machine learning, and an applied capstone project.',
+
     // Contato e rodapé
     'Vamos conversar': "Let's talk",
     'Para conversar sobre dados, vagas ou projetos, me chame no LinkedIn. Todo o código está no GitHub.': 'To talk about data, roles or projects, reach me on LinkedIn. All the code is on GitHub.',
@@ -214,6 +222,8 @@
   const mes = (m, a) => `${MESES[m] || m} ${a}`;
   // Textos com números que mudam sempre que os artigos são atualizados
   const REGRAS = [
+    [/^(\w{3})\/(\d{4})$/, (_, m, a) => mes(m, a)],
+    [/^Coursera · IBM · (\w{3})\/(\d{4})$/, (_, m, a) => `Coursera · IBM · ${mes(m, a)}`],
     [/^(\w{3})\/(\d{4}) · (português|inglês)(?: · (\d+) partes)?$/, (_, m, a, l, p) =>
       `${mes(m, a)} · ${l === 'inglês' ? 'English' : 'Portuguese'}${p ? ` · ${p} parts` : ''}`],
     [/^(\d+) textos publicados no Medium, de (\w{3})\/(\d{4}) a (\w{3})\/(\d{4}): artigos técnicos, tutoriais, crônicas e contos\.$/, (_, n, m1, a1, m2, a2) =>

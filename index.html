@@ -190,6 +190,21 @@
   .txt-sub { grid-column: 1; font-size: .875rem; color: var(--muted); line-height: 1.35; margin-top: 2px; }
   .txt-meta { grid-column: 1; font-size: .75rem; color: var(--muted); margin-top: 3px; font-variant-numeric: tabular-nums; }
 
+  /* Certificações (badges do Credly; imagens servidas pelo Credly) */
+  .cert-destaque { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 24px; align-items: center; padding: 24px; margin-bottom: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); color: var(--ink); text-decoration: none; transition: background-color 150ms var(--ease-out); }
+  .cert-destaque img { width: 110px; height: 110px; }
+  .cert-destaque .cert-txt { display: flex; flex-direction: column; gap: 6px; }
+  .cert-destaque b { font-size: 1.25rem; font-weight: 600; letter-spacing: -.01em; }
+  .cert-destaque .cert-txt > span:not(.area):not(.cert-org) { color: var(--muted); font-size: .9375rem; }
+  .certs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+  .cert { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 14px; align-items: center; height: 100%; padding: 14px 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; color: var(--ink); text-decoration: none; transition: background-color 150ms var(--ease-out); }
+  .cert img { width: 56px; height: 56px; }
+  .cert .cert-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .cert b { font-size: .9375rem; font-weight: 600; line-height: 1.3; }
+  .cert-org, .cert-data { font-size: .8125rem; color: var(--muted); }
+  .cert:hover, .cert-destaque:hover { background: var(--fill); }
+  @media (max-width: 560px) { .cert-destaque { grid-template-columns: 1fr; justify-items: start; } }
+
   /* Contato */
   .contact-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
   .contact-card { display: flex; align-items: center; gap: 16px; padding: 20px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; text-decoration: none; color: var(--ink); box-shadow: var(--shadow); transition: background-color 150ms var(--ease-out); }
@@ -247,6 +262,7 @@
       <a href="#sobre">Sobre</a>
       <a href="#habilidades">Habilidades</a>
       <a href="#projetos">Projetos</a>
+      <a href="#certificacoes">Certificações</a>
       <a href="#textos">Textos</a>
       <a href="#contato">Contato</a>
     </nav>
@@ -534,7 +550,41 @@
     </div>
 </section>
 
-<div class="band" id="textos-faixa">
+<section class="band" id="certificacoes" aria-labelledby="cert-titulo">
+  <div class="in">
+    <div class="sec-head">
+      <h2 id="cert-titulo">Certificações</h2>
+      <p>14 badges verificados no Credly. Clique em um para ver a verificação.</p>
+      <a href="https://www.credly.com/users/yucavalcante">Ver perfil no Credly</a>
+    </div>
+    <a class="cert-destaque" href="https://www.credly.com/badges/2955a4a8-fe06-4439-a649-7f2aae9e36ea">
+      <img src="https://images.credly.com/images/0f740f0e-52f0-4ff3-bcac-e8d2ff735c07/image.png" width="110" height="110" alt="" loading="lazy" referrerpolicy="no-referrer">
+      <span class="cert-txt">
+        <span class="area">certificado profissional · avançado</span>
+        <b>IBM Data Science Professional Certificate</b>
+        <span>Programa de 10 cursos: ferramentas e metodologia, Python, SQL, análise e visualização de dados, machine learning e um projeto final aplicado.</span>
+        <span class="cert-org">Coursera · IBM · jan/2024</span>
+      </span>
+    </a>
+    <ul class="certs">
+        <li><a class="cert" href="https://www.credly.com/badges/b24fb9fa-2b53-459a-a127-423ddc72395b"><img src="https://images.credly.com/images/7658c4f1-0570-42c7-83b0-04cac8b0aca2/image.png" width="56" height="56" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="cert-txt"><b>Generative AI Essentials</b><span class="cert-org">Coursera · IBM</span><span class="cert-data">set/2025</span></span></a></li>
+        <li><a class="cert" href="https://www.credly.com/badges/9294eaad-ff79-4fb7-9765-c554a97592ae"><img src="https://images.credly.com/images/7fd5a03e-823f-4449-af43-59afe528f4ee/image.png" width="56" height="56" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="cert-txt"><b>Generative AI: Prompt Engineering</b><span class="cert-org">Coursera · IBM</span><span class="cert-data">jul/2025</span></span></a></li>
+        <li><a class="cert" href="https://www.credly.com/badges/bd203629-aa90-49a0-bbf0-8ce78c843965"><img src="https://images.credly.com/images/3e199561-bc4a-4621-9361-340fc43d997e/Coursera_20Artificial_20Intelligence_20Essentials_20V2.png" width="56" height="56" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="cert-txt"><b>Artificial Intelligence Essentials V2</b><span class="cert-org">Coursera · IBM</span><span class="cert-data">jul/2025</span></span></a></li>
+        <li><a class="cert" href="https://www.credly.com/badges/0d1c51f7-f064-40f0-8beb-26caae4442e2"><img src="https://images.credly.com/images/169512d3-cef6-43e3-bec8-e6af2723a076/image.png" width="56" height="56" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="cert-txt"><b>Applied Data Science Capstone</b><span class="cert-org">Coursera · IBM</span><span class="cert-data">jan/2024</span></span></a></li>
+        <li><a class="cert" href="https://www.credly.com/badges/bc287395-5ea9-4ea9-9801-e166ac1d1853"><img src="https://images.credly.com/images/9da3eedf-fda3-4e81-bb46-d174b4699bf1/image.png" width="56" height="56" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="cert-txt"><b>Data Visualization with Python</b><span class="cert-org">Coursera · IBM</span><span class="cert-data">jan/2024</span></span></a></li>
+        <li><a class="cert" href="https://www.credly.com/badges/37145344-d9d6-46df-b2a0-264175022549"><img src="https://images.credly.com/images/f283df3d-1780-4c2d-947d-fc80eae0953b/image.png" width="56" height="56" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="cert-txt"><b>Machine Learning with Python</b><span class="cert-org">Coursera · IBM</span><span class="cert-data">jan/2024</span></span></a></li>
+        <li><a class="cert" href="https://www.credly.com/badges/b4da9fdf-c6a9-4b8f-b772-a34aedbc3011"><img src="https://images.credly.com/images/950038fc-2519-4f79-8827-f71caf0f5095/image.png" width="56" height="56" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="cert-txt"><b>Data Analysis with Python</b><span class="cert-org">Coursera · IBM</span><span class="cert-data">jan/2024</span></span></a></li>
+        <li><a class="cert" href="https://www.credly.com/badges/d0201094-f4c8-4a40-a90a-b0e1dfd39c21"><img src="https://images.credly.com/images/f2573aac-d21c-483d-acda-afaa366b4f51/image.png" width="56" height="56" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="cert-txt"><b>Databases and SQL for Data Science</b><span class="cert-org">Coursera · IBM</span><span class="cert-data">jan/2024</span></span></a></li>
+        <li><a class="cert" href="https://www.credly.com/badges/688b0e11-74be-48af-a80b-29ffdbb4fe5e"><img src="https://images.credly.com/images/40bee502-a5b3-4365-90e7-57eed5067594/image.png" width="56" height="56" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="cert-txt"><b>Python for Data Science and AI</b><span class="cert-org">Coursera · IBM</span><span class="cert-data">dez/2023</span></span></a></li>
+        <li><a class="cert" href="https://www.credly.com/badges/0ac29b86-c7da-4c51-9939-024a4d629e3c"><img src="https://images.credly.com/images/4dd14b9d-2750-43bc-a5f6-27970c0de0fa/image.png" width="56" height="56" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="cert-txt"><b>Python Project for Data Science</b><span class="cert-org">Coursera · IBM</span><span class="cert-data">dez/2023</span></span></a></li>
+        <li><a class="cert" href="https://www.credly.com/badges/16474273-550b-4146-b9c5-97a772bfe93f"><img src="https://images.credly.com/images/46defa53-a922-47bd-94ea-b43488f5cd8a/Data_Science_Methodology_Foundational.png" width="56" height="56" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="cert-txt"><b>Data Science Methodology</b><span class="cert-org">Coursera · IBM</span><span class="cert-data">out/2023</span></span></a></li>
+        <li><a class="cert" href="https://www.credly.com/badges/c936d2ec-b108-4644-beb8-f3c74df45af6"><img src="https://images.credly.com/images/1447954e-9923-4703-a647-eac80e5f0682/image.png" width="56" height="56" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="cert-txt"><b>Tools for Data Science V2</b><span class="cert-org">Coursera · IBM</span><span class="cert-data">out/2023</span></span></a></li>
+        <li><a class="cert" href="https://www.credly.com/badges/f5691ed8-ee74-4491-9306-4a47d894d693"><img src="https://images.credly.com/images/5fc2d535-e716-46c4-881a-f4822b8da0e5/Cognitive_Class_-_What_is_Data_Science.png" width="56" height="56" alt="" loading="lazy" referrerpolicy="no-referrer"><span class="cert-txt"><b>Data Science Orientation</b><span class="cert-org">Coursera · IBM</span><span class="cert-data">out/2023</span></span></a></li>
+    </ul>
+  </div>
+</section>
+
+<div class="band alt" id="textos-faixa">
 <div class="in">
 <!-- TEXTOS:INICIO -->
   <section id="textos" aria-labelledby="textos-titulo">
@@ -696,7 +746,7 @@
 </div>
 </div>
 
-<section class="band alt" id="contato" aria-labelledby="contato-titulo">
+<section class="band" id="contato" aria-labelledby="contato-titulo">
   <div class="in">
     <div class="sec-head">
       <h2 id="contato-titulo">Vamos conversar</h2>
@@ -733,6 +783,7 @@
           <li><a href="#sobre">Sobre</a></li>
           <li><a href="#habilidades">Habilidades</a></li>
           <li><a href="#projetos">Projetos</a></li>
+          <li><a href="#certificacoes">Certificações</a></li>
           <li><a href="#textos">Textos</a></li>
         </ul>
       </div>
