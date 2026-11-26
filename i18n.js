@@ -204,6 +204,20 @@
     'Programa de 10 cursos: ferramentas e metodologia, Python, SQL, análise e visualização de dados, machine learning e um projeto final aplicado.':
       'A 10-course program: tools and methodology, Python, SQL, data analysis and visualization, machine learning, and an applied capstone project.',
 
+    // Trabalhos acadêmicos
+    'Acadêmico': 'Academic',
+    'Trabalhos acadêmicos': 'Academic work',
+    'Pesquisas da pós-graduação.': 'Graduate research.',
+    'em desenvolvimento': 'in progress',
+    'Unicamp · Faculdade de Tecnologia · 2026': 'Unicamp · School of Technology · 2026',
+    'A Geometria dos Dados': 'The Geometry of Data',
+    'Pós-graduação em Engenharia e Administração de Banco de Dados': 'Graduate program in Database Engineering and Administration',
+    'Como a geometria dos dados (dimensionalidade intrínseca e espaços métricos) pode reduzir o custo das consultas em bancos de dados vetoriais sem perder qualidade na recuperação. A avaliação experimental usa 2,68 milhões de textos da Wikipédia (Natural Questions / BEIR) representados em vetores de 384 dimensões.':
+      'How the geometry of data (intrinsic dimensionality and metric spaces) can lower query cost in vector databases without losing retrieval quality. The experiments use 2.68 million Wikipedia passages (Natural Questions / BEIR) represented as 384-dimensional vectors.',
+    'Bancos de dados vetoriais': 'Vector databases',
+    'Espaços métricos': 'Metric spaces',
+    'Redução de dimensionalidade': 'Dimensionality reduction',
+
     // Contato e rodapé
     'Vamos conversar': "Let's talk",
     'Para conversar sobre dados, vagas ou projetos, me chame no LinkedIn. Todo o código está no GitHub.': 'To talk about data, roles or projects, reach me on LinkedIn. All the code is on GitHub.',
